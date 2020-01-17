@@ -28,7 +28,8 @@ function plot_field(field::Array{<:Complex,2}, a1::Array{<:Real,1}, a2::Array{<:
 end
 
 """
-
+Plot a plane wave expansion as a real space field.
+"""
 function plot_mode(cg::ConvolvedGeometry, u::Array{<:Complex,1}, k::Array{<:Real,1})
     field = get_field(cg, u, k=k)
     plot_field(field, cg.a1, cg.a2, cmap="coolwarm")
