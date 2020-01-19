@@ -27,9 +27,9 @@ function plot_band_diagram(my_solve::Function, k_path; dk=0, labels=[], bands=1:
 	# Solve and plot first k-point
 	k = k_path[1]
 	ws, vs = my_solve(k)
-	plot_freqs(k, ws)
-	# Store coordinate of first label
 	x = 0
+	plot_freqs(x, ws)
+	# Store coordinate of first label
 	labels_x = []
 	push!(labels_x, x)
 
