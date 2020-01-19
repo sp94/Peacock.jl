@@ -13,7 +13,7 @@ include("postprocessing.jl")
 export get_field
 
 include("plotting.jl")
-export plot_us, plot_us_hex
+export plot_field, plot_mode
 
 include("band_diagrams.jl")
 export plot_band_diagram
