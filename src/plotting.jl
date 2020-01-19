@@ -22,9 +22,9 @@ function plot_field(field::Array{<:Complex,2}, a1::Array{<:Real,1}, a2::Array{<:
         vmax = +vlim
     end
     subplot(1,2,1)
-    plot_field(field, a1, a2, cmap=cmap, vmin=vmin, vmax=vmax)
+    plot_field(real(field), a1, a2, cmap=cmap, vmin=vmin, vmax=vmax)
     subplot(1,2,2)
-    plot_field(field, a1, a2, cmap=cmap, vmin=vmin, vmax=vmax)
+    plot_field(imag(field), a1, a2, cmap=cmap, vmin=vmin, vmax=vmax)
 end
 
 """
