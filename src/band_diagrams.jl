@@ -61,7 +61,7 @@ function plot_band_diagram(my_solve::Function, k_path; dk=0, labels=[], bands=1:
 end
 
 
-function plot_band_diagram(cg, ks, pol::Polarisation; dk=0, labels=[], nbands=10, wscale=1, color="k", markersize=nothing)
+function plot_band_diagram(cg, ks, pol::Polarisation; dk=0, labels=[], bands=1:10, wscale=1, color="k", markersize=nothing)
 	my_solve(k) = solve(cg, k, pol)
-	plot_band_diagram(my_solve, ks; dk=dk, labels=labels, nbands=nbands, wscale=wscale, color=color, markersize=markersize)
+	plot_band_diagram(my_solve, ks; dk=dk, labels=labels, bands=bands, wscale=wscale, color=color, markersize=markersize)
 end
