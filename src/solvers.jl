@@ -10,6 +10,8 @@ function orthogonalise(us; w=I)
     for n in 2:size(out,2)
         proj += out[:,n-1]*out[:,n-1]' * w
         out[:,n] = out[:,n] - proj*out[:,n]
+    end
+    for n in 1:size(out,2)
         out[:,n] /= sqrt(abs(dot(out[:,n],w*out[:,n])))
     end
     return out
