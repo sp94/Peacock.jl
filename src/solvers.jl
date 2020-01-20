@@ -34,7 +34,7 @@ function solve(cg::ConvolvedGeometry, k, pol::Polarisation)
     ws = sqrt.(vals)
     idx = sortperm(ws, by=real)
     ws = ws[idx]
-    us = us[:,idx]
+    vecs = vecs[:,idx]
     # Ensure orthogonal, as we have a Hermitian eigenvalue problem
     us = orthogonalise(vecs, w=RHS)
     return ws, us
