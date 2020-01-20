@@ -12,6 +12,7 @@ function orthogonalise(us; w=I)
         out[:,n] = out[:,n] - proj*out[:,n]
         out[:,n] /= sqrt(abs(dot(out[:,n],w*out[:,n])))
     end
+    return out
 end
 
 function solve(cg::ConvolvedGeometry, k, pol::Polarisation)
