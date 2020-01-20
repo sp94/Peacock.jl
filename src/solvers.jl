@@ -4,12 +4,13 @@ using ProgressMeter
 @enum Polarisation TE TM
 
 function orthogonalise(us; w=I)
+    out = copy(us)
     # Gram-Schmidt orthogonalisation
-    proj = zeros(size(us,1),size(us,1))
-    for n in 2:size(us,2)
-        proj += us[:,n-1]*us[:,n-1]' * w
-        us[:,n] = us[:,n] - proj*us[:,n]
-        us[:,n] /= sqrt(abs(dot(us[:,n],w*us[:,n])))
+    proj = zeros(size(out,1),size(out,1))
+    for n in 2:size(out,2)
+        proj += out[:,n-1]*out[:,n-1]' * w
+        out[:,n] = out[:,n] - proj*out[:,n]
+        out[:,n] /= sqrt(abs(dot(out[:,n],w*out[:,n])))
     end
 end
 
