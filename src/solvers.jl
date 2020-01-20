@@ -3,7 +3,7 @@ using ProgressMeter
 
 @enum Polarisation TE TM
 
-function orthogonalise(us, w=I)
+function orthogonalise(us; w=I)
     # Gram-Schmidt orthogonalisation
     proj = zeros(size(us,1),size(us,1))
     for n in 2:size(us,2)
