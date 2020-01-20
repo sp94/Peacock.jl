@@ -27,8 +27,8 @@ function solve(cg::ConvolvedGeometry, k, pol::Polarisation)
     end
     vals, vecs = eigen(LHS, RHS)
     vecs = orthogonalise(vecs, w=RHS)
-    ws = sqrt.(eigvals)
-    us = eigvecs
+    ws = sqrt.(vals)
+    us = vecs
     # Sort by increasing frequency
     idx = sortperm(ws, by=real)
     ws = ws[idx]
