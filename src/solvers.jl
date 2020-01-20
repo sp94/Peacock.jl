@@ -3,28 +3,32 @@ using ProgressMeter
 
 @enum Polarisation TE TM
 
+function orthogonalise(us, w=I)
+    # Gram-Schmidt orthogonalisation
+    proj = zeros(size(us,1),size(us,1))
+    for n in 2:size(us,2)
+        proj += us[:,n-1]*us[:,n-1]' * w
+        us[:,n] = us[:,n] - proj*us[:,n]
+        us[:,n] /= sqrt(abs(dot(us[:,n],w*us[:,n])))
+    end
+end
+
 function solve(cg::ConvolvedGeometry, k, pol::Polarisation)
 	# Eigenvalue problem
     epc, muc = cg.epc, cg.muc
     kx = cg.kx + k[1]*I
     ky = cg.ky + k[2]*I
     if pol == TM
-        eigvals, eigvecs = eigen(kx/muc*kx+ky/muc*ky, epc)
+        LHS = kx/muc*kx + ky/muc*ky
+        RHS = epc
     elseif pol == TE
-        eigvals, eigvecs = eigen(kx/epc*kx+ky/epc*ky, muc)
+        LHS = kx/epc*kx + ky/epc*ky
+        RHS = muc
     end
+    vals, vecs = eigen(LHS, RHS)
+    vecs = orthogonalise(vecs, w=RHS)
     ws = sqrt.(eigvals)
     us = eigvecs
-    # Normalisation 
-    for j in 1:size(us,2)
-        if pol == TM
-            # TM modes are orthogonal under <ui|ep|uj> = δ_ij
-    	    us[:,j] /= sqrt(abs(dot(us[:,j],epc*us[:,j])))
-        elseif pol == TE
-            # TE modes are orthogonal under <ui|mu|uj> = δ_ij
-            us[:,j] /= sqrt(abs(dot(us[:,j],muc*us[:,j])))
-        end
-    end
     # Sort by increasing frequency
     idx = sortperm(ws, by=real)
     ws = ws[idx]
