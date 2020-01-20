@@ -5,13 +5,12 @@ using ProgressMeter
 
 function orthogonalise(us; w=I)
     out = copy(us)
-    # Gram-Schmidt orthogonalisation
+    out[:,1] /= sqrt(abs(dot(out[:,1],w*out[:,1])))
+    # Gram-Schmidt orthogonalisation
     proj = zeros(size(out,1),size(out,1))
     for n in 2:size(out,2)
         proj += out[:,n-1]*out[:,n-1]' * w
         out[:,n] = out[:,n] - proj*out[:,n]
-    end
-    for n in 1:size(out,2)
         out[:,n] /= sqrt(abs(dot(out[:,n],w*out[:,n])))
     end
     return out
