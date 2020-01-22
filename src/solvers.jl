@@ -3,20 +3,27 @@ using ProgressMeter
 
 @enum Polarisation TE TM
 
-function orthogonalise(us; w=I)
+function normalise(us; w=I)
     out = copy(us)
-    out[:,1] /= sqrt(abs(dot(out[:,1],w*out[:,1])))
+    for n in 1:size(out,2)
+        out[:,n] /= sqrt(abs(dot(out[:,n],w*out[:,n])))
+    end
+end
+
+function orthonormalise(us; w=I)
+    out = copy(us)
+    out[:,1] = normalise(out[:,1], w=w)
     # Gram-Schmidt orthogonalisation
     proj = zeros(size(out,1),size(out,1))
     for n in 2:size(out,2)
         proj += out[:,n-1]*out[:,n-1]' * w
         out[:,n] = out[:,n] - proj*out[:,n]
-        out[:,n] /= sqrt(abs(dot(out[:,n],w*out[:,n])))
+        out[:,n] = normalise(out[:,n], w=w)
     end
     return out
 end
 
-function solve(cg::ConvolvedGeometry, k, pol::Polarisation)
+function solve(cg::ConvolvedGeometry, k, pol::Polarisation; orthonormalise=false)
 	# Eigenvalue problem
     epc, muc = cg.epc, cg.muc
     kx = cg.kx + k[1]*I
@@ -28,13 +35,16 @@ function solve(cg::ConvolvedGeometry, k, pol::Polarisation)
         LHS = kx/epc*kx + ky/epc*ky
         RHS = muc
     end
-    vals, vecs = eigen(LHS, RHS)
+    Λs, us = eigen(LHS, RHS)
     # Sort by increasing frequency
-    ws = sqrt.(vals)
+    ws = sqrt.(Λs)
     idx = sortperm(ws, by=real)
     ws = ws[idx]
-    vecs = vecs[:,idx]
-    # Ensure orthogonal, as we have a Hermitian eigenvalue problem
-    us = orthogonalise(vecs, w=RHS)
+    us = us[:,idx]
+    if orthonormalise
+        us = orthonormalise(us, w=RHS)
+    else
+        us = normalise(us, w=RHS)
+    end
     return ws, us
 end
