@@ -24,7 +24,7 @@ function orthonormalise(us; w=I)
     return out
 end
 
-function solve(cg::ConvolvedGeometry, k, pol::Polarisation; orthonormalise=false)
+function solve(cg::ConvolvedGeometry, k, pol::Polarisation; make_orthonormal=false)
 	# Eigenvalue problem
     epc, muc = cg.epc, cg.muc
     kx = cg.kx + k[1]*I
@@ -42,7 +42,7 @@ function solve(cg::ConvolvedGeometry, k, pol::Polarisation; orthonormalise=false
     idx = sortperm(ws, by=real)
     ws = ws[idx]
     us = us[:,idx]
-    if orthonormalise
+    if make_orthonormal
         us = orthonormalise(us, w=RHS)
     else
         us = normalise(us, w=RHS)
