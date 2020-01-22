@@ -8,6 +8,7 @@ function normalise(us; w=I)
     for n in 1:size(out,2)
         out[:,n] /= sqrt(abs(dot(out[:,n],w*out[:,n])))
     end
+    return out
 end
 
 function orthonormalise(us; w=I)
