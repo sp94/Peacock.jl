@@ -24,7 +24,7 @@ function orthonormalise(us; w=I)
     return out
 end
 
-function solve(cg::ConvolvedGeometry, k, pol::Polarisation; make_orthonormal=false)
+function solve(cg::ConvolvedGeometry, k, pol::Polarisation; ns=:, make_orthonormal=false)
 	# Eigenvalue problem
     epc, muc = cg.epc, cg.muc
     kx = cg.kx + k[1]*I
@@ -40,8 +40,8 @@ function solve(cg::ConvolvedGeometry, k, pol::Polarisation; make_orthonormal=fal
     # Sort by increasing frequency
     ws = sqrt.(Λs)
     idx = sortperm(ws, by=real)
-    ws = ws[idx]
-    us = us[:,idx]
+    ws = ws[idx][ns]
+    us = us[:,idx][:,ns]
     if make_orthonormal
         us = orthonormalise(us, w=RHS)
     else
