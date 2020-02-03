@@ -1,18 +1,17 @@
 """
-Shift the plane wave expansion by a reciprocal lattice vector, p*b1+q*b2.
+Change the basis of the plane wave expansion.
+This should correspond to a symmetry of the system,
+eg shift by a reciprocal lattice vector or a rotation
 """
-function shift(cg, us, dp::Int, dq::Int)
-    # Generate the (p,q) indices of the new plane wave basis
-    ps_ = cg.ps .+ dp
-    qs_ = cg.qs .+ dq
+function change_basis(cg, us, pq_map)
     us_ = zeros(ComplexF64, size(us))
-    # For each plane wave in the original basis
     for row in 1:size(us,1)
         # Identify the corresponding (p_,q_) indices
         # in the new plane wave basis
-        p_ = cg.ps[row] - dp
-        q_ = cg.qs[row] - dq
-        # Copy only if the plane wave still exists in the new basis
+        p = cg.ps[row]
+        q = cg.ps[row]
+        p_, q_ = pq_map(p, q)
+        # Copy only if the plane wave still exists in the new basis
         row_ = findfirst(x->x==(p_,q_), collect(zip(cg.ps,cg.qs)))
         if !isnothing(row_)
             us_[row_,:] = us[row,:]
@@ -20,6 +19,16 @@ function shift(cg, us, dp::Int, dq::Int)
     end
     return us_
 end
+
+
+"""
+Shift the plane wave expansion by a reciprocal lattice vector, p*b1+q*b2.
+"""
+function shift(cg, us, dp::Int, dq::Int)
+    pq_map(p,q) = (p-dp, q-dq)
+    return change_basis(cg, us, pq_map)
+end
+
 
 """
 Convert plane wave expansion to real space field.
