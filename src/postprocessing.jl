@@ -9,7 +9,7 @@ function change_basis(cg, us, pq_map)
         # Identify the corresponding (p_,q_) indices
         # in the new plane wave basis
         p = cg.ps[row]
-        q = cg.ps[row]
+        q = cg.qs[row]
         p_, q_ = pq_map(p, q)
         # Copy only if the plane wave still exists in the new basis
         row_ = findfirst(x->x==(p_,q_), collect(zip(cg.ps,cg.qs)))
