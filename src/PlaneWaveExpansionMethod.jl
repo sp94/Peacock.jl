@@ -13,7 +13,7 @@ include("solvers.jl")
 export solve, TE, TM, Solver
 
 include("postprocessing.jl")
-export get_field
+export change_basis, get_field
 
 include("plotting.jl")
 export plot_field, plot_mode
