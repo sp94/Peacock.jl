@@ -15,6 +15,9 @@ export solve, TE, TM, Solver
 include("postprocessing.jl")
 export change_basis, get_field
 
+include("postprocessing_wilson_loops.jl")
+export overlaps, wilson_matrix, wilson_eigen, wilson_eigvals, wilson_gauge
+
 include("plotting.jl")
 export plot_field, plot_mode
 
