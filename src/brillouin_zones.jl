@@ -1,6 +1,13 @@
+# To do - make BrillouinZoneCoordinate a subtype of AbstractVector
+# so it can be passed directly to solve function
+struct BrillouinZoneCoordinate
+	k::Array{Float64,1}
+	label::String
+end
+
 function sample_path(k_path; dk=0)
-	# Replace 0 with [0,0]
-	k_path = Array{Float64,1}[k == 0 ? [0,0] : k for k in k_path]
+	# Replace BZ coordinates with k values
+	k_path = [typeof(x)==BrillouinZoneCoordinate ? x.k : x for x in k_path]
 	# Set default k-point density
 	if dk == 0
 		dk = norm(k_path[2]-k_path[1])/10

@@ -1,5 +1,8 @@
 module PlaneWaveExpansionMethod
 
+include("brillouin_zones.jl")
+export sample_path, BrillouinZoneCoordinate
+
 include("geometry.jl")
 export Geometry
 
