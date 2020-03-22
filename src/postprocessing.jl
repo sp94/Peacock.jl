@@ -3,9 +3,9 @@ Change the basis of the plane wave expansion.
 This should correspond to a symmetry of the system,
 eg shift by a reciprocal lattice vector or a rotation
 """
-function change_basis(cg, us, pq_map)
-    us_ = zeros(ComplexF64, size(us))
-    for row in 1:size(us,1)
+function change_basis(cg::ConvolvedGeometry, a::Eigenvectors, pq_map)
+    b_data = zeros(ComplexF64, size(a.data))
+    for row in 1:size(a.data,1)
         # Identify the corresponding (p_,q_) indices
         # in the new plane wave basis
         p = cg.ps[row]
@@ -14,10 +14,10 @@ function change_basis(cg, us, pq_map)
         # Copy only if the plane wave still exists in the new basis
         row_ = findfirst(x->x==(p_,q_), collect(zip(cg.ps,cg.qs)))
         if !isnothing(row_)
-            us_[row_,:] = us[row,:]
+            b_data[row_,:] = a.data[row,:]
         end
     end
-    return us_
+    return Eigenvectors(b_data, a.weighting)
 end
 
 

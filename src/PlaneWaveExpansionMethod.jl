@@ -10,7 +10,7 @@ include("convolutions.jl")
 export ConvolvedGeometry
 
 include("solvers.jl")
-export solve, TE, TM
+export solve, TE, TM, Solver
 
 include("postprocessing.jl")
 export get_field
