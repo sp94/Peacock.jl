@@ -61,7 +61,11 @@ function plot_band_diagram(my_solve::Function, k_path; dk=0, labels=[], bands=1:
 end
 
 
-function plot_band_diagram(cg, ks, pol::Polarisation; dk=0, labels=[], bands=1:10, wscale=1, color="k", markersize=nothing)
-	my_solve(k) = solve(cg, k, pol)
+function plot_band_diagram(solver, ks; dk=0, labels=[], bands=1:10, wscale=1, color="k", markersize=nothing)
+	if labels == []
+		labels = [typeof(x)==BrillouinZoneCoordinate ? x.label : "" for x in ks]
+	end
+	ks = [typeof(x)==BrillouinZoneCoordinate ? x.k : x for x in ks]
+	my_solve(k) = solve(solver, k)
 	plot_band_diagram(my_solve, ks; dk=dk, labels=labels, bands=bands, wscale=wscale, color=color, markersize=markersize)
 end
