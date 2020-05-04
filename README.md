@@ -1,10 +1,10 @@
-# Introduction
+## Introduction
 
 `PlaneWaveExpansionMethod.jl` is a Julia package for studying photonic crystals.
 * To do - list features here
 
 
-# Installation
+## Installation
 
 The package can be installed using the built-in Julia package manager
 ```julia
@@ -13,7 +13,7 @@ Pkg.add("PlaneWaveExpansionMethod")
 ```
 
 
-# Documentation / Example usage
+## Documentation / Example usage
 
 To do
 * Defining geometry
@@ -21,6 +21,6 @@ To do
 * Plotting band structure
 
 
-# Further reading
+## Further reading
 
 Rumpf CEM
