@@ -1,6 +1,7 @@
 ## Introduction
 
-`PlaneWaveExpansionMethod.jl` is a Julia package for studying photonic crystals.
+`Peacock.jl` is a Julia package for studying photonic crystals.
+* To do - explain why Peacock
 * To do - list features here
 
 
@@ -13,12 +14,12 @@ Here we demonstrate how to reproduce figures 2 and 3 from chapter 5 of _Photonic
 The package can be installed using the built-in Julia package manager
 ```julia
 using Pkg
-Pkg.add("PlaneWaveExpansionMethod")
+Pkg.add("Peacock")
 ```
 
 After installation, the package can be loaded in Julia
 ```julia
-using PlaneWaveExpansionMethod
+using Peacock
 ```
 
 
