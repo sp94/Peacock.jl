@@ -1,4 +1,4 @@
-module PlaneWaveExpansionMethod
+module Peacock
 
 include("brillouin_zones.jl")
 export sample_path, BrillouinZoneCoordinate
