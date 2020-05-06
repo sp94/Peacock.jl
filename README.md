@@ -85,7 +85,16 @@ ylim(0,0.8)
 ```
 > ![Plot of a band structure](figures/example_plot_band_diagram.png)
 
-* Visualising the modes
+
+### Plotting the modes
+
+```julia
+frequencies, modes = solve(solver, X, TM)
+plot(modes[2], bloch_phase=true)
+plot(modes[2], bloch_phase=false)
+```
+
+> ![Plot of some modes](figures/example_plot_modes.png)
 
 
 ## Further reading
