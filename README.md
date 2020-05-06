@@ -7,7 +7,7 @@
 
 ## Example usage
 
-Here we demonstrate how to reproduce figures 2 and 3 from chapter 5 of _Photonic crystals: molding the flow of light_ by Joannopoulos (see further reading).
+Here we reproduce figures 2 and 3 from chapter 5 of _Photonic crystals: molding the flow of light_ by Joannopoulos (see further reading).
 
 ### Installation
 
@@ -49,29 +49,20 @@ a2 = [0, 1]
 d1 = d2 = 0.01
 
 geometry = Geometry(epf, muf, a1, a2, d1, d2)
+plot(geometry)
 ```
-
-We can visualise the crystal using the `plot_field` function
-```julia
-plot_field(g.ep, g.a1, g.a2)
-```
-
+> ![Plot of the example geometry](figures/example_plot_geometry.png)
 
 ### Defining a photonic crystal in Fourier space
 
 The Plane Wave Expansion Method efficiently solves Maxwell's equations for periodic media using a basis of plane waves in Fourier space (see further reading).
 
-We can construct a plane wave basis using the constructor
 ```julia
-plane_wave_cutoff = 7
-plane_wave_basis = PlaneWaveBasis(plane_wave_cutoff)
+fourier_space_cutoff = 7
+solver = Solver(geometry, fourier_space_cutoff)
+plot(solver)
 ```
-The larger the plane wave cutoff the more accurate the simulation will be.
-
-The `Geometry` constructor takes the real-space representation and returns the 
-```julia
-fourier_space_geometry = FourierSpaceGeometry(geometry, plane_wave_basis)
-```
+> ![Plot of the example solver](figures/example_plot_solver_cutoff=7.png)
 
 
 ### Plotting the band structure of a photonic crystal
