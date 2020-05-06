@@ -70,6 +70,21 @@ plot(solver)
 * Plotting band structure
     * Defining Brillouin zone coordinates
 
+```julia
+G = BrillouinZoneCoordinate(  0,   0, "Γ")
+X = BrillouinZoneCoordinate(1/2,   0, "X")
+M = BrillouinZoneCoordinate(1/2, 1/2, "M")
+k_path = [G,X,M,G]
+
+figure(figsize=(4,3))
+plot_band_diagram(solver, k_path, TE, color="red",
+            bands=1:4, dk=0.1, frequency_scale=1/2pi)
+plot_band_diagram(solver, k_path, TM, color="blue",
+            bands=1:4, dk=0.1, frequency_scale=1/2pi)
+ylim(0,0.8)
+```
+> ![Plot of a band structure](figures/example_plot_band_diagram.png)
+
 * Visualising the modes
 
 
