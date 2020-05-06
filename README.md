@@ -53,9 +53,9 @@ plot(geometry)
 ```
 > ![Plot of the example geometry](figures/example_plot_geometry.png)
 
-### Defining a photonic crystal in Fourier space
+### Defining the solver
 
-The Plane Wave Expansion Method efficiently solves Maxwell's equations for periodic media using a basis of plane waves in Fourier space (see further reading).
+The `Solver` approximates the geometry using a truncated Plane Wave Expansion (see further reading). The number of plane waves is determined by the cutoff. Increasing the cutoff will increase the accuracy of the solution, but low-contrast photonic crystals can be well approximated with a relatively low number of plane waves.
 
 ```julia
 fourier_space_cutoff = 7
