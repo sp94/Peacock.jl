@@ -1,27 +1,25 @@
 module Peacock
 
-include("brillouin_zones.jl")
-export sample_path, BrillouinZoneCoordinate
+using PyPlot
+using LinearAlgebra, FFTW
+
+include("utils.jl")
 
 include("geometry.jl")
 export Geometry
 
-include("convolutions.jl")
-export ConvolvedGeometry
+# include("plane_wave_expansion_method/basis.jl")
+include("plane_wave_basis.jl")
+export Mode, get_field
 
-include("solvers.jl")
-export solve, TE, TM, Solver
-
-include("postprocessing.jl")
-export change_basis, get_field
-
-include("postprocessing_wilson_loops.jl")
-export overlaps, wilson_matrix, wilson_eigen, wilson_eigvals, wilson_gauge
+# include("plane_wave_expansion_method/solver.jl")
+include("solver.jl")
+export Solver, TE, TM, solve
 
 include("plotting.jl")
-export plot_field, plot_mode
+export plot
 
 include("band_diagrams.jl")
-export plot_band_diagram
+export BrillouinZoneCoordinate, plot_band_diagram
 
 end # module
