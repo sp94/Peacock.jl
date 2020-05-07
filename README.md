@@ -97,6 +97,31 @@ plot(modes[2], bloch_phase=false)
 > ![Plot of some modes](figures/example_plot_modes.png)
 
 
+### The `Peacock.Zoo` submodule
+
+```julia
+using Peacock.Zoo
+using Parameters
+
+# Load photonic topological insulator from Wu et al 2015
+@unpack geometry, solver, polarisation, G, K, M = make_wu_topo(fourier_space_cutoff)
+
+# Preview the crystal
+plot(geometry)
+```
+
+> ![Plot of a crystal from the Zoo](figures/example_zoo_geometry.png)
+
+```julia
+# Plot the first six bands
+figure(figsize=(3,4))
+plot_band_diagram(solver, [K,G,M], polarisation,
+        bands=1:6, frequency_scale=1/2pi, dk=0.1)
+```
+
+> ![Plot of some bands from the Zoo](figures/example_zoo_bands.png)
+
+
 ## Further reading
 
 Photonic crystals - Joannaopoulos
