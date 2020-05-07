@@ -22,4 +22,7 @@ export plot
 include("band_diagrams.jl")
 export BrillouinZoneCoordinate, plot_band_diagram
 
+# Submodule that defines my commonly used crystals
+include("Zoo.jl")
+
 end # module
