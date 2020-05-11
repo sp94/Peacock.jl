@@ -1,4 +1,5 @@
-<img src="logo.png" alt="Peacock logo" height="200"></img>
+
+<img src="logo.png" alt="Peacock logo" height="150"></img>
 
 
 ## Introduction
