@@ -1,3 +1,7 @@
+<div align="center">
+<img src="logo.png" alt="Peacock logo"></img>
+</div>
+
 ## Introduction
 
 `Peacock.jl` is a Julia package for studying photonic crystals.
