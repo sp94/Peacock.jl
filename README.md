@@ -1,5 +1,5 @@
 <div align="center">
-<img src="logo.png" alt="Peacock logo"></img>
+<img src="logo.png" alt="Peacock logo" width="200"></img>
 </div>
 
 ## Introduction
