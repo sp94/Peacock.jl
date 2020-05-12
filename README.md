@@ -6,7 +6,7 @@
 
 `Peacock.jl` is a Julia package for studying photonic crystals.
 * To do - explain why Peacock
-    * The **P***lane-wave* **E**xpansion **A***pproach* to **C**haracterising **O**ptical **C**rystals in **k**-space
+    * The **P**lane-wave **E**xpansion **A**pproach to **C**haracterising **O**ptical **C**rystals in **k**-space
 * To do - list features here
 
 
