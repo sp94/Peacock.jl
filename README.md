@@ -157,7 +157,6 @@ using Parameters
 # Load the fragile photonic topological insulator from Blanco de Paz et al 2018
 @unpack solver, polarisation = make_dePaz_frag(fourier_space_cutoff)
 
-# Define a straight line from 
 # The Wilson loops are (by default) along b2, so we define a straight
 # path from Γ to Γ+b1 - we will scan along this path
 ks = [
