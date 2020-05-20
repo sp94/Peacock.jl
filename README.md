@@ -24,9 +24,8 @@ As well as occuring naturally as in animals such as peacocks, advances in nanofa
 	* Simple visualisation of geometry, fields, and fully labelled band diagrams
 
 
-## Example usage
 
-Here we reproduce figures 2 and 3 from chapter 5 of _Photonic crystals: molding the flow of light_ by Joannopoulos (see further reading).
+## Example usage
 
 ### Installation
 
@@ -44,7 +43,7 @@ using Peacock
 
 ### Defining a photonic crystal in real space
 
-A photonic crystal is defined using the `Geometry` constructor, which requires the optical properties of the crystal, lattice vectors, and resolution
+A photonic crystal is defined using the `Geometry` constructor, which requires the optical properties of the crystal, lattice vectors, and resolution. Here we demonstrate how to define the photonic crystal used in figures 2 and 3 of chapter 5 of _Photonic crystals: molding the flow of light_ by Joannopoulos (see further reading).
 ```julia
 # Permittivity
 function epf(x,y)
@@ -104,6 +103,7 @@ ylim(0,0.8)
 ```
 > ![Plot of a band structure](figures/example_plot_band_diagram.png)
 
+This reproduces figure 2 of chapter 5 of Joannopoulos *et al* 2008.
 
 ### Plotting the modes
 
@@ -114,6 +114,8 @@ plot(modes[2], bloch_phase=false)
 ```
 
 > ![Plot of some modes](figures/example_plot_modes.png)
+
+This reproduces figure 3 of chapter 5 of Joannopoulos *et al* 2008.
 
 
 ### The `Peacock.Zoo` submodule
