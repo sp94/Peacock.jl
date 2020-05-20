@@ -123,6 +123,8 @@ This reproduces figure 3 of chapter 5 of Joannopoulos *et al* 2008. Note that `P
 
 ### The `Peacock.Zoo` submodule
 
+The `Peacock.Zoo` module contains some of the photonic crystals that I have studied. Each `make_*` function returns a `NamedTuple` containing the geometry, solver, polarisation, and high symmetry points of the crystal. For example, the topological photonic crystal first introduced by Wu *et al* 2015 can be reproduced using `make_wu_topo`.
+
 ```julia
 using Peacock.Zoo
 using Parameters
@@ -135,6 +137,8 @@ plot(geometry)
 ```
 
 > ![Plot of a crystal from the Zoo](figures/example_zoo_geometry.png)
+
+Here I used the `@unpack` macro from the `Parameters` package to unpack the named tuple.
 
 ```julia
 # Plot the first six bands
