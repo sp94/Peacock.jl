@@ -146,6 +146,38 @@ plot_band_diagram(solver, [K,G,M], polarisation,
 > ![Plot of some bands from the Zoo](figures/example_zoo_bands.png)
 
 
+### Topology of photonic bands
+
+```julia
+using Peacock.Zoo
+using Parameters
+
+# Load the fragile photonic topological insulator from Blanco de Paz et al 2018
+@unpack solver, polarisation = make_dePaz_frag(fourier_space_cutoff)
+
+# Define a straight line from 
+# The Wilson loops are (by default) along b2, so we define a straight
+# path from Γ to Γ+b1 - we will scan along this path
+ks = [
+    BrillouinZoneCoordinate(0.0, 0.0, "Γ"),
+    BrillouinZoneCoordinate(0.5, 0.0, "M"),
+    BrillouinZoneCoordinate(1.0, 0.0, "Γ")
+]
+
+# Wilson loop of all three valence bands
+figure(figsize=(3,2))
+plot_wilson_loop_winding(solver, ks, polarisation, 1:3, dk=0.25)
+title("Bands 1-3")
+
+# Wilson loop of just the second and third bands
+figure(figsize=(3,2))
+plot_wilson_loop_winding(solver, ks, polarisation, 2:3, dk=0.25)
+title("Bands 2&3")
+```
+
+> ![Plot some Wilson loop examples](figures/example_wilson_loops.png)
+
+
 ## Further reading
 
 Photonic crystals - Joannaopoulos
