@@ -85,8 +85,7 @@ plot(solver)
 
 ### Plotting the band structure of a photonic crystal
 
-* Plotting band structure
-    * Defining Brillouin zone coordinates
+Band structures can be generated using `plot_band_diagram(solver, k_path, polarisation)`. If the elements of `k_path` are instances of `BrillouinZoneCoordinate` then the band diagram will be fully labelled.
 
 ```julia
 G = BrillouinZoneCoordinate(  0,   0, "Γ")
