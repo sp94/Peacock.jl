@@ -106,6 +106,10 @@ This reproduces figure 2 of chapter 5 of Joannopoulos *et al* 2008.
 
 ### Plotting the modes
 
+`Mode`s can be visualised using `plot(mode)`. By default the full Bloch wave is plotted - set `bloch_phase=false` to plot the cell-periodic part of Bloch mode.
+
+The out of plane field component is plotted - for TE and TM polarisations this will be the magnetic and electric fields, respectively. The titles of the figures are set automatically using the `label` of the `Mode` object.
+
 ```julia
 frequencies, modes = solve(solver, X, TM)
 plot(modes[2], bloch_phase=true)
@@ -114,7 +118,7 @@ plot(modes[2], bloch_phase=false)
 
 > ![Plot of some modes](figures/example_plot_modes.png)
 
-This reproduces figure 3 of chapter 5 of Joannopoulos *et al* 2008.
+This reproduces figure 3 of chapter 5 of Joannopoulos *et al* 2008. Note that `Peacock.jl` doesn't fix the phase of the solutions and your results may differ by a random phase.
 
 
 ### The `Peacock.Zoo` submodule
