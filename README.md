@@ -11,7 +11,17 @@ Photonic crystals are materials whose optical properties arise from the structur
 ![Different zooms of a Peacock](zoom.png)
 <sub>Credits: Peacock by allanlau2000 from pixabay. Feather by suju from pixabay. Electron microscope image of photonic crystal structure from Zi, Jian, et al. "Coloration strategies in peacock feathers.",  *Proceedings of the National Academy of Sciences* 100.22 (2003): 12576-12578. Copyright (2003) National Academy of Sciences.</sub>
 
-* To do - list features here
+As well as occuring naturally as in animals such as peacocks, advances in nanofabrication mean that 'designer' photonic crystals can now be manufactured for unprecedented control over the flow of light, with applications ranging from optical fibers [refs] to photonic circuitry [refs]. Photonic crystals are also a promising platform for more exotic materials like topological insulators [refs].
+
+* Solve for...
+	* Transverse electric (TE) and transverse magnetic (TM) modes of 2D photonic crystals
+	* Non-orthogonal unit cells
+	* Inhomogeneous permittivity and/or permeability
+	* Chern numbers of topological photonic crystals using built-in Wilson loop methods
+
+* Focused on ease of use
+	* Install with one line in Julia's package manager
+	* Simple visualisation of geometry, fields, and fully labelled band diagrams
 
 
 ## Example usage
