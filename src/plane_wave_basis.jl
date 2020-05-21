@@ -3,8 +3,8 @@ struct PlaneWaveBasis
     b2::Vector{Float64}
     ps::Vector{Int}
     qs::Vector{Int}
-    kxs::Vector{ComplexF64}
-    kys::Vector{ComplexF64}
+    kxs::Vector{Float64}
+    kys::Vector{Float64}
 end
 
 
