@@ -27,10 +27,8 @@ bibliography: paper.bib
 
 # Summary
 
-`Peacock.jl` - or the **P**lane-wave **E**xpansion **A**pproach to
-**C**haracterising **O**ptical **C**rystals in **k**-space - is a Julia package
-for studying photonic crystals using the Plane Wave Expansion Method
-[references].
+`Peacock.jl` is a Julia package for studying photonic crystals using the Plane
+Wave Expansion Method [references].
 
 Photonic crystals are materials whose optical properties arise from the
 structure of the material. `Peacock.jl` is named for the irridescent colours of
