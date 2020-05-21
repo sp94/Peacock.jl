@@ -25,6 +25,8 @@ date: 21 May 2020
 bibliography: paper.bib
 ---
 
+![Caption for example figure.\label{fig:zoom}](../zoom.png)
+
 # Summary
 
 `Peacock.jl` - or the **P**lane-wave **E**xpansion **A**pproach to
@@ -42,8 +44,6 @@ few hundred nanometers in size. Advances in nanofabrication mean that 'designer'
 photonic crystals can now be manufactured for unprecedented control over the
 flow of light, with applications ranging from optical fibers [refs] to photonic
 circuitry [refs].
-
-![Caption for example figure.\label{fig:zoom}](../zoom.png)
 
 `Peacock.jl` provides a user-friendly interface to analyse 2D photonic crystals
 with support for non-orthogonal unit cells and inhomogeneous permittivity and/or
