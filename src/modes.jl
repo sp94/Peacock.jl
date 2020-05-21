@@ -51,12 +51,13 @@ end
 
 
 """
-To do
-Also: add test along the lines of:
-        hs = HilbertSpace(mode)
-        hs = Peacock.shift_k0(hs, 1, 2)
-        m = Mode(hs.k0, hs.data[:,1], hs.weighting, hs.basis, "")
-        @assert get_field(mode) ≈ get_field(m)
+    shift_k0(space::HilbertSpace, dp::Int, dq::Int)
+
+Shift the basis of the Hilbert space by `dp*b1 + dq*b2`, where `b1` and `b2`
+are reciprocal lattice vectors.
+
+This is required when we need the overlaps of modes that are at the same k-point
+but in different Brillouin zones.
 """
 function shift_k0(space::HilbertSpace, dp::Int, dq::Int)
     data = space.data
