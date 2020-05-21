@@ -27,6 +27,9 @@ bibliography: paper.bib
 
 # Summary
 
+![The irridescent colours of peacocks arise from the nanoscale structure of the
+feathers, rather than from pigmentation.\label{fig:zoom}](../zoom.png)
+
 `Peacock.jl` is a Julia package for studying photonic crystals using the Plane
 Wave Expansion Method [references].
 
@@ -52,9 +55,6 @@ photonic topological insulators, the photonic analogue of the electronic
 topological insulator for which the 2016 Nobel Prize in Physics was awarded.
 To our knowledge, `Peacock.jl` is the only open source software that includes
 built-in methods to identify topological photonic crystals using Wilson loops.
-
-![The irridescent colours of peacocks arise from the nanoscale structure of the
-feathers, rather than from pigmentation.\label{fig:zoom}](../zoom.png)
 
 # Acknowledgements
 
