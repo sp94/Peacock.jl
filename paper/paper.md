@@ -31,7 +31,10 @@ bibliography: paper.bib
 crystal' structure of the feathers, rather than from
 pigmentation.\label{fig:zoom}](../zoom.png)
 
-`Peacock.jl` is a Julia package for studying photonic crystals using the Plane
+`Peacock.jl` -
+or the **P**lane-wave **E**xpansion **A**pproach to **C**haracterising
+**O**ptical **C**rystals in **k**-space -
+is a Julia package for studying photonic crystals using the Plane
 Wave Expansion Method [references].
 Photonic crystals are materials whose optical properties arise from the
 structure of the material, and `Peacock.jl` is named for the irridescent colours of
