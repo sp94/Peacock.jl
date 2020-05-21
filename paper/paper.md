@@ -48,7 +48,7 @@ circuitry [refs].
 with support for non-orthogonal unit cells and inhomogeneous permittivity and/or
 permeability. The package focuses on ease of use and includes a `Zoo` submodule
 of crystals from published works. We hope that in time the `Zoo` will grow and
-enable others to reproduce and extend existing work.
+aid others to reproduce and extend existing work.
 
 Photonic crystals are also a promising platform for exotic materials known as
 photonic topological insulators, the photonic analogue of the electronic
