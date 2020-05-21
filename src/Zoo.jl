@@ -61,7 +61,7 @@ function make_wu(a0_div_R, P)
     # Geometry
     R = 1 / a0_div_R # assuming a0 = 1
     d = 2R/3
-    return make_wu_generic(R, d, d, TM)
+    return make_wu_generic(R, d, d, TM, P=P)
 end
 
 function make_wu_triv(P::Int)
@@ -102,19 +102,19 @@ Reproduces "Engineering fragile topology in photonic crystals:
 Topological quantum chemistry of light", Blanco de Paz et al, 2019
 """
 function make_dePaz(d1::Real, d2::Real, P::Int; R::Real=1/3)
-    return make_wu_generic(R, d1, d2, TM)
+    return make_wu_generic(R, d1, d2, TM, P=P)
 end
 
 function make_dePaz_triv(P::Int)
-    return dePaz(0.52, 0.31, P)
+    return make_dePaz(0.52, 0.31, P)
 end
 
 function make_dePaz_frag(P::Int)
-    return dePaz(0.4, 0.13, P)
+    return make_dePaz(0.4, 0.13, P)
 end
 
 function make_dePaz_OAL(P::Int)
-    return dePaz(0.4, 0.61, P)
+    return make_dePaz(0.4, 0.61, P)
 end
 
 
