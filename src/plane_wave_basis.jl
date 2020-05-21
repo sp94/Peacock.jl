@@ -51,7 +51,7 @@ struct BrillouinZoneCoordinate
     q::Float64
     label::String
     function BrillouinZoneCoordinate(p::Real, q::Real, label::String="")
-        return new(p, q, "")
+        return new(p, q, label)
     end
 end
 
