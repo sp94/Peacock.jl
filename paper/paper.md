@@ -33,11 +33,12 @@ pigmentation.\label{fig:zoom}](../zoom.png)
 
 `Peacock.jl` is a Julia package for studying photonic crystals using the Plane
 Wave Expansion Method [references].
-
 Photonic crystals are materials whose optical properties arise from the
-structure of the material. `Peacock.jl` is named for the irridescent colours of
+structure of the material, and `Peacock.jl` is named for the irridescent colours of
 peacock feathers which arise not from pigmentation but from their photonic
-crystal structure, as shown in \autoref{fig:zoom}. These effects are strongest
+crystal structure, as shown in \autoref{fig:zoom}.
+
+The response of a photonic crystal is strongest
 when the periodicity of the structure is comparable to the wavelength of light.
 For visible light, photonic crystals are built from components that are just a
 few hundred nanometers in size. Advances in nanofabrication mean that 'designer'
