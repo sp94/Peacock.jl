@@ -8,11 +8,12 @@ include("utils.jl")
 include("geometry.jl")
 export Geometry
 
-# include("plane_wave_expansion_method/basis.jl")
 include("plane_wave_basis.jl")
-export Mode, get_field
+export BrillouinZoneCoordinate
 
-# include("plane_wave_expansion_method/solver.jl")
+include("modes.jl")
+export Mode, HilbertSpace, get_field
+
 include("solver.jl")
 export Solver, TE, TM, solve
 
@@ -20,7 +21,10 @@ include("plotting.jl")
 export plot
 
 include("band_diagrams.jl")
-export BrillouinZoneCoordinate, plot_band_diagram
+export plot_band_diagram
+
+include("wilson_loops.jl")
+export plot_wilson_loop_winding
 
 # Submodule that defines my commonly used crystals
 include("Zoo.jl")

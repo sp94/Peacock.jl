@@ -1,7 +1,9 @@
 import PyPlot.plot
 
 """
-To do
+    plot_field(field::Array{<:Real,2}, a1::Array{<:Real,1}, a2::Array{<:Real,1}; cmap="coolwarm", vmin=nothing, vmax=nothing)
+
+Plot the real-valued `field` on a unit cell with lattice vectors `a1` and `a2`.
 """
 function plot_field(field::Array{<:Real,2}, a1::Array{<:Real,1}, a2::Array{<:Real,1}; cmap="coolwarm", vmin=nothing, vmax=nothing)
     ps = range(-0.5, stop=0.5, length=size(field,1)+1)
@@ -22,9 +24,10 @@ function plot_field(field::Array{<:Real,2}, a1::Array{<:Real,1}, a2::Array{<:Rea
     axis("off")
 end
 
-
 """
-To do
+    plot_field(field::Array{<:Real,2}, a1::Array{<:Real,1}, a2::Array{<:Real,1}; cmap="coolwarm", vmin=nothing, vmax=nothing)
+
+Plot the complex-valued `field` on a unit cell with lattice vectors `a1` and `a2`.
 """
 function plot_field(field::Array{<:Complex,2}, a1::Array{<:Real,1}, a2::Array{<:Real,1}; cmap="coolwarm", vmin=nothing, vmax=nothing)
     # Plot real and imaginary parts with the same color scale
@@ -46,6 +49,33 @@ end
 
 
 """
+    get_field(data::AbstractVector{<:Complex}, basis::PlaneWaveBasis;
+                        k0=[0,0], t1s=-0.5:0.01:0.5, t2s=-0.5:0.01:0.5)
+
+Convert the `data` from a `PlaneWaveBasis` to a real space grid.
+"""
+function get_field(data::AbstractVector{<:Complex}, basis::PlaneWaveBasis;
+                    k0=[0,0], t1s=-0.5:0.01:0.5, t2s=-0.5:0.01:0.5)
+    # Generate real space coordinates
+    b1, b2 = basis.b1, basis.b2
+    a1, a2 = bs_to_as(b1, b2)
+    xs = [t1*a1[1]+t2*a2[1] for t1 in t1s, t2 in t2s]
+    ys = [t1*a1[2]+t2*a2[2] for t1 in t1s, t2 in t2s]
+    out = zeros(ComplexF64, length(t1s), length(t2s))
+    # Inverse Fourier transform
+    kxs = k0[1] .+ basis.kxs
+    kys = k0[2] .+ basis.kys
+    for (kx,ky,u) in zip(kxs, kys, data)
+        for c in CartesianIndices(out)
+            phase = kx*xs[c] + ky*ys[c]
+            out[c] += u * exp(1im*phase)
+        end
+    end
+    return out
+end
+
+
+"""
 To do
 """
 function plot_field(u::AbstractVector{<:Complex}, basis::PlaneWaveBasis; cmap="coolwarm", vmin=nothing, vmax=nothing, k0=[0,0])
@@ -56,7 +86,9 @@ end
 
 
 """
-To do
+    plot(geometry::Geometry)
+
+Plot the permittivity and permeability of the `geometry` in real space.
 """
 function PyPlot.plot(geometry::Geometry)
     # Plot permittivity
@@ -79,7 +111,12 @@ end
 
 
 """
-To do
+    plot(solver::Solver)
+
+Plot the representation of the `solver`'s geometry in real space.
+
+The `solver` approximates the geometry using a truncated basis of plane waves,
+so `plot(solver)` lets us judge how accurately the geometry is represented.
 """
 function PyPlot.plot(solver::Solver)
     col = findfirst((solver.basis.ps .==0) .& (solver.basis.qs .== 0))
@@ -104,7 +141,11 @@ end
 
 
 """
-To do
+    plot(mode::Mode, [bloch_phase=true])
+
+Plot the mode in real space.
+
+To plot only the cell-periodic part of the Bloch wave, set `bloch_phase=false`.
 """
 function PyPlot.plot(mode::Mode; bloch_phase=true)
     if bloch_phase

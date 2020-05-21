@@ -1,12 +1,9 @@
 """
-To do
+Transverse electric (TE) or transverse magnetic (TM) polarisation.
 """
 @enum Polarisation TE TM
 
 
-"""
-To do
-"""
 struct Solver
     basis::PlaneWaveBasis
     epc::Matrix{ComplexF64}
@@ -15,7 +12,12 @@ end
 
 
 """
-To do
+    Solver(geometry::Geometry, cutoff::Int)
+
+Approximate the geometry using a truncated basis of plane waves.
+
+Increasing the `cutoff` will increase the number of plane waves leading to a
+more accurate solution.
 """
 function Solver(geometry::Geometry, cutoff::Int)
     basis = PlaneWaveBasis(geometry, cutoff)
@@ -26,10 +28,12 @@ end
 
 
 """
+    convmat(mat::AbstractMatrix, basis::PlaneWaveBasis)
+
 Generate convolution matrices, see Raymond Rumpf's CEM Lecture #18,
 "Maxwell's Equations in Fourier Space", for further reading.
 """
-function convmat(mat, basis::PlaneWaveBasis)
+function convmat(mat::AbstractMatrix, basis::PlaneWaveBasis)
     @assert length(basis.ps) == length(basis.qs)
     M = length(basis.ps)
     # Modified from Rumpf CEM Lecture #18
@@ -50,12 +54,13 @@ end
 
 
 """
-To do
+    solve(solver::Solver, k::AbstractVector{<:Real}, polarisation::Polarisation; bands=:)
+
+Calculate the eigenmodes of a photonic crystal at position `k` in reciprocal space.
 """
 function solve(solver::Solver, k::AbstractVector{<:Real}, polarisation::Polarisation; bands=:)
     # Get left and right hand sides of the generalised eigenvalue problem
     basis = solver.basis
-    bloch_basis = PlaneWaveBasis(basis, k)
     epc, muc = solver.epc, solver.muc
     Kx = DiagonalMatrix(basis.kxs) + k[1]*I
     Ky = DiagonalMatrix(basis.kys) + k[2]*I
@@ -83,15 +88,15 @@ function solve(solver::Solver, k::AbstractVector{<:Real}, polarisation::Polarisa
     modes_data = modes_data[:,idx][:,bands]
     # Eigenmodes are weighted by the RHS of the generalised eigenvalue problem
     weighting = RHS
-    modes = [Mode(k,data,weighting,basis,label) for data in eachcol(modes_data)]
-    # modes = orthonormalise(modes)
-    return freqs, modes
+    modes = Mode[]
+    for i in 1:length(freqs)
+        mode = Mode(k, freqs[i], modes_data[:,i], weighting, basis, label)
+        push!(modes, mode)
+    end
+    return modes
 end
 
 
-"""
-To do
-"""
 function solve(solver::Solver, x::BrillouinZoneCoordinate, polarisation::Polarisation, bands=:)
     k = get_k(x, solver.basis)
     return solve(solver, k, polarisation, bands=bands)

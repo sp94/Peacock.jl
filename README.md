@@ -111,7 +111,7 @@ This reproduces figure 2 of chapter 5 of Joannopoulos *et al* 2008.
 The out of plane field component is plotted - for TE and TM polarisations this will be the magnetic and electric fields, respectively. The titles of the figures are set automatically using the `label` of the `Mode` object.
 
 ```julia
-frequencies, modes = solve(solver, X, TM)
+modes = solve(solver, X, TM)
 plot(modes[2], bloch_phase=true)
 plot(modes[2], bloch_phase=false)
 ```

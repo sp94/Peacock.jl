@@ -12,13 +12,15 @@ end
 
 
 """
-Generate geometry on real-space grid from the permittivity and permeability
-functions, epf(x,y) and muf(x,y), respectively.
+    Geometry(epf::Function, muf::Function, a1::Array{<:Real,1}, a2::Array{<:Real,1}, d1::Real, d2::Real)
 
-The real space lattice vectors, a1 and a2, define the unit cell.
-The grid resolution along each lattice vector is d1 and d2, respectively.
+Generate geometry with permittivity `epf(x,y)` and permeability `muf(x,y)`.
+
+The real space lattice vectors, `a1` and `a2`, define the unit cell.
+The grid resolution along each lattice vector is `d1` and `d2`, respectively.
 """
-function Geometry(epf::Function, muf::Function, a1::Array{<:Real,1}, a2::Array{<:Real,1}, d1::Real, d2::Real)
+function Geometry(epf::Function, muf::Function,
+            a1::Array{<:Real,1}, a2::Array{<:Real,1}, d1::Real, d2::Real)
     P = ceil(Int, norm(a1)/d1)
     Q = ceil(Int, norm(a2)/d2)
     ps = range(-0.5, stop=0.5, length=P)[1:end-1]
@@ -34,7 +36,13 @@ end
 
 
 """
-To do
+    Geometry(epf::Function, muf::Function, a1::Array{<:Real,1}, a2::Array{<:Real,1}, d1::Real, d2::Real)
+
+Generate geometry with permittivity `epf(x,y)` and permeability `muf(x,y)`.
+
+The real space lattice vectors are assumed to have unit length and are at
+angles `a1_deg` and `a2_deg` counter-clockwise from the x-axis.
+The grid resolution along each lattice vector is `d1` and `d2`, respectively.
 """
 function Geometry(epf::Function, muf::Function, a1_deg::Real, a2_deg::Real, d1::Real, d2::Real)
     a1 = [cosd(a1_deg), sind(a1_deg)]

@@ -2,7 +2,11 @@ module Zoo
 
 using Peacock
 
-"Returns the permittivity for photonic crystals similar to Wu et al, 2015."
+"""
+    wu_ep(x, y, angles, Rs, d1s, d2s, ep_bg, ep_cyl)
+
+Returns the permittivity `ep(x,y)` for photonic crystals similar to Wu et al, 2015.
+"""
 function wu_ep(x, y, angles, Rs, d1s, d2s, ep_bg, ep_cyl)
     if length(Rs) == 1
         Rs = fill(Rs[1], length(angles))
@@ -54,6 +58,8 @@ end
 
 
 """
+    make_wu(a0_div_R, P)
+
 Reproduces "Scheme for Achieving a Topological Photonic Crystal
 by Using Dielectric Material", Wu et al, 2015
 """
@@ -74,9 +80,10 @@ end
 
 
 """
-Reproduces the primitive unit cell of
-"Scheme for Achieving a Topological Photonic Crystal
-by Using Dielectric Material", Wu et al, 2015
+    make_wu_primitive(P)
+
+Reproduces the primitive unit cell of "Scheme for Achieving a
+Topological Photonic Crystal by Using Dielectric Material", Wu et al, 2015
 """
 function make_wu_primitive(P)
     # Geometry
@@ -98,6 +105,8 @@ end
 
 
 """
+    make_dePaz(d1::Real, d2::Real, P::Int; R::Real=1/3)
+
 Reproduces "Engineering fragile topology in photonic crystals:
 Topological quantum chemistry of light", Blanco de Paz et al, 2019
 """
@@ -119,10 +128,14 @@ end
 
 
 """
+    make_zhu(r, l, P; angles=[60n for n in 0:5])
+
 Reproduces "Topological transitions in continuously deformed photonic crystals"
-Zhu et al, 2018
-'r' is the radius of the cylindrical air holes
-'l' is the radius of the hexagonal ring that the air holes form
+Zhu et al, 2018.
+
+- `r` is the radius of the cylindrical air holes.
+- `l` is the radius of the hexagonal ring that the air holes form
+
 Note that 'l' in Zhu et al is the same as 'R' in wu_ep.
 """
 function make_zhu(r, l, P; angles=[60n for n in 0:5])
@@ -131,9 +144,13 @@ end
 
 
 """
-Reproduces "Accidental degeneracy in photonic bands
-and topological phase transitions in two-dimensional
-core-shell dielectric photonic crystals", Xu et al, 2016
+    make_xu(r1, r2, P; wedges=[(0,360)])
+
+Reproduces "Accidental degeneracy in photonic bands and topological phase
+transitions in two-dimensional core-shell dielectric photonic crystals",
+Xu et al, 2016.
+
+The rings can be split into `wedges = [(start,stop), (start,stop)...]`.
 """
 function make_xu(r1, r2, P; wedges=[(0,360)])
     function epf(x,y)
