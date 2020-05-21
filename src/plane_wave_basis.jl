@@ -93,15 +93,13 @@ end
 """
 To do
 """
-struct Mode <: AbstractVector{ComplexF64}
+struct Mode
     k0::Vector{Float64}
     data::Vector{ComplexF64}
     weighting::Matrix{ComplexF64}
     basis::PlaneWaveBasis
     label::String
 end
-Base.size(A::Mode) = size(A.data)
-Base.getindex(A::Mode, I::Int) = A.data[I]
 
 
 """
