@@ -53,6 +53,10 @@ struct BrillouinZoneCoordinate
     label::String
 end
 
+function BrillouinZoneCoordinate(p::Real, q::Real; label="")
+    return BrillouinZoneCoordinate(p, q, "")
+end
+
 
 """
 To do
