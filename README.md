@@ -115,7 +115,7 @@ This reproduces figure 2 of chapter 5 of Joannopoulos *et al* 2008.
 
 ### Plotting the modes
 
-`Mode`s can be visualised using `plot(mode)`. By default the full Bloch wave is plotted - set `bloch_phase=false` to plot the cell-periodic part of Bloch mode.
+A `Mode` can be visualised using `plot(mode)`. By default the full Bloch wave is plotted - set `bloch_phase=false` to plot the cell-periodic part of Bloch mode.
 
 The out of plane field component is plotted - for TE and TM polarisations this will be the magnetic and electric fields, respectively. The titles of the figures are set automatically using the `label` of the `Mode` object.
 
