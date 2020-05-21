@@ -40,6 +40,15 @@ After installation, the package can be loaded in Julia
 using Peacock
 ```
 
+This example will also use `PyPlot` to control our figures, and the `Parameters` package to unpack some tuples.
+```julia
+using Pkg
+Pkg.add("PyPlot")
+Pkg.add("Parameters")
+using PyPlot
+using Parameters
+```
+
 
 ### Defining a photonic crystal in real space
 
@@ -127,7 +136,6 @@ The `Peacock.Zoo` module contains some of the photonic crystals that I have stud
 
 ```julia
 using Peacock.Zoo
-using Parameters
 
 # Load photonic topological insulator from Wu et al 2015
 @unpack geometry, solver, polarisation, G, K, M = make_wu_topo(fourier_space_cutoff)
@@ -156,7 +164,6 @@ Recently there has been a spike of interest in photonic crystals as a platform f
 
 ```julia
 using Peacock.Zoo
-using Parameters
 
 # Load the fragile photonic topological insulator from Blanco de Paz et al 2018
 @unpack solver, polarisation = make_dePaz_frag(fourier_space_cutoff)
