@@ -25,7 +25,8 @@ date: 21 May 2020
 bibliography: paper.bib
 ---
 
-![Caption for example figure.\label{fig:zoom}](../zoom.png)
+![The irridescent colours of peacocks arise from the nanoscale structure of the
+feathers, rather than from pigmentation.\label{fig:zoom}](../zoom.png)
 
 # Summary
 
