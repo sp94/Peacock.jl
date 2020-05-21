@@ -27,8 +27,9 @@ bibliography: paper.bib
 
 # Summary
 
-![The irridescent colours of peacocks arise from the nanoscale structure of the
-feathers, rather than from pigmentation.\label{fig:zoom}](../zoom.png)
+![The irridescent colours of peacocks arise from the nanoscale 'photonic
+crystal' structure of the feathers, rather than from
+pigmentation.\label{fig:zoom}](../zoom.png)
 
 `Peacock.jl` is a Julia package for studying photonic crystals using the Plane
 Wave Expansion Method [references].
