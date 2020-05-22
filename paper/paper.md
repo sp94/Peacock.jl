@@ -33,7 +33,8 @@ the peacock's photonic crystal structure is reproduced from @zi2003coloration,
 Copyright National Academy of Sciences. \label{fig:zoom}](../zoom.png)
 
 The **P**lane-wave **E**xpansion **A**pproach to **C**haracterising **O**ptical
-**C**rystals in **k**-space - or `Peacock.jl` - is a Julia package for studying
+**C**rystals in **k**-space - or \
+`Peacock.jl` - is a Julia package for studying
 photonic crystals using the Plane Wave Expansion Method [@rumpf2006design].
 Photonic crystals are materials whose optical properties arise from the
 structure of the material [@joannopoulos1997photonic], and `Peacock.jl` is named
