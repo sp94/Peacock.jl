@@ -13,7 +13,14 @@ begin
     geometry = Geometry((x,y)->ep, (x,y)->mu, a1, a2, d1, d1)
     # Check for increasing Fourier space cutoffs
     for cutoff in [1,3,5]
+        # test with norm(b1) == norm(b2)
         solver = Solver(geometry, cutoff)
+        for polarisation in [TE,TM]
+            modes = solve(solver, [1,0], polarisation)
+            @test isapprox(modes[1].frequency, 1/sqrt(ep*mu))
+        end
+        # test with norm(b1) != norm(b2)
+        solver = Solver(geometry, cutoff, cutoff+2)
         for polarisation in [TE,TM]
             modes = solve(solver, [1,0], polarisation)
             @test isapprox(modes[1].frequency, 1/sqrt(ep*mu))
