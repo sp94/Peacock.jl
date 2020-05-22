@@ -143,23 +143,24 @@ end
 Perform a series of Wilson loops along `ks`, and plot the spectra on a band diagram.
 
 Keyword arguments
-- `dk=nothing`: maximum distance between points
+- `dk_outer=nothing`: maximum distance between each loop (resolution of the scan)
+- `dk_inner`: maximum distance between points along a loop (resolution of the loop)
 - `labels=[]`: overwrite the labels for each `k` in `ks`
 - `delta_brillouin_zone=BrillouinZoneCoordinate(0,1)`: each Wilson loop starts at and finishes in at the same `k` in different Brillouin zones
 """
 function plot_wilson_loop_winding(solver::Solver, ks, polarisation, bands::AbstractVector{<:Int};
-                dk=0, labels=[], delta_brillouin_zone=BrillouinZoneCoordinate(0,1))
+                dk_outer=0, dk_inner=0, labels=[], delta_brillouin_zone=BrillouinZoneCoordinate(0,1))
     # Convert BrillouinZoneCoordinate to labelled positions in k space
     if labels == []
         labels = [hasproperty(x,:label) ? x.label : "" for x in ks]
     end
     ks = [typeof(x)==BrillouinZoneCoordinate ? get_k(x,solver.basis) : x for x in ks]
-    # Function to return the Wilson loop eigenvalues
+    # Function to return the Wilson inner eigenvalues
     function my_solve(k)
         spaces = HilbertSpace[]
         delta_k = get_k(delta_brillouin_zone, solver.basis)
         ks_inner = [k, k+delta_k]
-        ks_inner, _ = sample_path(ks_inner, dk=dk)
+        ks_inner, _ = sample_path(ks_inner, dk=dk_inner)
         for k_inner in ks_inner
             modes = solve(solver, k_inner, polarisation)
             space = HilbertSpace(modes[bands])
@@ -170,7 +171,7 @@ function plot_wilson_loop_winding(solver::Solver, ks, polarisation, bands::Abstr
         angles = [angles.-2pi angles angles.+2pi]
         return angles
     end
-    plot_band_diagram(my_solve, ks, dk=dk, labels=labels, show_vlines=false)
+    plot_band_diagram(my_solve, ks, dk=dk_outer, labels=labels, show_vlines=false)
     ylim(-pi,pi)
     yticks((-1:1)*pi, labels=["-π","0","+π"])
     ylabel("Wilson spectrum")
