@@ -28,26 +28,28 @@ bibliography: paper.bib
 # Summary
 
 ![The irridescent colours of peacocks arise from the nanoscale 'photonic
-crystal' structure of the feathers, rather than from
-pigmentation.\label{fig:zoom}](../zoom.png)
+crystal' structure of the feathers, rather than from pigmentation. The image of
+the peacock's photonic crystal structure is reproduced from @zi2003coloration,
+Copyright (2003) National Academy of Sciences. \label{fig:zoom}](../zoom.png)
 
 `Peacock.jl` -
 or the **P**lane-wave **E**xpansion **A**pproach to **C**haracterising
 **O**ptical **C**rystals in **k**-space -
 is a Julia package for studying photonic crystals using the Plane
-Wave Expansion Method [references].
+Wave Expansion Method [@rumpf2006design].
 Photonic crystals are materials whose optical properties arise from the
-structure of the material, and `Peacock.jl` is named for the irridescent colours of
-peacock feathers which arise not from pigmentation but from their photonic
-crystal structure, as shown in \autoref{fig:zoom}.
+structure of the material [@joannopoulos1997photonic], and `Peacock.jl` is named
+for the irridescent colours of peacock feathers which arise not from
+pigmentation but from their photonic crystal structure [@zi2003coloration], as
+shown in autoref{fig:zoom}.
 
 The response of a photonic crystal is strongest
 when the periodicity of the structure is comparable to the wavelength of light.
 For visible light, photonic crystals are built from components that are just a
 few hundred nanometers in size. Advances in nanofabrication mean that 'designer'
 photonic crystals can now be manufactured for unprecedented control over the
-flow of light, with applications ranging from optical fibers [refs] to photonic
-circuitry [refs].
+flow of light, with applications ranging from optical fibers
+[@knight2003photonic] to photonic circuitry [@joannopoulos2008molding].
 
 `Peacock.jl` provides a user-friendly interface to analyse 2D photonic crystals
 with support for non-orthogonal unit cells and inhomogeneous permittivity and/or
@@ -56,10 +58,12 @@ of crystals from published works. We hope that in time the `Zoo` will grow and
 aid others to reproduce and extend existing work.
 
 Photonic crystals are also a promising platform for exotic materials known as
-photonic topological insulators, the photonic analogue of the electronic
-topological insulator for which the 2016 Nobel Prize in Physics was awarded.
-To our knowledge, `Peacock.jl` is the only open source software that includes
-built-in methods to identify topological photonic crystals using Wilson loops.
+photonic topological insulators [kane2005z,kane2005quantum,bernevig2006quantum],
+the photonic analogue of the electronic topological insulator [@wu2015scheme,
+blanco2019engineering] for which the 2016 Nobel Prize in Physics was awarded.
+`Peacock.jl` includes built-in methods to identify topological photonic crystals
+using Wilson loops [@blanco2020tutorial], for which open source implementations
+have been lacking.
 
 # Acknowledgements
 
