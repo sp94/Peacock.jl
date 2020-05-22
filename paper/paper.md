@@ -41,7 +41,7 @@ Photonic crystals are materials whose optical properties arise from the
 structure of the material [@joannopoulos1997photonic], and `Peacock.jl` is named
 for the irridescent colours of peacock feathers which arise not from
 pigmentation but from their photonic crystal structure [@zi2003coloration], as
-shown in autoref{fig:zoom}.
+shown in \autoref{fig:zoom}.
 
 The response of a photonic crystal is strongest
 when the periodicity of the structure is comparable to the wavelength of light.
