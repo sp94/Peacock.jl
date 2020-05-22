@@ -30,7 +30,7 @@ bibliography: paper.bib
 ![The irridescent colours of peacocks arise from the nanoscale 'photonic
 crystal' structure of the feathers, rather than from pigmentation. The image of
 the peacock's photonic crystal structure is reproduced from @zi2003coloration,
-Copyright (2003) National Academy of Sciences. \label{fig:zoom}](../zoom.png)
+Copyright National Academy of Sciences. \label{fig:zoom}](../zoom.png)
 
 `Peacock.jl` -
 or the **P**lane-wave **E**xpansion **A**pproach to **C**haracterising
