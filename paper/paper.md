@@ -37,10 +37,10 @@ The **P**lane-wave **E**xpansion **A**pproach to **C**haracterising **O**ptical
 `Peacock.jl` - is a Julia package for studying
 photonic crystals using the Plane Wave Expansion Method [@rumpf2006design].
 Photonic crystals are materials whose optical properties arise from the
-structure of the material [@joannopoulos1997photonic], and `Peacock.jl` is named
-for the irridescent colours of peacock feathers which arise not from
-pigmentation but from their photonic crystal structure [@zi2003coloration], as
-shown in \autoref{fig:zoom}.
+structure of the material [@yablonovitch1987inhibited; @john1987strong], and
+`Peacock.jl` is named for the irridescent colours of peacock feathers which
+arise not from pigmentation but from their photonic crystal structure
+[@zi2003coloration], as shown in \autoref{fig:zoom}.
 
 The response of a photonic crystal is strongest
 when the periodicity of the structure is comparable to the wavelength of light.
@@ -57,12 +57,12 @@ of crystals from published works. We hope that in time the `Zoo` will grow and
 aid others to reproduce and extend existing work.
 
 Photonic crystals are also a promising platform for exotic materials known as
-photonic topological insulators [@wu2015scheme; @blanco2019engineering], the
-photonic analogue of the electronic topological insulator [@kane2005z;
-@kane2005quantum; @bernevig2006quantum] for which the 2016 Nobel Prize
-in Physics was awarded. `Peacock.jl` includes built-in methods to identify
-topological photonic crystals using Wilson loops [@blanco2020tutorial], for
-which open source implementations have been lacking.
+photonic topological insulators [@wu2015scheme; @blanco2019engineering;
+@rider2019perspective], the photonic analogue of the electronic topological
+insulator [@kane2005z; @kane2005quantum; @bernevig2006quantum] for which the
+2016 Nobel Prize in Physics was awarded. `Peacock.jl` includes built-in methods
+to identify topological photonic crystals using Wilson loops
+[@blanco2020tutorial], for which open source implementations have been lacking.
 
 # Acknowledgements
 
