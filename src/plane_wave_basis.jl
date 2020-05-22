@@ -5,17 +5,23 @@ struct PlaneWaveBasis
     qs::Vector{Int}
     kxs::Vector{Float64}
     kys::Vector{Float64}
+    function PlaneWaveBasis(b1::Vector{Float64}, b2::Vector{Float64},
+                                        ps::Vector{Int}, qs::Vector{Int})
+        kxs = [p*b1[1]+q*b2[1] for (p,q) in zip(ps,qs)]
+        kys = [p*b1[2]+q*b2[2] for (p,q) in zip(ps,qs)]
+        return new(b1, b2, ps, qs, kxs, kys)
+    end
 end
 
 
 """
     PlaneWaveBasis(geometry::Geometry, cutoff::Int)
 
-Generate a plane-wave basis for solving Maxwell's equations
-in the unit cell of the `geometry`.
+Approximate a basis of plane waves truncated in a circle.
 
-Increasing the `cutoff` will increase the number of plane waves,
-leading to a more accurate solution.
+The circle has a diameter of `cutoff` Brillouin zones. Increasing the `cutoff`
+will increase the number of plane waves leading to a more accurate solution.
+It is assumed that `norm(b1) == norm(b2)`.
 """
 function PlaneWaveBasis(geometry::Geometry, cutoff::Int)
     @assert isodd(cutoff)
@@ -30,9 +36,27 @@ function PlaneWaveBasis(geometry::Geometry, cutoff::Int)
             push!(qs, q)
         end
     end
-    kxs = [p*b1[1]+q*b2[1] for (p,q) in zip(ps,qs)]
-    kys = [p*b1[2]+q*b2[2] for (p,q) in zip(ps,qs)]
-    return PlaneWaveBasis(b1, b2, ps, qs, kxs, kys)
+    return PlaneWaveBasis(b1, b2, ps, qs)
+end
+
+
+"""
+    Solver(geometry::Geometry, cutoff_b1::Int, cutoff_b2::Int)
+
+Approximate the geometry using a basis of plane waves truncated in a rhombus.
+
+The rhombus has lengths `cutoff_b1` and `cutoff_b2` in the `b1` and `b2`
+directions, respectively.
+"""
+function PlaneWaveBasis(geometry::Geometry, cutoff_b1::Int, cutoff_b2::Int)
+    @assert isodd(cutoff_b1)
+    @assert isodd(cutoff_b2)
+    P = div(cutoff_b1, 2) # rounds down
+    Q = div(cutoff_b2, 2) # rounds down
+    ps = [p for p in -P:P for q in -Q:Q]
+    qs = [q for p in -P:P for q in -Q:Q]
+    b1, b2 = as_to_bs(geometry.a1, geometry.a2)
+    return PlaneWaveBasis(b1, b2, ps, qs)
 end
 
 

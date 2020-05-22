@@ -10,20 +10,39 @@ struct Solver
     muc::Matrix{ComplexF64}
 end
 
+function Solver(geometry::Geometry, basis::PlaneWaveBasis)
+    epc = convmat(geometry.ep, basis)
+    muc = convmat(geometry.mu, basis)
+    return Solver(basis, epc, muc)
+end
+
 
 """
     Solver(geometry::Geometry, cutoff::Int)
 
-Approximate the geometry using a truncated basis of plane waves.
+Approximate the geometry using a basis of plane waves truncated in a circle.
 
-Increasing the `cutoff` will increase the number of plane waves leading to a
-more accurate solution.
+The circle has a diameter of `cutoff` Brillouin zones. Increasing the `cutoff`
+will increase the number of plane waves leading to a more accurate solution.
+It is assumed that `norm(b1) == norm(b2)`.
 """
 function Solver(geometry::Geometry, cutoff::Int)
     basis = PlaneWaveBasis(geometry, cutoff)
-    epc = convmat(geometry.ep, basis)
-    muc = convmat(geometry.mu, basis)
-    return Solver(basis, epc, muc)
+    return Solver(geometry, basis)
+end
+
+
+"""
+    Solver(geometry::Geometry, cutoff_b1::Int, cutoff_b2::Int)
+
+Approximate the geometry using a basis of plane waves truncated in a rhombus.
+
+The rhombus has lengths `cutoff_b1` and `cutoff_b2` in the `b1` and `b2`
+directions, respectively.
+"""
+function Solver(geometry::Geometry, cutoff_b1::Int, cutoff_b2::Int)
+    basis = PlaneWaveBasis(geometry, cutoff_b1, cutoff_b2)
+    return Solver(geometry, basis)
 end
 
 
