@@ -58,7 +58,7 @@ aid others to reproduce and extend existing work.
 Photonic crystals are also a promising platform for exotic materials known as
 photonic topological insulators [@kane2005z; @kane2005quantum;
 @bernevig2006quantum], the photonic analogue of the electronic topological
-insulator [@wu2015scheme; blanco2019engineering] for which the 2016 Nobel Prize
+insulator [@wu2015scheme; @blanco2019engineering] for which the 2016 Nobel Prize
 in Physics was awarded. `Peacock.jl` includes built-in methods to identify
 topological photonic crystals using Wilson loops [@blanco2020tutorial], for
 which open source implementations have been lacking.
