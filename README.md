@@ -160,7 +160,7 @@ plot_band_diagram(solver, [K,G,M], polarisation,
 
 ### Topology of photonic bands
 
-Recently there has been a spike of interest in photonic crystals as a platform for topological photonics [BdP tutorial]. We provide methods to identify the topological phase of a photonic crystal using Wilson loops. A winding in the Wilson loop spectrum can indicate a non-trivial topological phase, with the Chern number given by the winding. In this example we reproduce results that demonstrate the photonic crystal with 'fragile' band topology that was introduced by Blanco de Paz et al [BdP fragile ref].
+Recently there has been a spike of interest in photonic crystals as a platform for topological photonics (Blanco de Paz 2020). We provide methods to identify the topological phase of a photonic crystal using Wilson loops. A winding in the Wilson loop spectrum can indicate a non-trivial topological phase, with the Chern number given by the winding. In this example we reproduce results that demonstrate the photonic crystal with 'fragile' band topology that was introduced by Blanco de Paz et al (Blanco de Paz 2019).
 
 ```julia
 using Peacock.Zoo
