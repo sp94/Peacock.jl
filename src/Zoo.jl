@@ -43,7 +43,7 @@ function wu_ep(x, y, angles, Rs, d1s, d2s, ep_bg, ep_cyl)
     return ep_bg
 end
 
-function make_wu_generic(Rs, d1s, d2s, polarisation; angles=[60n for n in 0:5], P::Int=7, ep_bg=1, ep_cyl=11.7)
+function make_wu_generic(Rs, d1s, d2s, polarisation, P; angles=[60n for n in 0:5], ep_bg=1, ep_cyl=11.7)
     epf(x,y) = wu_ep(x, y, angles, Rs, d1s, d2s, ep_bg, ep_cyl)
     muf(x,y) = 1.0
     geometry = Geometry(epf, muf, -60, +60, 1/500, 1/500)
@@ -67,7 +67,7 @@ function make_wu(a0_div_R, P)
     # Geometry
     R = 1 / a0_div_R # assuming a0 = 1
     d = 2R/3
-    return make_wu_generic(R, d, d, TM, P=P)
+    return make_wu_generic(R, d, d, TM, P)
 end
 
 function make_wu_triv(P::Int)
@@ -111,7 +111,7 @@ Reproduces "Engineering fragile topology in photonic crystals:
 Topological quantum chemistry of light", Blanco de Paz et al, 2019
 """
 function make_dePaz(d1::Real, d2::Real, P::Int; R::Real=1/3)
-    return make_wu_generic(R, d1, d2, TM, P=P)
+    return make_wu_generic(R, d1, d2, TM, P)
 end
 
 function make_dePaz_triv(P::Int)
