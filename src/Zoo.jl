@@ -139,7 +139,7 @@ Zhu et al, 2018.
 Note that 'l' in Zhu et al is the same as 'R' in wu_ep.
 """
 function make_zhu(r, l, P; angles=[60n for n in 0:5])
-    return make_wu_generic(l, 2r, 2r, TE)
+    return make_wu_generic(l, 2r, 2r, TE, ep_cyl=1, ep_bg=10.2)
 end
 
 
