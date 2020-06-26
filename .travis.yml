@@ -8,6 +8,10 @@ jobs:
     - stage: "Documentation"
       julia: 1.4
       os: linux
+      addons:
+        apt:
+          packages:
+            - python3-matplotlib
       script:
         - julia --color=yes --project=docs/ -e 'using Pkg; Pkg.instantiate()'
         - julia --color=yes --project=docs/ docs/make.jl
