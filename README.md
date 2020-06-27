@@ -2,6 +2,8 @@
 <img src="docs/src/assets/logo.png" alt="Peacock logo"></img>
 </div>
 
+---
+
 [![](https://img.shields.io/badge/docs-stable-blue.svg)](https://sp94.github.io/Peacock.jl/stable)
 
 ## Introduction
