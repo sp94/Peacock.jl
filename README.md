@@ -4,7 +4,7 @@
 
 ---
 
-[![](https://img.shields.io/badge/docs-stable-blue.svg)](https://sp94.github.io/Peacock.jl/stable)
+[![](https://img.shields.io/badge/docs-dev-blue.svg)](https://sp94.github.io/Peacock.jl/dev)
 
 ## Introduction
 
