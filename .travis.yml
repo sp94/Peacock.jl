@@ -13,6 +13,7 @@ jobs:
           packages:
             - python3-matplotlib
       script:
-        - julia --color=yes --project=docs/ -e 'using Pkg; Pkg.instantiate()'
+        - julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd()));
+                                               Pkg.instantiate()'
         - julia --color=yes --project=docs/ docs/make.jl
       after_success: skip
