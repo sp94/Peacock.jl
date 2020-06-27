@@ -1,5 +1,5 @@
 <div align="center">
-<img src="logo.png" alt="Peacock logo"></img>
+<img src="docs/src/assets/logo.png" alt="Peacock logo"></img>
 </div>
 
 [![](https://img.shields.io/badge/docs-stable-blue.svg)](https://sp94.github.io/Peacock.jl/stable)
@@ -10,7 +10,7 @@
 
 Photonic crystals are materials whose optical properties arise from the structuring of the material when the size of the structures are comparable to the wavelengths of light. `Peacock.jl` is named for the irridescent colours of peacock feathers which arise not from pigmentation but from their photonic crystal structure, as shown below.
 
-![Different zooms of a Peacock](zoom.png)
+![Different zooms of a Peacock](docs/src/assets/peacock_feathers_zoom.png)
 <sub>Credits: Peacock by allanlau2000 from pixabay. Feather by suju from pixabay. Electron microscope image of photonic crystal structure from Zi, Jian, et al. "Coloration strategies in peacock feathers.",  *Proceedings of the National Academy of Sciences* 100.22 (2003): 12576-12578. Copyright (2003) National Academy of Sciences.</sub>
 
 As well as occuring naturally as in animals such as peacocks, advances in nanofabrication mean that 'designer' photonic crystals can now be manufactured for unprecedented control over the flow of light, with applications ranging from optical fibers to photonic circuitry. Photonic crystals are also a promising platform for more exotic materials like topological insulators.
