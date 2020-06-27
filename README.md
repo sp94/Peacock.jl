@@ -1,5 +1,5 @@
 <div align="center">
-<img src="docs/src/assets/logo.png" alt="Peacock logo"></img>
+<img src="docs/src/assets/banner.png" alt="Peacock logo"></img>
 </div>
 
 ---
