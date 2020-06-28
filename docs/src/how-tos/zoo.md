@@ -7,8 +7,12 @@ The `Peacock.Zoo` module contains functions to generate some of the photonic cry
 
 ## Unpacking parameters
 
-Each `make_*` function returns a `NamedTuple` containing the geometry, solver, polarisation, and high symmetry ``k``-points of the crystal. For example, the topological photonic crystal first introduced by Wu *et al* 2015 can be generated using `make_wu_topo`.
+Each `make_*` function returns a `NamedTuple` containing the geometry, solver, polarisation, and high symmetry ``k``-points of the crystal. You can use the `@unpack` macro from the `Parameters` module to extract the variables held in the `NamedTuple`.
+
+For example, the topological photonic crystal first introduced by Wu *et al* 2015 can be generated using `make_wu_topo`.
 ```julia
+using Parameters  # for the `@unpack` macro
+
 # Load photonic topological insulator from Wu et al 2015
 @unpack geometry, solver, polarisation, G, K, M = make_wu_topo(fourier_space_cutoff)
 
