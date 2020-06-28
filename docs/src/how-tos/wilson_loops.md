@@ -6,19 +6,26 @@ Recently there has been a spike of interest in photonic crystals as a platform f
 
 A winding in the Wilson loop spectrum can indicate a non-trivial topological phase, with the Chern number given by the winding. In this example we reproduce results that demonstrate the photonic crystal with 'fragile' band topology that was introduced in Blanco de Paz *et al* 2019.
 
+This crystal [can be loaded from the Zoo](@ref how_to_zoo) using [make_dePaz_frag](@ref).
+```julia
+using Peacock, Peacock.Zoo, Parameters
+
+# Size of the plane-wave basis
+fourier_space_cutoff = 7
+
+# Load the fragile photonic topological insulator from Blanco de Paz et al 2018
+@unpack geometry, solver, polarisation = make_dePaz_frag(fourier_space_cutoff)
+
+# Visualise the geometry
+plot(geometry)
+```
+![](../figures/example_wilson_loops_geometry.png)
+
 
 ## Plotting the Wilson loop winding
 
-Use [`plot_wilson_loop_winding`](@ref) to 
-
-First we [How to load a crystal from the Zoo](@ref how_to_zoo)
-
+First, let's define the ``k``-path we want to scan along, labelling the high symmetry points using [`BrillouinZoneCoordinate`](@ref).
 ```julia
-using Parameters, Peacock.Zoo
-
-# Load the fragile photonic topological insulator from Blanco de Paz et al 2018
-@unpack solver, polarisation = make_dePaz_frag(fourier_space_cutoff)
-
 # The Wilson loops are (by default) along b2, so we define a straight
 # path from Γ to Γ+b1 - we will scan along this path
 ks = [
@@ -26,7 +33,10 @@ ks = [
     BrillouinZoneCoordinate(0.5, 0.0, "M"),
     BrillouinZoneCoordinate(1.0, 0.0, "Γ")
 ]
+```
 
+Now we can reproduce the Wilson loop winding figures of Blanco de Paz *et al* 2019 using [`plot_wilson_loop_winding`](@ref).
+```julia
 # Wilson loop of all three valence bands
 figure(figsize=(3,2))
 plot_wilson_loop_winding(solver, ks, polarisation, 1:3, dk=0.25)
