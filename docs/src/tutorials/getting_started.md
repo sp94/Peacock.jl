@@ -35,12 +35,12 @@ First, let's define the functions `epf(x,y)` and `muf(x,y)`, which return the pe
 ```julia
 # Permittivity
 function epf(x,y)
-	# equation of a circle with radius 0.2a
+    # equation of a circle with radius 0.2a
     if x^2+y^2 <= 0.2^2
-    	# dielectric inside the circle
+        # dielectric inside the circle
         return 8.9
     else
-    	# air outside the circle
+        # air outside the circle
         return 1
     end
 end
