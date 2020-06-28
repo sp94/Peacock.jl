@@ -28,9 +28,9 @@ Solve for...
 
 
 Focused on ease of use
-* [Install](@ref https://sp94.github.io/Peacock.jl/dev/tutorials/getting_started/#getting_started_installation-1) with one line in Julia's package manager
-* Simple visualisation of [geometry](@ref https://sp94.github.io/Peacock.jl/dev/tutorials/getting_started/#getting_started_geometry-1), [fields](@ref https://sp94.github.io/Peacock.jl/dev/tutorials/getting_started/#getting_started_modes-1), and [fully labelled band diagrams](@ref https://sp94.github.io/Peacock.jl/dev/tutorials/getting_started/#getting_started_bands-1)
-* Reproduce and extend existing photonic crystals in the [`Peacock.Zoo`](@ref https://sp94.github.io/Peacock.jl/dev/how-tos/zoo/#how_to_zoo-1) submodule
+* [Install](https://sp94.github.io/Peacock.jl/dev/tutorials/getting_started/#getting_started_installation-1) with one line in Julia's package manager
+* Simple visualisation of [geometry](https://sp94.github.io/Peacock.jl/dev/tutorials/getting_started/#getting_started_geometry-1), [fields](https://sp94.github.io/Peacock.jl/dev/tutorials/getting_started/#getting_started_modes-1), and [fully labelled band diagrams](https://sp94.github.io/Peacock.jl/dev/tutorials/getting_started/#getting_started_bands-1)
+* Reproduce and extend existing photonic crystals in the [`Peacock.Zoo`](https://sp94.github.io/Peacock.jl/dev/how-tos/zoo/#how_to_zoo-1) submodule
 
 
 ## Limitations
