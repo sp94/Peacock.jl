@@ -9,6 +9,7 @@ makedocs(
         ],
         "How-to guides" => [
             "how-tos/zoo.md",
+            "how-tos/wilson_loops.md",
         ],
         "reference/index.md",
     ]
