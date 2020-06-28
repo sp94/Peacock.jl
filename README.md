@@ -36,4 +36,4 @@ Focused on ease of use
 ## Limitations
 
 * Currently only implemented for 2D photonic crystals
-* Like all methods that solve Maxwell's equations in Fourier space, the Plane Wave Expansion Method converges slowly for high contrast materials such as metals (``\epsilon < 0``)
+* Like all methods that solve Maxwell's equations in Fourier space, the Plane Wave Expansion Method converges slowly for high contrast materials such as metals (ϵ < 0)
