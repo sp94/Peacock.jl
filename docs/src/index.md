@@ -20,12 +20,13 @@ Solve for...
 * Transverse electric (TE) and transverse magnetic (TM) modes of 2D photonic crystals
   * Non-orthogonal unit cells
   * Inhomogeneous permittivity and/or permeability
-* Chern numbers of topological photonic crystals using built-in Wilson loop methods
+* Chern numbers of topological photonic crystals using [built-in Wilson loop methods](@ref how_to_topology)
 
 
 Focused on ease of use
-* Install with one line in Julia's package manager
-* Simple visualisation of geometry, fields, and fully labelled band diagrams
+* [Install](@ref getting_started_installation) with one line in Julia's package manager
+* Simple visualisation of [geometry](@ref getting_started_geometry), [fields](@ref getting_started_modes), and [fully labelled band diagrams](@ref getting_started_bands)
+* Reproduce and extend existing photonic crystals in the [`Peacock.Zoo`](@ref how_to_zoo) submodule
 
 
 ## Limitations
