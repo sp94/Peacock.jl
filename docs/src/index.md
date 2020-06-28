@@ -38,11 +38,3 @@ Focused on ease of use
 ## Contributing
 
 * To do
-
-
-## Index
-```@contents
-Pages = [
-        "tutorials/getting_started.md",
-        "reference/index.md"]
-```
