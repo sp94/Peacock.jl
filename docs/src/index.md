@@ -14,7 +14,7 @@ Photonic crystals are materials whose optical properties arise from the structur
 As well as occuring naturally as in animals such as peacocks, advances in nanofabrication mean that 'designer' photonic crystals can now be manufactured for unprecedented control over the flow of light, with applications ranging from optical fibers to photonic circuitry. Photonic crystals are also a promising platform for more exotic materials like topological insulators.
 
 
-## Features
+## Features
 
 Solve for...
 * Transverse electric (TE) and transverse magnetic (TM) modes of 2D photonic crystals
@@ -28,7 +28,7 @@ Focused on ease of use
 * Simple visualisation of geometry, fields, and fully labelled band diagrams
 
 
-## Limitations
+## Limitations
 
 * Currently only implemented for 2D photonic crystals
 * Fourier space methods are inaccurate for high contrast such as metals (``\epsilon < 0``)

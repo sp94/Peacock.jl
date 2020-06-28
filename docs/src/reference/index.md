@@ -1,13 +1,13 @@
 # Technical reference
 
-## Public
+## Public interface
 
 ```@autodocs
 Modules = [Peacock]
 Private = false
 ```
 
-## Private
+## Private interface
 
 !!! note "The `Peacock.jl` namespace" The following objects are used internally, and aren't exported to the global namespace. However, they may be useful for more advanced users, in which case you should use `Peacock.[name]` to access these.
 

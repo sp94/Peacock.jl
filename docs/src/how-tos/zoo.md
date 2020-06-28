@@ -1,11 +1,11 @@
-# How to load a crystal from the Zoo
+# [How to load a crystal from the Zoo](@id how_to_zoo)
 
-## Namespaces
+## Namespaces
 
 The `Peacock.Zoo` module contains functions to generate some of the photonic crystals that I have studied. To avoid polluting the global namespace, these functions are only accessible after calling `using Peacock.Zoo`, or by calling each function as `Peacock.Zoo.name`.
 
 
-## Unpacking parameters
+## Unpacking parameters
 
 Each `make_*` function returns a `NamedTuple` containing the geometry, solver, polarisation, and high symmetry ``k``-points of the crystal. You can use the `@unpack` macro from the `Parameters` module to extract the variables held in the `NamedTuple`.
 

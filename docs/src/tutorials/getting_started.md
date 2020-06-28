@@ -4,7 +4,7 @@ This tutorial will help you get started with `Peacock.jl` for the first time.
 
 We will install `Peacock.jl`, and then use it to study an example photonic crystal from a book (Joannopoulos *et al* 2008) by plotting the band structure and visualising the modes of the crystal.
 
-## Installation
+## [Installation](@id getting_started_installation)
 
 Before using `Peacock.jl` for the first time, you should install it using the built-in Julia package manager.
 ```julia
@@ -25,7 +25,7 @@ using PyPlot
 ```
 
 
-## Defining the photonic crystal
+## [Defining the photonic crystal](@id getting_started_geometry)
 
 In this section we will create a  [`Geometry`](@ref) that holds the shape, size, and materials of the crystal.
 
@@ -87,7 +87,7 @@ plot(solver)
 ![](../figures/example_plot_solver_cutoff=7.png)
 
 
-## Plotting the band structure
+## [Plotting the band structure](@id getting_started_bands)
 
 When light passes through a photonic crystal, the frequency of the wave, ``\omega``, is related to its momentum, ``\vec{k}``. It is common to plot the frequencies as a function of momentum, ``\omega(\vec{k})``, to produce a "band diagram" (see Joannopolous *et al* 2008).
 
@@ -113,7 +113,7 @@ ylim(0,0.8)
 This reproduces figure 2 of chapter 5 of Joannopoulos *et al* 2008.
 
 
-## Plotting a mode
+## [Plotting a mode](@id getting_started_modes)
 
 Often it is useful to visualise the electric and magnetic fields in the crystal. Here we show how to solve and plot the modes of a photonic crystal at a particular ``k``-point.
 
