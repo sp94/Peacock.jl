@@ -35,6 +35,4 @@ Focused on ease of use
 * Fourier space methods are inaccurate for high contrast such as metals (``\epsilon < 0``)
 
 
-## Contributing
 
-* To do

@@ -12,6 +12,7 @@ makedocs(
             "how-tos/wilson_loops.md",
         ],
         "reference/index.md",
+        "contributing.md",
     ]
 )
 
