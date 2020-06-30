@@ -1,4 +1,4 @@
-# Technical reference
+# [Technical reference](@id reference)
 
 ## Public interface
 
