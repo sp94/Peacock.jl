@@ -6,7 +6,7 @@ Recently there has been a spike of interest in photonic crystals as a platform f
 
 A winding in the Wilson loop spectrum can indicate a non-trivial topological phase, with the Chern number given by the winding. In this example we reproduce results that demonstrate the photonic crystal with 'fragile' band topology that was introduced in Blanco de Paz *et al* 2019.
 
-This crystal [can be loaded from the Zoo](@ref how_to_zoo) using [make_dePaz_frag](@ref).
+This crystal [can be loaded from the Zoo](@ref how_to_zoo) using [`make_dePaz_frag`](@ref).
 ```julia
 using Peacock, Peacock.Zoo, Parameters
 
