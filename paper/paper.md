@@ -64,7 +64,7 @@ insulator [@kane2005z; @kane2005quantum; @bernevig2006quantum] for which the
 to identify topological photonic crystals using Wilson loops
 [@blanco2020tutorial], for which open source implementations have been lacking.
 
-![Examples. (a) ... (b) ..... \label{fig:examples}](examples.svg)
+![Examples. (a) ... (b) ..... \label{fig:examples}](examples.pdf)
 
 # Acknowledgements
 
