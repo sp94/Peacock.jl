@@ -6,7 +6,7 @@ Contributions are always greatly appreciated and credit will always be given.
 
 ### Bug reports
 
-Report bugs at https://github.com/sp94/Peacock.jl/issues.
+Report bugs at the [GitHub issues](https://github.com/sp94/Peacock.jl/issues).
 
 If you are reporting a bug, please include:
 
@@ -16,15 +16,15 @@ If you are reporting a bug, please include:
 
 ### Bug fixes
 
-Look through the GitHub issues for bugs. Anything tagged with "bug" and "help wanted" is open to whoever wants to implement it.
+Look through the [GitHub issues](https://github.com/sp94/Peacock.jl/issues) for bugs. Anything tagged with "bug" and "help wanted" is open to whoever wants to implement it.
 
 ### New features
 
-Look through the GitHub issues for features. Anything tagged with "enhancement" and "help wanted" is open to whoever wants to implement it.
+Look through the [GitHub issues](https://github.com/sp94/Peacock.jl/issues) for features. Anything tagged with "enhancement" and "help wanted" is open to whoever wants to implement it.
 
 ### New crystals
 
-If you model a new crystal with `Peacock.jl`, consider contributing it to the [`Peacock.Zoo`](@ref how_to_zoo) submodule to help others reproduce your work.
+If you model a new crystal with `Peacock.jl`, please consider contributing it to the [`Peacock.Zoo`](@ref how_to_zoo) submodule to help others reproduce your work.
 
 ## Pull request guidelines
 
@@ -34,7 +34,7 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, put your new functionality into a function with a docstring.
   * The docstrings will be automatically included in the [technical reference](@ref reference).
   * Consider also writing a tutorial or how-to guide for the new functionality.
-3. The pull request should work for Julia 1.4. Check https://travis-ci.org/sp94/Peacock.jl/pull_requests and make sure that the tests pass.
+3. The pull request should work for Julia 1.4. Check the [test logs](https://travis-ci.com/sp94/Peacock.jl/pull_requests) and make sure that the tests pass.
 
 
 ---
