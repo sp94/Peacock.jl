@@ -75,7 +75,7 @@ Finally, `Peacock.jl` includes a `Zoo` submodule of crystals from published
 works. If you model a photonic crystal with `Peacock.jl`, please consider
 contributing your geometry to the `Zoo` submodule to help others reproduce your work.
 
-![Example reproduction of the fragilely topological photonic crystal in
+![Example reproduction of a fragilely topological photonic crystal
 [@blanco2019engineering]. (a) Unit cell of the photonic crystal.
 (b-d) Out-of-plane component of the electric field of the first three
 transverse-magnetic polarised modes at $\Gamma$. (e) Band diagram of the
