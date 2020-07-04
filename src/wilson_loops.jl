@@ -150,7 +150,7 @@ Keyword arguments
 - `delta_brillouin_zone=BrillouinZoneCoordinate(0,1)`: each Wilson loop starts at and finishes in at the same `k` in different Brillouin zones
 """
 function plot_wilson_loop_winding(solver::Solver, ks, polarisation, bands::AbstractVector{<:Int};
-                dk_outer=0, dk_inner=0, labels=[], delta_brillouin_zone=BrillouinZoneCoordinate(0,1))
+                dk_outer=nothing, dk_inner=nothing, labels=[], delta_brillouin_zone=BrillouinZoneCoordinate(0,1))
     # Convert BrillouinZoneCoordinate to labelled positions in k space
     if labels == []
         labels = [hasproperty(x,:label) ? x.label : "" for x in ks]
