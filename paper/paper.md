@@ -37,10 +37,10 @@ The **P**lane-wave **E**xpansion **A**pproach to **C**haracterising **O**ptical
 **C**rystals in **k**-space - otherwise known as
 `Peacock.jl` - is a Julia package for studying
 photonic crystals using the Plane Wave Expansion Method [@rumpf2006design].
-Photonic crystals are materials whose optical properties arise from the
-structure of the material [@yablonovitch1987inhibited; @john1987strong], and
+A photonic crystal is a material whose optical properties arise from its
+periodic structure [@yablonovitch1987inhibited; @john1987strong], and
 `Peacock.jl` is named for the irridescent colours of peacock feathers which
-arise not from pigmentation but from their photonic crystal structure
+arise not from pigmentation but from the scattering of light by photonic crystals
 [@zi2003coloration], as shown in \autoref{fig:zoom}.
 
 The response of a photonic crystal is strongest
@@ -50,20 +50,29 @@ few hundred nanometers in size. Advances in nanofabrication mean that 'designer'
 photonic crystals can now be manufactured for unprecedented control over the
 flow of light, with applications ranging from optical fibers
 [@knight2003photonic] to photonic circuitry [@joannopoulos2008molding].
+Photonic crystals are also a promising platform for materials known as
+photonic topological insulators [@wu2015scheme; @wang2019band;
+@blanco2019engineering], the photonic analogue of the electronic topological
+insulators [@kane2005z; @kane2005quantum; @bernevig2006quantum],
+whose exotic surface states could allow light to be guided around defects,
+impurities, and sharp corners without backscattering [@rider2019perspective].
 
-`Peacock.jl` provides a user-friendly interface to analyse 2D photonic crystals
+`Peacock.jl` provides a user-friendly interface to analyse and
+predict the behaviour of 2D photonic crystals,
 with support for non-orthogonal unit cells and inhomogeneous permittivity and/or
-permeability. The package focuses on ease of use and includes a `Zoo` submodule
-of crystals from published works. We hope that in time the `Zoo` will grow and
-aid others to reproduce and extend existing work.
+permeability. As well as common tools to study the eigensolutions of photonic crystals, such as
+visualising the eigenmodes or the plotting the eigenvalues on a band diagram as
+in \autoref{fig:examples}a-e), `Peacock.jl` also includes built-in using Wilson loop
+methods [@blanco2020tutorial] to study the topology of photonic bands. Although
+interest in band topology has been heightened after the 2016 Nobel
+Prize in Physics was awarded for the study of electronic band topology, to our
+knowledge `Peacock.jl` is the first open-source package that allows the
+band topology of photonic crystals to be studied using Wilson loops,
+as in \autoref{fig:examples}f-g.
 
-Photonic crystals are also a promising platform for exotic materials known as
-photonic topological insulators [@wu2015scheme; @blanco2019engineering;
-@rider2019perspective], the photonic analogue of the electronic topological
-insulator [@kane2005z; @kane2005quantum; @bernevig2006quantum] for which the
-2016 Nobel Prize in Physics was awarded. `Peacock.jl` includes built-in methods
-to identify topological photonic crystals using Wilson loops
-[@blanco2020tutorial], for which open source implementations have been lacking.
+Finally, `Peacock.jl` includes a `Zoo` submodule of crystals from published
+works. If you model a photonic crystal with `Peacock.jl`, please consider
+contributing your geometry to the `Zoo` submodule to help others reproduce your work.
 
 ![Example reproduction of the fragilely topological photonic crystal in
 [@blanco2019engineering]. (a) Unit cell of the photonic crystal.
