@@ -80,10 +80,14 @@ end
 
 
 """
-To do
+    plot_field(data::AbstractVector{<:Complex}, basis::PlaneWaveBasis;
+                        k0=[0,0], cmap="coolwarm", vmin=nothing, vmax=nothing, label=nothing)
+
+Converts the plane-wave amplitudes to real space using [`get_field`](@ref)
+and then plots the field.
 """
-function plot_field(u::AbstractVector{<:Complex}, basis::PlaneWaveBasis; k0=[0,0], cmap="coolwarm", vmin=nothing, vmax=nothing, label=nothing)
-    field = get_field(u, basis, k0=k0)
+function plot_field(data::AbstractVector{<:Complex}, basis::PlaneWaveBasis; k0=[0,0], cmap="coolwarm", vmin=nothing, vmax=nothing, label=nothing)
+    field = get_field(data, basis, k0=k0)
     a1, a2 = bs_to_as(basis.b1, basis.b2)
     plot_field(field, a1, a2, cmap=cmap, vmin=vmin, vmax=vmax, label=label)
 end
