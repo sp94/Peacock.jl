@@ -42,7 +42,9 @@ end
 
 Calculate the Wilson loop matrix through the Hilbert spaces.
 
-The `closed` keyword 
+The `closed` keyword will assert that `spaces[1] == spaces[end]`.
+Otherwise, it will be assumed that the Wilson loop begins and finishes
+at the same `k0`, but in different Brillouin zones.
 """
 function wilson_matrix(spaces::Array{HilbertSpace,1}; closed::Bool=true)
     @assert length(spaces) > 1
@@ -87,8 +89,7 @@ end
 """
     wilson_eigvals(spaces::AbstractArray{HilbertSpace,1}; closed=true)
 
-Return the eigenvalues of the Wilson matrix through a Hilbert space,
-sorted by phase angle.
+Return the eigenvalues of [`wilson_matrix`](@ref), sorted by phase angle.
 """
 function wilson_eigvals(spaces::AbstractArray{HilbertSpace,1}; closed=true)
     W = wilson_matrix(spaces, closed=closed)
@@ -100,8 +101,8 @@ end
 """
     wilson_eigvals(spaces::AbstractArray{HilbertSpace,1}; closed=true)
 
-Return the eigenvalues and eigenvectors of the Wilson matrix through a Hilbert
-space, sorted by the phase angle of the eigenvalues.
+Return the eigenvalues and eigenvectors of [`wilson_matrix`](@ref),
+sorted by the phase angle of the eigenvalues.
 """
 function wilson_eigen(spaces::AbstractArray{HilbertSpace,1}; closed=true)
     W = wilson_matrix(spaces, closed=closed)

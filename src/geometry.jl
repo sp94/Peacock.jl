@@ -1,9 +1,10 @@
 """
-2D geometry defined in real space.
+    Geometry(a1::Array{Real,1}, b1::Array{Real,1}, ep::Array{ComplexF64,2}, mu::Array{ComplexF64,2})
+
+2D geometry defined in real space, with lattice vectors `a1` and `a2`,
+and relative permeability and permittivity `ep` and `mu`, respectively.
 """
 struct Geometry
-    epf::Function
-    muf::Function
     a1::Array{Real,1}
     a2::Array{Real,1}
     ep::Array{ComplexF64,2}
@@ -31,7 +32,7 @@ function Geometry(epf::Function, muf::Function,
     ys = [p*a1[2]+q*a2[2] for p in ps, q in qs]
     ep = epf.(xs, ys)
     mu = muf.(xs, ys)
-    return Geometry(epf, muf, a1, a2, ep, mu)
+    return Geometry(a1, a2, ep, mu)
 end
 
 

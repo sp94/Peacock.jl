@@ -12,7 +12,14 @@ struct Mode
     label::String
 end
 
+"""
+    HilbertSpace(k0, data, weighting, basis)
 
+Hilbert space spanned by the eigenvectors in each column of `data`.
+
+The eigenvectors will be orthonormalised using Gram-Schmidt orthonormalisation,
+see [`orthonormalise`](@ref).
+"""
 struct HilbertSpace
     k0::Vector{Float64}
     data::Matrix{ComplexF64}

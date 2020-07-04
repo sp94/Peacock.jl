@@ -1,3 +1,9 @@
+"""
+    PlaneWaveBasis(b1::Vector{Float64}, b2::Vector{Float64},
+            ps::Vector{Int}, qs::Vector{Int})
+
+A 2D basis of plane waves, `ks = ps*b1 + qs*b2`.
+"""
 struct PlaneWaveBasis
     b1::Vector{Float64}
     b2::Vector{Float64}
@@ -84,7 +90,7 @@ end
     get_k(coord::BrillouinZoneCoordinate, basis::PlaneWaveBasis)
 
 Return the k-space coordinate of the `BrillouinZoneCoordinate` in a particular
-`PlaneWaveBasis`.
+`PlaneWaveBasis`, ie `k = p*b1 + q*b2`.
 """
 function get_k(coord::BrillouinZoneCoordinate, basis::PlaneWaveBasis)
     return coord.p*basis.b1 + coord.q*basis.b2

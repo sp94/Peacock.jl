@@ -26,6 +26,8 @@ end
 
 
 """
+    DiagonalMatrix(diag::AbstractVector{ComplexF64})
+
 A sparse diagonal matrix that can be used in left division (D \\ X)
 """
 struct DiagonalMatrix <: AbstractMatrix{ComplexF64}

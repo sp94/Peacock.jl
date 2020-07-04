@@ -4,12 +4,25 @@ Transverse electric (TE) or transverse magnetic (TM) polarisation.
 @enum Polarisation TE TM
 
 
+"""
+    Solver(basis::PlaneWaveBasis, epc::Matrix{ComplexF64}, muc::Matrix{ComplexF64})
+
+A plane-wave expansion method solver, where `epc` and `muc` are the convolution
+matrices of the permittivity and permeability, respectively, for the given
+`basis` of plane waves.
+"""
 struct Solver
     basis::PlaneWaveBasis
     epc::Matrix{ComplexF64}
     muc::Matrix{ComplexF64}
 end
 
+
+"""
+    Solver(geometry::Geometry, basis::PlaneWaveBasis)
+
+Approximate the geometry using the given `basis` of plane waves.
+"""
 function Solver(geometry::Geometry, basis::PlaneWaveBasis)
     epc = convmat(geometry.ep, basis)
     muc = convmat(geometry.mu, basis)
@@ -116,6 +129,11 @@ function solve(solver::Solver, k::AbstractVector{<:Real}, polarisation::Polarisa
 end
 
 
+"""
+    solve(solver::Solver, x::BrillouinZoneCoordinate, polarisation::Polarisation; bands=:)
+
+Calculate the eigenmodes of a photonic crystal at position `k=x.p*b1 + x.q*b2` in reciprocal space.
+"""
 function solve(solver::Solver, x::BrillouinZoneCoordinate, polarisation::Polarisation, bands=:)
     k = get_k(x, solver.basis)
     return solve(solver, k, polarisation, bands=bands)
