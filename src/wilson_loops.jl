@@ -172,7 +172,7 @@ function plot_wilson_loop_winding(solver::Solver, ks, polarisation, bands::Abstr
         angles = [angles.-2pi angles angles.+2pi]
         return angles
     end
-    plot_band_diagram(my_solve, ks, dk=dk_outer, labels=labels, show_vlines=false)
+    plot_band_diagram(my_solve, ks, dk=dk_outer, labels=labels, show_vlines=false, markersize=markersize)
     ylim(-pi,pi)
     yticks((-1:1)*pi, labels=["-π","0","+π"])
     ylabel("Wilson spectrum")
