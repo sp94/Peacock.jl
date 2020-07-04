@@ -53,22 +53,23 @@ flow of light, with applications ranging from optical fibers
 Photonic crystals are also a promising platform for materials known as
 photonic topological insulators [@wu2015scheme; @wang2019band;
 @blanco2019engineering], the photonic analogue of the electronic topological
-insulators [@kane2005z; @kane2005quantum; @bernevig2006quantum],
-whose exotic surface states could allow light to be guided around defects,
-impurities, and sharp corners without backscattering [@rider2019perspective].
+insulators [@kane2005z; @kane2005quantum; @bernevig2006quantum]
+for which the 2016 Nobel Prize in Physics was awarded, and which may allow
+light to be guided around defects, impurities, and sharp corners without
+backscattering [@rider2019perspective].
 
 `Peacock.jl` provides a user-friendly interface to analyse and
 predict the behaviour of 2D photonic crystals,
 with support for non-orthogonal unit cells and inhomogeneous permittivity and/or
-permeability. As well as common tools to study the eigensolutions of photonic crystals, such as
-visualising the eigenmodes or the plotting the eigenvalues on a band diagram as
+permeability. As well as common tools to study the eigensolutions of
+traditional photonic crystals, such as visualising the eigenmodes
+or the plotting the eigenvalues on a band diagram as
 in \autoref{fig:examples}a-e), `Peacock.jl` also includes built-in using Wilson loop
-methods [@blanco2020tutorial] to study the topology of photonic bands. Although
-interest in band topology has been heightened after the 2016 Nobel
-Prize in Physics was awarded for the study of electronic band topology, to our
-knowledge `Peacock.jl` is the first open-source package that allows the
-band topology of photonic crystals to be studied using Wilson loops,
-as in \autoref{fig:examples}f-g.
+methods [@blanco2020tutorial] to study the topology of photonic bands.
+Although there exists open-source software to study photonic bands [@johnson2001block]
+and to study topology in electronic bands [@gresch2017z2pack], to our knowledge
+`Peacock.jl` is the first open-source package for studying the
+band topology in photonic crystals, as in \autoref{fig:examples}f-g.
 
 Finally, `Peacock.jl` includes a `Zoo` submodule of crystals from published
 works. If you model a photonic crystal with `Peacock.jl`, please consider
