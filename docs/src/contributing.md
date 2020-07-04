@@ -39,4 +39,4 @@ Before you submit a pull request, check that it meets these guidelines:
 
 ---
 
-This page was adapted from the [DetecTree](https://github.com/martibosch/detectree/blob/master/CONTRIBUTING.md) library.
+Thanks to the [DetecTree](https://github.com/martibosch/detectree/blob/master/CONTRIBUTING.md) library for letting us use their contributions page as a template.
