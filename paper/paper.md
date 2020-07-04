@@ -64,7 +64,7 @@ with support for non-orthogonal unit cells and inhomogeneous permittivity and/or
 permeability. As well as common tools to study the eigensolutions of
 traditional photonic crystals, such as visualising the eigenmodes
 or the plotting the eigenvalues on a band diagram as
-in \autoref{fig:examples}a-e), `Peacock.jl` also includes built-in using Wilson loop
+in \autoref{fig:examples}a-e, `Peacock.jl` also includes built-in using Wilson loop
 methods [@blanco2020tutorial] to study the topology of photonic bands.
 Although there exists open-source software to study photonic bands [@johnson2001block]
 and to study topology in electronic bands [@gresch2017z2pack], to our knowledge
