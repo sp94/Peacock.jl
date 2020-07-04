@@ -64,7 +64,14 @@ insulator [@kane2005z; @kane2005quantum; @bernevig2006quantum] for which the
 to identify topological photonic crystals using Wilson loops
 [@blanco2020tutorial], for which open source implementations have been lacking.
 
-![Examples. (a) ... (b) ..... \label{fig:examples}](examples.pdf)
+![Example reproduction of the fragilely topological photonic crystal in
+[@blanco2019engineering]. (a) Unit cell of the photonic crystal.
+(b-d) Out-of-plane component of the electric field of the first three
+transverse-magnetic polarised modes at $\Gamma$. (e) Band diagram of the
+transverse-magnetic polarised modes. (f) The Wilson loop spectrum of bands 2-3
+wind, indicating non-trivial band topology. (g) The Wilson loop spectrum of the
+full valence band space does not wind, indicating that bands 2-3 are 'fragilely'
+topological. \label{fig:examples}](examples.pdf)
 
 # Acknowledgements
 
