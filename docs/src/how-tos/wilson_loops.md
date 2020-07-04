@@ -39,12 +39,12 @@ Now we can reproduce the Wilson loop winding figures of Blanco de Paz *et al* 20
 ```julia
 # Wilson loop of all three valence bands
 figure(figsize=(3,2))
-plot_wilson_loop_winding(solver, ks, polarisation, 1:3, dk=0.25)
+plot_wilson_loop_winding(solver, ks, polarisation, 1:3, dk_outer=0.25)
 title("Bands 1-3")
 
 # Wilson loop of just the second and third bands
 figure(figsize=(3,2))
-plot_wilson_loop_winding(solver, ks, polarisation, 2:3, dk=0.25)
+plot_wilson_loop_winding(solver, ks, polarisation, 2:3, dk_outer=0.25)
 title("Bands 2&3")
 ```
 ![Plot some Wilson loop examples](../figures/example_wilson_loops.png)
