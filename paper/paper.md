@@ -52,9 +52,9 @@ flow of light, with applications ranging from optical fibers
 [@knight2003photonic] to photonic circuitry [@joannopoulos2008molding].
 Photonic crystals are also a promising platform for materials known as
 photonic topological insulators [@wu2015scheme; @wang2019band;
-@blanco2019engineering], the photonic analogue of the electronic topological
+@blanco2019engineering]. These are the photonic analogue of the electronic topological
 insulators [@kane2005z; @kane2005quantum; @bernevig2006quantum]
-for which the 2016 Nobel Prize in Physics was awarded, and which may allow
+for which the 2016 Nobel Prize in Physics was awarded, and may allow
 light to be guided around defects, impurities, and sharp corners without
 backscattering [@rider2019perspective].
 
