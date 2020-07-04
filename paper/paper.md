@@ -9,6 +9,7 @@ tags:
   - photonic topological insulators
   - Maxwell's equations
   - metamaterials
+  - plane wave expansion
 authors:
   - name: Samuel J. Palmer
     orcid: 0000-0003-0485-7047
