@@ -60,6 +60,8 @@ backscattering [@rider2019perspective].
 
 `Peacock.jl` provides a user-friendly interface to analyse and
 predict the behaviour of 2D photonic crystals,
+# Statement of need
+
 with support for non-orthogonal unit cells and inhomogeneous permittivity and/or
 permeability. As well as common tools to study the eigensolutions of
 traditional photonic crystals, such as visualising the eigenmodes
@@ -70,6 +72,8 @@ Although there exists open-source software to study photonic bands [@johnson2001
 and to study topology in electronic bands [@gresch2017z2pack], to our knowledge
 `Peacock.jl` is the first open-source package for studying the
 band topology in photonic crystals, as in \autoref{fig:examples}f-g.
+
+# Examples
 
 Finally, `Peacock.jl` includes a `Zoo` submodule of crystals from published
 works. If you model a photonic crystal with `Peacock.jl`, please consider
