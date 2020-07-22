@@ -58,20 +58,20 @@ for which the 2016 Nobel Prize in Physics was awarded, and may allow
 light to be guided around defects, impurities, and sharp corners without
 backscattering [@rider2019perspective].
 
-`Peacock.jl` provides a user-friendly interface to analyse and
-predict the behaviour of 2D photonic crystals,
 # Statement of need
 
+`Peacock.jl` provides a user-friendly interface to calculate and analyse
+the eigensolutions of 2D photonic crystals,
 with support for non-orthogonal unit cells and inhomogeneous permittivity and/or
-permeability. As well as common tools to study the eigensolutions of
-traditional photonic crystals, such as visualising the eigenmodes
-or the plotting the eigenvalues on a band diagram as
+permeability. As well as the common tools for eigenmode analysis,
+such as visualising the eigenmodes or the plotting the eigenvalues on band diagrams as
 in \autoref{fig:examples}a-e, `Peacock.jl` also includes built-in using Wilson loop
-methods [@blanco2020tutorial] to study the topology of photonic bands.
+methods [@blanco2020tutorial] to study the topology of photonic bands,
+as in \autoref{fig:examples}f-g.
 Although there exists open-source software to study photonic bands [@johnson2001block]
 and to study topology in electronic bands [@gresch2017z2pack], to our knowledge
 `Peacock.jl` is the first open-source package for studying the
-band topology in photonic crystals, as in \autoref{fig:examples}f-g.
+band topology in photonic crystals.
 
 # Examples
 
