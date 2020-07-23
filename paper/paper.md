@@ -97,8 +97,9 @@ using Peacock, Peacock.Zoo, Parameters
 # Size of the plane-wave basis
 fourier_space_cutoff = 7
 
-# Load the fragile photonic topological insulator from Blanco de Paz et al 2018
-@unpack geometry, solver, polarisation = make_dePaz_frag(fourier_space_cutoff)
+# Load the fragile photonic topological insulator (Blanco de Paz et al 2019)
+@unpack geometry, solver, polarisation = 
+        make_dePaz_frag(fourier_space_cutoff)
 
 # Visualise the geometry
 plot(geometry)
