@@ -1,5 +1,13 @@
 language: julia
 
+julia:
+  - 1.4
+
+os:
+  - linux
+  - osx
+  - windows
+
 notifications:
   email: false
 
