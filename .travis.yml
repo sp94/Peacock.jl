@@ -8,6 +8,11 @@ os:
   - osx
   - windows
 
+addons:
+  apt:
+    packages:
+      - python3-matplotlib
+
 notifications:
   email: false
 
@@ -20,10 +25,6 @@ jobs:
     - stage: "Documentation"
       julia: 1.4
       os: linux
-      addons:
-        apt:
-          packages:
-            - python3-matplotlib
       script:
         - julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd()));
                                                Pkg.instantiate()'
