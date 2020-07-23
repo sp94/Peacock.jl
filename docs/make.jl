@@ -17,4 +17,8 @@ makedocs(
 )
 
 deploydocs(
-	repo="github.com/sp94/Peacock.jl.git")
+    devbranch = "master",
+    devurl = "dev",
+    versions = ["stable" => "v^", "v#.#", devurl => devurl],
+    repo="github.com/sp94/Peacock.jl.git",
+)
