@@ -13,8 +13,13 @@ addons:
     packages:
       - python3-matplotlib
 
+env:
+  global:
+    - COVERALLS_PARALLEL=true
+
 notifications:
   email: false
+  webhooks: https://coveralls.io/webhook
 
 after_success:
   - julia -e 'using Pkg; Pkg.add("Coverage"); using Coverage;
