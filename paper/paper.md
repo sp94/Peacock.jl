@@ -85,12 +85,18 @@ wind, indicating non-trivial band topology. (g) The Wilson loop spectrum of the
 full valence band space does not wind, indicating that bands 2-3 are 'fragilely'
 topological. \label{fig:examples}](figures/examples.pdf)
 
-## Loading from the `Peacock.Zoo` submodule
+## Documentation
 
-In this example we reproduce results that demonstrate the photonic crystal with
-'fragile' band topology that was introduced in [@blanco2019engineering].
+Check the [online documentation](https://sp94.github.io/Peacock.jl/stable/) for
+the latest tutorials, how-to guides, and technical reference.
 
-This crystal can be loaded from the `Peacock.Zoo` submodule using `make_dePaz_frag`.
+## Loading a crystal
+
+Here we demonstrate how to reproduce the examples of \autoref{examples}, where
+we analyse a crystal with fragile topology [@blanco2019engineering].
+
+For this example, we load the geometry, solver, and high symmetry points
+of the crystal from the `Peacock.Zoo` submodule using `make_dePaz_frag`.
 ```julia
 using Peacock, Peacock.Zoo, Parameters
 
