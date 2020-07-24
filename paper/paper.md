@@ -116,7 +116,7 @@ If you model your own photonic crystal with `Peacock.jl`, you can add your geome
 to the `Zoo` submodule to help others reproduce your work.
 
 
-## Plotting the band diagram
+## Plotting the band diagram
 
 To plot a band diagram as in \autoref{fig:example}e, we must first define the
 corners of the path through the Brillouin zone.
