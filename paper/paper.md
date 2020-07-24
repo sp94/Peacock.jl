@@ -110,6 +110,30 @@ If you model your own photonic crystal with `Peacock.jl`, you can add your geome
 to the `Zoo` submodule to help others reproduce your work.
 
 
+## Plotting the band diagram
+
+To plot a band diagram as in \autoref{fig:example}e, we must first define the
+corners of the path through the Brillouin zone.
+We can use `BrillouinZoneCoordinate` to attach a label to our coordinates.
+```julia
+ks = [
+    BrillouinZoneCoordinate(1/3, 1/3, "K")
+    BrillouinZoneCoordinate(  0,   0, "Γ")
+    BrillouinZoneCoordinate(  0, 1/2, "M")
+]
+```
+
+Now we can use `plot_band_diagram` to sample along our $k$-path and
+produce our labelled band diagram.
+```julia
+figure(figsize=(3,4))
+plot_band_diagram(solver, ks, polarisation,
+            bands=1:6, frequency_scale=1/2pi)
+ylabel("Frequency")
+ylim(0,0.6)
+```
+
+
 ## Plotting the Wilson loop winding
 
 A winding in the Wilson loop spectrum can indicate a non-trivial topological
