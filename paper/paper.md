@@ -85,7 +85,7 @@ wind, indicating non-trivial band topology. (g) The Wilson loop spectrum of the
 full valence band space does not wind, indicating that bands 2-3 are 'fragilely'
 topological. \label{fig:examples}](figures/examples.pdf)
 
-## Documentation
+## Documentation
 
 Check the [online documentation](https://sp94.github.io/Peacock.jl/stable/) for
 the latest tutorials, how-to guides, and technical reference.
