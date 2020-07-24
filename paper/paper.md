@@ -118,7 +118,7 @@ to the `Zoo` submodule to help others reproduce your work.
 
 ## Plotting the band diagram
 
-To plot a band diagram as in \autoref{fig:example}e, we must first define the
+To plot a band diagram as in \autoref{fig:examples}e, we must first define the
 corners of the path through the Brillouin zone.
 We can use `BrillouinZoneCoordinate` to attach a label to our coordinates.
 ```julia
