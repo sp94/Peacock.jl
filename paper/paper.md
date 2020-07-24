@@ -139,7 +139,7 @@ ylim(0,0.6)
 A winding in the Wilson loop spectrum can indicate a non-trivial topological
 phase [@blanco2020tutorial], with the Chern number given by the winding. 
 
-First, we define the ``k``-path we want to scan along, labelling the high
+First, we define the $k$-path we want to scan along, labelling the high
 symmetry points using `BrillouinZoneCoordinate`.
 ```julia
 # The Wilson loops are (by default) along b2, so we define a straight
