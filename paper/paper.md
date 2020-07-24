@@ -92,7 +92,7 @@ the latest tutorials, how-to guides, and technical reference.
 
 ## Loading a crystal
 
-Here we demonstrate how to reproduce the examples of \autoref{examples}, where
+Here we demonstrate how to reproduce the examples of \autoref{fig:examples}, where
 we analyse a crystal with fragile topology [@blanco2019engineering].
 
 For this example, we load the geometry, solver, and high symmetry points
