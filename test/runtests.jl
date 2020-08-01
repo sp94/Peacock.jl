@@ -5,22 +5,24 @@ using LinearAlgebra
 # Test sample_path
 begin
     # Generate a random path
-    ks_orig = [[0,0]]
+    ks_orig = [[0.0,0.0]]
     for n in 1:3
         push!(ks_orig, ks_orig[end]+rand(2))
     end
     labels_orig = ["k$(n)" for n in 1:length(ks_orig)]
     # Sample it
     dk = 0.1
-    ks, labels = sample_path(ks_orig, labels_orig, dk=dk)
-    # Check spacing is correct
+    ks, labels = Peacock.sample_path(ks_orig, labels=labels_orig, dk=dk)
+    # Check same number of ks and labels
+    @test length(ks) == length(labels)
+    # Check k-point spacing is correct
     for (k1,k2) in zip(ks,ks[2:end])
         @test norm(k2-k1) <= dk
     end
     # Check labels match expected k positions
-    for (k,label) in zip(ks_orig,labels_orig)
-        n = findfirst(ks .== k)
-        @test ks[n] = label
+    for (k_orig,label_orig) in zip(ks_orig,labels_orig)
+        n = findfirst([k==k_orig for k in ks])
+        @test labels[n] == label_orig
     end
 end
 
@@ -29,8 +31,12 @@ end
 begin
     # Create a test basis of plane waves
     b1, b2 = [0.3,0.2], [0.5,-0.1]
-    ps, qs = -1:2, -2:3
-    basis = PlaneWaveBasis(b1, b2, ps, qs)
+    ps, qs = Int[], Int[]
+    for p in -1:2, q in -2:3
+        push!(ps, p)
+        push!(qs, q)
+    end
+    basis = Peacock.PlaneWaveBasis(b1, b2, ps, qs)
     # Convolution matrix of homogeneous array should be diagonal
     x = 1 + rand(ComplexF64)
     mat = fill(x, 10, 20)
