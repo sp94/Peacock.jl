@@ -2,6 +2,9 @@ using Test
 using Peacock
 using LinearAlgebra
 
+using Peacock.Zoo
+using Parameters
+
 # Test sample_path
 begin
     # Generate a random path
@@ -100,4 +103,41 @@ data_ = Peacock.orthonormalise(data, weighting=weighting)
 for i in 1:size(data_,2), j in 1:size(data_,2)
     weighted_overlap = sqrt(abs(dot(data_[:,i], weighting*data_[:,j])))
     @test isapprox(weighted_overlap, float(i==j), atol=1e-6)
+end
+
+
+# Test Wilson loops of fragile topological crystal from Blanco de Paz et al 2019
+begin
+
+    # Load solver from the Zoo
+    @unpack solver, polarisation = make_dePaz_frag(11)
+
+    # Create a Wilson loop of bands 2&3 from k0 to k0+1
+    function test_wilson_eigvals(solver, x::BrillouinZoneCoordinate, polarisation)
+        k0 = Peacock.get_k(x, solver.basis)
+        ts = range(0, stop=1, length=20)
+        ks = [k0 + t*solver.basis.b2 for t in ts]
+        spaces = HilbertSpace[]
+        for k in ks
+            modes = solve(solver, k, polarisation)
+            space = HilbertSpace(modes[2:3])
+            push!(spaces, space)
+        end
+        return Peacock.wilson_eigvals(spaces, closed=false)
+    end
+
+    # Wilson loop of bands 2&3 from Γ to Γ+b1
+    vals = test_wilson_eigvals(solver, BrillouinZoneCoordinate(0.0,0.0), polarisation)
+    @show vals
+    # Expected eigenvalues = [-1, -1]
+    percentage_error = angle.(vals / -1) / 2pi * 100
+    @test all(abs.(percentage_error) .< 1)
+
+    # Wilson loop of bands 2&3 from M to M+b1
+    vals = test_wilson_eigvals(solver, BrillouinZoneCoordinate(0.5,0.0), polarisation)
+    @show vals
+    # Expected eigenvalues = [+1, +1]
+    percentage_error = angle.(vals / +1) / 2pi * 100
+    @test all(abs.(percentage_error) .< 1)
+
 end
