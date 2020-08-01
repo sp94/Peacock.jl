@@ -106,6 +106,25 @@ for i in 1:size(data_,2), j in 1:size(data_,2)
 end
 
 
+# Test that the Wilson loop gauge and Wilson loop eigenvalues agree
+begin
+    # Load solver from the Zoo
+    @unpack solver, polarisation = make_wu_topo(11)
+    # Small Wilson loop of bands 1-3
+    k0 = [0.3,0.2] # arbitrary
+    ks = [k0, k0+[0.1,0], k0+[0.1,0.1], k0+[0,0.1]]
+    spaces = HilbertSpace[]
+    for k in ks
+        modes = solve(solver, k, polarisation)
+        space = HilbertSpace(modes[1:3])
+        push!(spaces, space)
+    end
+    push!(spaces, spaces[1])
+    vals, vecs, gauge = Peacock.wilson_gauge(spaces)
+    @test Peacock.overlaps(gauge[end], gauge[1]) ≈ diagm(0=>vals)
+end
+
+
 # Test Wilson loops of fragile topological crystal from Blanco de Paz et al 2019
 begin
 
