@@ -20,18 +20,19 @@ function sample_path(ks; labels=[], dk=nothing)
     end
     # Sample between the corners such that spacing between points
     # is smaller than or equal to dk
-    ks_sampled = [ks[1]]
-    labels_sampled = [labels[1]]
+    ks_sampled = Vector{Float64}[ks[1]]
+    labels_sampled = String[labels[1]]
     for i in 1:length(ks)-1
         k1 = ks[i]
         k2 = ks[i+1]
         d = norm(k2-k1)
         N = ceil(Int, d/dk)
-        for n in 1:N
-            k = k1 + n*(k2-k1)/N
+        for n in 1:N-1
+            k = k1 + (k2-k1)*n//N
             push!(ks_sampled, k)
             push!(labels_sampled, "")
         end
+        push!(ks_sampled, ks[i+1])
         push!(labels_sampled, labels[i+1])
     end
     return ks_sampled, labels_sampled
