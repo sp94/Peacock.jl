@@ -2,6 +2,29 @@ using Test
 using Peacock
 using LinearAlgebra
 
+# Test sample_path
+begin
+    # Generate a random path
+    ks_orig = [[0,0]]
+    for n in 1:3
+        push!(ks_orig, ks_orig[end]+rand(2))
+    end
+    labels_orig = ["k$(n)" for n in 1:length(ks_orig)]
+    # Sample it
+    dk = 0.1
+    ks, labels = sample_path(ks_orig, labels_orig, dk=dk)
+    # Check spacing is correct
+    for (k1,k2) in zip(ks,ks[2:end])
+        @test norm(k2-k1) <= dk
+    end
+    # Check labels match expected k positions
+    for (k,label) in zip(ks_orig,labels_orig)
+        n = findfirst(ks .== k)
+        @test ks[n] = label
+    end
+end
+
+
 # Test homogeneous systems with known solutions
 begin
     # Create homogeneous geometry
