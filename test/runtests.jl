@@ -25,6 +25,20 @@ begin
 end
 
 
+# Test convmat
+begin
+    # Create a test basis of plane waves
+    b1, b2 = [0.3,0.2], [0.5,-0.1]
+    ps, qs = -1:2, -2:3
+    basis = PlaneWaveBasis(b1, b2, ps, qs)
+    # Convolution matrix of homogeneous array should be diagonal
+    x = 1 + rand(ComplexF64)
+    mat = fill(x, 10, 20)
+    cmat = Peacock.convmat(mat, basis)
+    @test all(diag(cmat) .≈ x)
+end
+
+
 # Test homogeneous systems with known solutions
 begin
     # Create homogeneous geometry
