@@ -11,8 +11,8 @@ struct PlaneWaveBasis
     qs::Vector{Int}
     kxs::Vector{Float64}
     kys::Vector{Float64}
-    function PlaneWaveBasis(b1::Vector{Float64}, b2::Vector{Float64},
-                                        ps::Vector{Int}, qs::Vector{Int})
+    function PlaneWaveBasis(b1::AbstractVector{Float64}, b2::AbstractVector{Float64},
+                                        ps::AbstractVector{Int}, qs::AbstractVector{Int})
         kxs = [p*b1[1]+q*b2[1] for (p,q) in zip(ps,qs)]
         kys = [p*b1[2]+q*b2[2] for (p,q) in zip(ps,qs)]
         return new(b1, b2, ps, qs, kxs, kys)
