@@ -1,5 +1,5 @@
 """
-    Geometry(a1::Array{Real,1}, b1::Array{Real,1}, ep::Array{ComplexF64,2}, mu::Array{ComplexF64,2})
+    Geometry(a1::Array{Real,1}, a2::Array{Real,1}, ep::Array{ComplexF64,2}, mu::Array{ComplexF64,2})
 
 2D geometry defined in real space, with lattice vectors `a1` and `a2`,
 and relative permeability and permittivity `ep` and `mu`, respectively.
