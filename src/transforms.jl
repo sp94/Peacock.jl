@@ -39,4 +39,6 @@ end
 
 function transform(space::HilbertSpace, k_map)
     k0_ = k_map(space.k0)
+    data_ = transform(space.data, space.basis, k_map)
+    HilbertSpace(k0_, data_, space.weighting, space.basis)
 end
