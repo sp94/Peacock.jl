@@ -131,9 +131,6 @@ function wilson_gauge(spaces::AbstractArray{HilbertSpace,1}; closed=true)
         mixing = unitary_overlaps(b, a)
         gauge[i+1] = HilbertSpace(b.k0, b.data*mixing, b.weighting, b.basis)
     end
-    if closed
-        @assert overlaps(gauge[end], gauge[1]) ≈ diagm(0=>vals)
-    end
     return vals, vecs, gauge
 end
 
