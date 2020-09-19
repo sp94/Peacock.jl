@@ -6,7 +6,9 @@ end
 
 function transform(data, basis, k_map)
     # Identify how the basis transforms
-    B = [solver.basis.b1 solver.basis.b2]
+    b1 = basis.b1
+    b2 = basis.b2
+    B = [b1 b2]
     shift = k_map([0,0])
     dp, dq = round_with_tolerance(B \ shift)
     b1_ = k_map(b1) - shift
