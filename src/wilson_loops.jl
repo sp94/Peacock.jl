@@ -67,11 +67,11 @@ end
 
 
 """
-    wilson_eigvals(spaces::AbstractArray{HilbertSpace,1}; closed=true)
+    wilson_eigvals(spaces::AbstractArray{HilbertSpace,1})
 
 Return the eigenvalues of [`wilson_matrix`](@ref), sorted by phase angle.
 """
-function wilson_eigvals(spaces::AbstractArray{HilbertSpace,1}; closed=true)
+function wilson_eigvals(spaces::AbstractArray{HilbertSpace,1})
     W = wilson_matrix(spaces)
     vals = eigvals(W)
     return sort(vals, by=angle)
@@ -79,12 +79,12 @@ end
 
 
 """
-    wilson_eigvals(spaces::AbstractArray{HilbertSpace,1}; closed=true)
+    wilson_eigvals(spaces::AbstractArray{HilbertSpace,1})
 
 Return the eigenvalues and eigenvectors of [`wilson_matrix`](@ref),
 sorted by the phase angle of the eigenvalues.
 """
-function wilson_eigen(spaces::AbstractArray{HilbertSpace,1}; closed=true)
+function wilson_eigen(spaces::AbstractArray{HilbertSpace,1})
     W = wilson_matrix(spaces)
     vals, vecs = eigen(W)
     idx = sortperm(vals, by=angle)
@@ -96,12 +96,12 @@ end
 
 
 """
-    wilson_gauge(spaces::AbstractArray{HilbertSpace,1}; closed=true)
+    wilson_gauge(spaces::AbstractArray{HilbertSpace,1})
 
 Return the eigenvalues, eigenvectors, and gauge of the Wilson loop through
 the Hilbert space, sorted by the phase angle of the eigenvalues.
 """
-function wilson_gauge(spaces::AbstractArray{HilbertSpace,1}; closed=true)
+function wilson_gauge(spaces::AbstractArray{HilbertSpace,1})
     vals, vecs = wilson_eigen(spaces)
     gauge = copy(spaces)
     gauge[1] = HilbertSpace(gauge[1].k0, gauge[1].data*vecs, gauge[1].weighting, gauge[1].basis)
