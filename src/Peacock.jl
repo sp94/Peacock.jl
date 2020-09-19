@@ -17,6 +17,9 @@ export Mode, HilbertSpace, get_field
 include("solver.jl")
 export Solver, TE, TM, solve
 
+include("transforms.jl")
+export transform
+
 include("plotting.jl")
 export plot
 
