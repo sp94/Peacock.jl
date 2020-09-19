@@ -171,7 +171,7 @@ end
                     space = HilbertSpace(modes[2:3])
                     push!(spaces, space)
                 end
-                return Peacock.wilson_eigvals(spaces, closed=false)
+                return Peacock.wilson_eigvals(spaces)
             end
 
             # Wilson loop of bands 2&3 from Γ to Γ+b1
