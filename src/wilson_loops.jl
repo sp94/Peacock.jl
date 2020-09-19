@@ -46,37 +46,17 @@ The `closed` keyword will assert that `spaces[1] == spaces[end]`.
 Otherwise, it will be assumed that the Wilson loop begins and finishes
 at the same `k0`, but in different Brillouin zones.
 """
-function wilson_matrix(spaces::Array{HilbertSpace,1}; closed::Bool=true)
+function wilson_matrix(spaces::Array{HilbertSpace,1})
     @assert length(spaces) > 1
     # Assume all spaces have the same plane wave expansion
     basis = spaces[1].basis
     for space in spaces
         @assert space.basis == basis
     end
-    # However, k0 is still changing...
-    if closed
-        # In a closed Wilson loop...
-        @assert spaces[1] == spaces[end]
-    else
-        # If not closed, then the loop begins and finishes at
-        # the same k0 but in different Brillouin zones
-        delta_k0 = spaces[end].k0 - spaces[1].k0
-        b1 = spaces[1].basis.b1
-        b2 = spaces[1].basis.b2
-        B = [b1 b2]
-        dp, dq = B \ delta_k0
-        # Round to integers if approximately correct
-        if isapprox(round(dp), dp, atol=1e-6) && isapprox(round(dq), dq, atol=1e-6)
-            dp = Int(round(dp))
-            dq = Int(round(dq))
-        else
-            @show dp, dq
-            throw("First and last spaces do not... (TODO)")
-        end
-        # Duplicate spaces[1] and shift its k0 so that it matches spaces[end]
-        space_1_at_end = shift_k0(spaces[1], dp, dq)
-        spaces = [spaces; space_1_at_end]
-    end
+    # Duplicate first space, and transform to last k0
+    delta_k0 = spaces[end].k0 - spaces[1].k0
+    push!(spaces, transform(spaces[1],k->k+delta_k0))
+    # Multiply overlap matrices together to get Wilson matrix
     W = I
     for (a,b) in zip(spaces, spaces[2:end])
         W = W * unitary_overlaps(a, b)
@@ -92,7 +72,7 @@ end
 Return the eigenvalues of [`wilson_matrix`](@ref), sorted by phase angle.
 """
 function wilson_eigvals(spaces::AbstractArray{HilbertSpace,1}; closed=true)
-    W = wilson_matrix(spaces, closed=closed)
+    W = wilson_matrix(spaces)
     vals = eigvals(W)
     return sort(vals, by=angle)
 end
@@ -105,7 +85,7 @@ Return the eigenvalues and eigenvectors of [`wilson_matrix`](@ref),
 sorted by the phase angle of the eigenvalues.
 """
 function wilson_eigen(spaces::AbstractArray{HilbertSpace,1}; closed=true)
-    W = wilson_matrix(spaces, closed=closed)
+    W = wilson_matrix(spaces)
     vals, vecs = eigen(W)
     idx = sortperm(vals, by=angle)
     vals = vals[idx]
@@ -122,7 +102,7 @@ Return the eigenvalues, eigenvectors, and gauge of the Wilson loop through
 the Hilbert space, sorted by the phase angle of the eigenvalues.
 """
 function wilson_gauge(spaces::AbstractArray{HilbertSpace,1}; closed=true)
-    vals, vecs = wilson_eigen(spaces, closed=closed)
+    vals, vecs = wilson_eigen(spaces)
     gauge = copy(spaces)
     gauge[1] = HilbertSpace(gauge[1].k0, gauge[1].data*vecs, gauge[1].weighting, gauge[1].basis)
     for i in 1:length(gauge)-1
