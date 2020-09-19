@@ -38,13 +38,9 @@ end
 
 
 """
-    wilson_matrix(spaces::Array{HilbertSpace,1}; closed::Bool=true)
+    wilson_matrix(spaces::Array{HilbertSpace,1})
 
 Calculate the Wilson loop matrix through the Hilbert spaces.
-
-The `closed` keyword will assert that `spaces[1] == spaces[end]`.
-Otherwise, it will be assumed that the Wilson loop begins and finishes
-at the same `k0`, but in different Brillouin zones.
 """
 function wilson_matrix(spaces::Array{HilbertSpace,1})
     @assert length(spaces) > 1
@@ -111,9 +107,6 @@ function wilson_gauge(spaces::AbstractArray{HilbertSpace,1})
         mixing = unitary_overlaps(b, a)
         gauge[i+1] = HilbertSpace(b.k0, b.data*mixing, b.weighting, b.basis)
     end
-    if closed
-        @assert overlaps(gauge[end], gauge[1]) ≈ diagm(0=>vals)
-    end
     return vals, vecs, gauge
 end
 
@@ -147,7 +140,7 @@ function plot_wilson_loop_winding(solver::Solver, ks, polarisation, bands::Abstr
             space = HilbertSpace(modes[bands])
             push!(spaces, space)
         end
-        vals = wilson_eigvals(spaces, closed=false)
+        vals = wilson_eigvals(spaces)
         angles = angle.(vals)
         angles = [angles.-2pi angles angles.+2pi]
         return angles
