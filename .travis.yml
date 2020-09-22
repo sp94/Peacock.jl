@@ -12,10 +12,9 @@ addons:
   apt:
     packages:
       - python3-matplotlib
-env:
-  - PYTHON=python3
 
 env:
+  - PYTHON=Conda-python
   global:
     - COVERALLS_PARALLEL=true
 
