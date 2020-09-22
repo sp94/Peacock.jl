@@ -145,11 +145,11 @@ Keyword arguments
 - `dk_inner=nothing`: maximum distance between points along a loop (resolution of the loop)
 - `delta_brillouin_zone=BrillouinZoneCoordinate(0,1)`: each Wilson loop starts at and finishes in at the same `k` in different Brillouin zones
 - `labels=[]`: overwrite the labels for each `k` in `ks`
-- `markersize=6`: overwrite the size of each point
+- `markersize=nothing`: overwrite the size of each point
 """
 function plot_wilson_loop_winding(solver::Solver, ks, polarisation, bands::AbstractVector{<:Int};
                 dk_outer=nothing, dk_inner=nothing, delta_brillouin_zone=BrillouinZoneCoordinate(0,1),
-                labels=[], markersize=6)
+                labels=[], markersize=nothing)
     # Convert BrillouinZoneCoordinate to labelled positions in k space
     if labels == []
         labels = [hasproperty(x,:label) ? x.label : "" for x in ks]
