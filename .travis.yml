@@ -9,7 +9,7 @@ os:
   - windows
 
 install:
-  - pip install matplotlib
+  - pip install --user matplotlib
 
 env:
   global:
