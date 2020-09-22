@@ -50,12 +50,12 @@ Keyword arguments
 - `bands=(:)`: indices of the bands to plot
 - `frequency_scale=1`: rescales the frequencies before plotting
 - `color="k"`: color of the bands
-- `markersize=nothing`: overwrite the size of each point
+- `markersize=6`: overwrite the size of each point
 - `show_vlines=true`: plot vertical lines at each `k` in `ks`
 """
 function plot_band_diagram(my_solve::Function, ks;
                     dk=nothing, labels=[], bands=:, frequency_scale=1,
-                    color="k", markersize=nothing, show_vlines=true)
+                    color="k", markersize=6, show_vlines=true)
     # Add labels
     xs = cumsum([0; norm.(diff(ks))])
     xticks(xs, labels)
