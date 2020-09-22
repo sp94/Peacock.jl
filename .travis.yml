@@ -8,15 +8,10 @@ os:
   - osx
   - windows
 
-addons:
-  apt:
-    packages:
-      - python3-matplotlib
-
 env:
-  - PYTHON=Conda-python
   global:
     - COVERALLS_PARALLEL=true
+    - PYTHON=""
 
 notifications:
   email: false
