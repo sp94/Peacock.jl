@@ -8,8 +8,12 @@ os:
   - osx
   - windows
 
-install:
-  - pip install --user matplotlib
+addons:
+  apt:
+    packages:
+      - python3-matplotlib
+env:
+  - PYTHON=python3
 
 env:
   global:
