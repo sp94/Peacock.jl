@@ -91,7 +91,7 @@ Takes the same keyword arguments as [`plot_band_diagram(my_solve::Function, ks)`
 but here `ks` can also include [`BrillouinZoneCoordinate`](@ref)s.
 """
 function plot_band_diagram(solver::Solver, ks, polarisation::Polarisation;
-            dk=nothing, labels=[], bands=1:10, frequency_scale=1, color="k", markersize=nothing)
+            dk=nothing, labels=[], bands=1:10, frequency_scale=1, color="k", markersize=6)
     # Convert BrillouinZoneCoordinate to labelled positions in k space
     if labels == []
         labels = [hasproperty(x,:label) ? x.label : "" for x in ks]
