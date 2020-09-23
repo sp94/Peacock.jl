@@ -190,3 +190,39 @@ end
     end
 
 end
+
+
+
+
+# Check plotting functions for runtime errors, but does not test outputs
+@testset "Plotting" begin
+    
+    @unpack geometry, solver, polarisation, K, G, M = make_wu_topo(7)
+    
+    @testset "Plot Geometry" begin
+        plot(geometry)
+    end
+    
+    @testset "Plot Solver" begin
+        plot(solver)
+    end
+    
+    @testset "Plot Mode" begin
+        modes = solve(solver, G, polarisation)
+        plot.(modes[1:3])
+    end
+    
+    @testset "Plot band diagram" begin
+        plot_band_diagram(solver, [K,G,M], polarisation, dk=1)
+    end
+    
+    @testset "Plot Wilson loop winding" begin
+        ks = [
+            BrillouinZoneCoordinate(0.0, 0.0, "Γ"),
+            BrillouinZoneCoordinate(0.5, 0.0, "M"),
+            BrillouinZoneCoordinate(1.0, 0.0, "Γ")
+        ]
+        plot_wilson_loop_winding(solver, ks, polarisation, 1:3, dk_outer=1)
+    end
+    
+end

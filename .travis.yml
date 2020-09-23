@@ -8,14 +8,10 @@ os:
   - osx
   - windows
 
-addons:
-  apt:
-    packages:
-      - python3-matplotlib
-
 env:
   global:
     - COVERALLS_PARALLEL=true
+    - PYTHON=""
 
 notifications:
   email: false
