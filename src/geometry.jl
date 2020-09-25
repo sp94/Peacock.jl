@@ -13,6 +13,24 @@ end
 
 
 """
+TODO
+"""
+function Peacock.Geometry(shapes::AbstractArray,
+            a1::Union{Real,Array{<:Real,1}},
+            a2::Union{Real,Array{<:Real,1}},
+            d1::Real, d2::Real)
+    try
+        shapes = collect(AbstractShape, flatten(shapes))
+    catch
+        throw("Every element of the (nested) shapes array must be a subtype of AbstractShape.")
+    end
+    epf(x,y) = sample(shapes, x, y, :ep)
+    muf(x,y) = sample(shapes, x, y, :mu)
+    return Geometry(epf, muf, a1, a2, d1, d2)
+end
+
+
+"""
     Geometry(epf::Function, muf::Function, a1::Array{<:Real,1}, a2::Array{<:Real,1}, d1::Real, d2::Real)
 
 Generate geometry with permittivity `epf(x,y)` and permeability `muf(x,y)`.

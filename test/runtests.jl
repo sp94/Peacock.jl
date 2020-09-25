@@ -6,6 +6,62 @@ using Peacock.Zoo
 using Parameters
 
 
+@testset "Shapes tests" begin
+
+    @testset "Translations and rotations" begin
+
+        # local rotation - origin should not change
+        transform = Peacock.ShapeTransform([1,0], 0) |> rotate(90)
+        @test transform.origin ≈ [1,0]
+
+        # rotation around [0,0]
+        transform = Peacock.ShapeTransform([1,0], 0) |> rotate(90, [0,0])
+        @test transform.origin ≈ [0,1]
+
+        # chaining transformations
+        transform = Peacock.ShapeTransform([0,0], 0)
+        transform = transform |> translate(1,0) |> rotate(90,[0,0]) |> translate(0,-1)
+        @test transform.origin ≈ [0,0]
+        @test transform.axes[:,1] ≈ [ 0, 1]
+        @test transform.axes[:,2] ≈ [-1, 0]
+
+    end
+
+    @testset "Circle" begin
+
+        circle = Circle(0.5)
+        @test Peacock.is_inside(circle, 0.4, 0.0) == true
+        @test Peacock.is_inside(circle, 0.6, 0.0) == false
+        @test Peacock.is_inside(circle, 0.0, 0.4) == true
+        @test Peacock.is_inside(circle, 0.0, 0.6) == false
+
+        circle = circle |> translate(1,-1)
+        @test Peacock.is_inside(circle, 1.4,-1.0) == true
+        @test Peacock.is_inside(circle, 1.6,-1.0) == false
+        @test Peacock.is_inside(circle, 1.0,-1.4) == true
+        @test Peacock.is_inside(circle, 1.0,-1.6) == false
+        
+    end
+
+    @testset "Ellipse" begin
+
+        ellipse = Ellipse(0.5, 1.5)
+        @test Peacock.is_inside(ellipse, 0.4, 0.0) == true
+        @test Peacock.is_inside(ellipse, 0.6, 0.0) == false
+        @test Peacock.is_inside(ellipse, 0.0, 1.4) == true
+        @test Peacock.is_inside(ellipse, 0.0, 1.6) == false
+
+        ellipse = ellipse |> translate(1,-1)
+        @test Peacock.is_inside(ellipse, 1.4,-1.0) == true
+        @test Peacock.is_inside(ellipse, 1.6,-1.0) == false
+        @test Peacock.is_inside(ellipse, 1.0, 0.4) == true
+        @test Peacock.is_inside(ellipse, 1.0, 0.6) == false
+
+    end
+
+end
+
+
 @testset "Band diagram tests" begin
 
     @testset "sample_path" begin

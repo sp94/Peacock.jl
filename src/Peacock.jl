@@ -5,6 +5,10 @@ using LinearAlgebra, FFTW
 
 include("utils.jl")
 
+include("geometry_shapes.jl")
+export Background, Circle, Ellipse
+export rotate, translate
+
 include("geometry.jl")
 export Geometry
 
