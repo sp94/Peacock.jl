@@ -8,6 +8,7 @@ A winding in the Wilson loop spectrum can indicate a non-trivial topological pha
 
 This crystal [can be loaded from the Zoo](@ref how_to_zoo) using [`Peacock.Zoo.make_dePaz_frag`](@ref).
 ```julia
+using PyPlot # for extra control over figures
 using Peacock, Peacock.Zoo, Parameters
 
 # Size of the plane-wave basis
