@@ -96,6 +96,36 @@ end
 end
 
 
+
+@testset "Transforms and symmetries tests" begin
+    
+    @testset "Shifting by a reciprocal lattice vector" begin
+        # Get an arbitrary solver
+        @unpack solver, polarisation = make_wu_topo(11)
+        # And an arbitrary k-point
+        k0 = [0.5, 0.3]
+        # Test shifting k0 by each reciprocal lattice vector
+        for b in [solver.basis.b1, solver.basis.b2]
+            k_map(k) = k + b
+            # Solve at k0 and shift to k0+b
+            shifted_mode = solve(solver, k0, polarisation)[1]
+            shifted_mode = transform(shifted_mode, k_map)
+            # Directly solve at k0+b
+            solved_mode = solve(solver, k_map(k0), polarisation)[1]
+            # Check that shifted and directly solved agree (up to a phase)
+            LHS = shifted_mode.data
+            RHS = solved_mode.weighting * solved_mode.data
+            overlap = dot(LHS, RHS)
+            @test abs(overlap) > 0.999
+        end
+
+    end
+
+end
+
+
+
+
 @testset "Wilson loop tests" begin
 
     @testset "Normalisations" begin
