@@ -124,13 +124,13 @@ end
 
 
 """
-    plot(mode::Mode, [bloch_phase=true])
+    plot(mode::Eigenmode, [bloch_phase=true])
 
 Plot the mode in real space.
 
 To plot only the cell-periodic part of the Bloch wave, set `bloch_phase=false`.
 """
-function PyPlot.plot(mode::Mode; bloch_phase=true)
+function PyPlot.plot(mode::Eigenmode; bloch_phase=true)
     if bloch_phase
         label = mode.label
         plot_field(mode.data, mode.basis, label=label, k0=mode.k0)

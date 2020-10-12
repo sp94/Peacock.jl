@@ -1,9 +1,9 @@
 """
-    Mode(k0, frequency, data, weighting, basis, label)
+    Eigenmode(k0, frequency, data, weighting, basis, label)
 
 Eigenmode of a photonic crystal expressed on a plane-wave `basis` with a weighted inner product.
 """
-struct Mode
+struct Eigenmode
     k0::Vector{Float64}
     frequency::ComplexF64
     data::Vector{ComplexF64}
@@ -13,19 +13,19 @@ struct Mode
 end
 
 """
-    HilbertSpace(k0, data, weighting, basis)
+    Eigenspace(k0, data, weighting, basis)
 
-Hilbert space spanned by the eigenvectors in each column of `data`.
+eigenspace spanned by the eigenvectors in each column of `data`.
 
 The eigenvectors will be orthonormalised using Gram-Schmidt orthonormalisation,
 see [`orthonormalise`](@ref).
 """
-struct HilbertSpace
+struct Eigenspace
     k0::Vector{Float64}
     data::Matrix{ComplexF64}
     weighting::Matrix{ComplexF64}
     basis::PlaneWaveBasis
-    function HilbertSpace(k0::Vector{Float64}, data::Matrix{ComplexF64},
+    function Eigenspace(k0::Vector{Float64}, data::Matrix{ComplexF64},
                             weighting::Matrix{ComplexF64}, basis::PlaneWaveBasis)
         # Inner constructor guarantees data will be orthonormalised
         data = orthonormalise(data, weighting=weighting)
@@ -35,14 +35,14 @@ end
 
 
 """
-    HilbertSpace(modes::Array{Mode,1})
+    Eigenspace(modes::Array{Eigenmode,1})
 
-Returns the Hilbert space spanned by the `modes`.
+Returns the eigenspace spanned by the `modes`.
 
-The `data` of the Hilbert space is guaranteed to be orthonormal
+The `data` of the eigenspace is guaranteed to be orthonormal
 under the weighting of the `modes`.
 """
-function HilbertSpace(modes::Array{Mode,1})
+function Eigenspace(modes::Array{Eigenmode,1})
     k0 = modes[1].k0
     data = zeros(ComplexF64, length(modes[1].data), length(modes))
     weighting = modes[1].weighting
@@ -53,20 +53,20 @@ function HilbertSpace(modes::Array{Mode,1})
         @assert mode.basis == basis
         data[:,col] = mode.data
     end
-    return HilbertSpace(k0, data, weighting, basis)
+    return Eigenspace(k0, data, weighting, basis)
 end
 
 
 """
-    shift_k0(space::HilbertSpace, dp::Int, dq::Int)
+    shift_k0(space::Eigenspace, dp::Int, dq::Int)
 
-Shift the basis of the Hilbert space by `dp*b1 + dq*b2`, where `b1` and `b2`
+Shift the basis of the eigenspace by `dp*b1 + dq*b2`, where `b1` and `b2`
 are reciprocal lattice vectors.
 
 This is required when we need the overlaps of modes that are at the same k-point
 but in different Brillouin zones.
 """
-function shift_k0(space::HilbertSpace, dp::Int, dq::Int)
+function shift_k0(space::Eigenspace, dp::Int, dq::Int)
     data = space.data
     ps = space.basis.ps
     qs = space.basis.qs
@@ -82,7 +82,7 @@ function shift_k0(space::HilbertSpace, dp::Int, dq::Int)
         end
     end
     k0_new = space.k0 + dp*space.basis.b1 + dq*space.basis.b2
-    return HilbertSpace(k0_new, data_new, space.weighting, space.basis)
+    return Eigenspace(k0_new, data_new, space.weighting, space.basis)
 end
 
 

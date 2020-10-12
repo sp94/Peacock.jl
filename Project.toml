@@ -1,7 +1,7 @@
 name = "Peacock"
 uuid = "b643ced8-3934-11ea-3f5f-690af0bb8ffb"
 authors = ["S J Palmer <samuelpalmer94@gmail.com>"]
-version = "0.1.0"
+version = "0.1.1"
 
 [deps]
 FFTW = "7a1cc6ca-52ef-59f5-83cd-3a7055c09341"
@@ -11,4 +11,4 @@ PyPlot = "d330b81b-6aea-500a-939a-2ce795aea3ee"
 [compat]
 FFTW = "1.2"
 PyPlot = "2"
-julia = "1"
+julia = "1.3"

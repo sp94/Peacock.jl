@@ -117,19 +117,19 @@ This reproduces figure 2 of chapter 5 of Joannopoulos *et al* 2008.
 
 Often it is useful to visualise the electric and magnetic fields in the crystal. Here we show how to solve and plot the modes of a photonic crystal at a particular ``k``-point.
 
-First, we call [`solve`](@ref), which returns an array of [`Mode`](@ref)s.
+First, we call [`solve`](@ref), which returns an array of [`Eigenmode`](@ref)s.
 ```julia
 modes = solve(solver, X, TM)
 ```
 
-A `Mode` can be visualised using `plot(mode)`. By default the full Bloch wave is plotted - set `bloch_phase=false` to plot the cell-periodic part of Bloch mode.
+A `Eigenmode` can be visualised using `plot(mode)`. By default the full Bloch wave is plotted - set `bloch_phase=false` to plot the cell-periodic part of Bloch mode.
 ```julia
 plot(modes[2], bloch_phase=true)
 plot(modes[2], bloch_phase=false)
 ```
 ![](../figures/example_plot_modes.png)
 
-The out of plane field component is plotted - for TE and TM polarisations this will be the magnetic and electric fields, respectively. The titles of the figures are set automatically using the `label` of the `Mode`.
+The out of plane field component is plotted - for TE and TM polarisations this will be the magnetic and electric fields, respectively. The titles of the figures are set automatically using the `label` of the `Eigenmode`.
 
 This reproduces figure 3 of chapter 5 of Joannopoulos *et al* 2008. Note that `Peacock.jl` doesn't fix the phase of the solutions and your results may differ by a random phase.
 

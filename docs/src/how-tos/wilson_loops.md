@@ -8,6 +8,7 @@ A winding in the Wilson loop spectrum can indicate a non-trivial topological pha
 
 This crystal [can be loaded from the Zoo](@ref how_to_zoo) using [`Peacock.Zoo.make_dePaz_frag`](@ref).
 ```julia
+using PyPlot # for extra control over figures
 using Peacock, Peacock.Zoo, Parameters
 
 # Size of the plane-wave basis
@@ -49,7 +50,7 @@ title("Bands 2&3")
 ```
 ![Plot some Wilson loop examples](../figures/example_wilson_loops.png)
 
-In the first figure, the Wilson loops through the Hilbert spaces of bands 2&3 wind with Chern numbers ±1, indicating some non-trivial topology. However, the second figure shows that including the (trivial) acoustic band in the Wilson loop calculation removes the topological winding, and consequently bands 2&3 are said to be 'fragilely topological'.
+In the first figure, the Wilson loops through the eigenspaces of bands 2&3 wind with Chern numbers ±1, indicating some non-trivial topology. However, the second figure shows that including the (trivial) acoustic band in the Wilson loop calculation removes the topological winding, and consequently bands 2&3 are said to be 'fragilely topological'.
 
 
 ## Further reading
