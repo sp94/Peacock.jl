@@ -122,7 +122,8 @@ function solve(solver::Solver, k::AbstractVector{<:Real}, polarisation::Polarisa
     weighting = RHS
     modes = Eigenmode[]
     for i in 1:length(freqs)
-        mode = Eigenmode(k, freqs[i], modes_data[:,i], weighting, basis, label)
+        data = normalise(modes_data[:,i], weighting=weighting)
+        mode = Eigenmode(k, freqs[i], data, weighting, basis, label)
         push!(modes, mode)
     end
     return modes
