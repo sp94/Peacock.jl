@@ -35,6 +35,24 @@ end
 
 
 """
+    Eigenspace(mode::Eigenmode)
+
+Returns the eigenspace spanned by `mode`.
+
+The `data` of the eigenspace is guaranteed to be normalised
+under the weighting of the `mode`.
+"""
+function Eigenspace(mode::Array{Eigenmode,1})
+    k0 = modes[1].k0
+    data = modes[1].data
+    weighting = modes[1].weighting
+    basis = modes[1].basis
+    return Eigenspace(mode.k0, mode.data, mode.weighting, mode.basis)
+end
+
+
+
+"""
     Eigenspace(modes::Array{Eigenmode,1})
 
 Returns the eigenspace spanned by the `modes`.
