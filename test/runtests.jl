@@ -135,10 +135,10 @@ end
         # Small Wilson loop of bands 1-3
         k0 = [0.3,0.2] # arbitrary
         ks = [k0, k0+[0.1,0], k0+[0.1,0.1], k0+[0,0.1]]
-        spaces = HilbertSpace[]
+        spaces = Eigenspace[]
         for k in ks
             modes = solve(solver, k, polarisation)
-            space = HilbertSpace(modes[1:3])
+            space = Eigenspace(modes[1:3])
             push!(spaces, space)
         end
         push!(spaces, spaces[1])
@@ -165,10 +165,10 @@ end
                 k0 = Peacock.get_k(x, solver.basis)
                 ts = range(0, stop=1, length=20)
                 ks = [k0 + t*solver.basis.b2 for t in ts]
-                spaces = HilbertSpace[]
+                spaces = Eigenspace[]
                 for k in ks
                     modes = solve(solver, k, polarisation)
-                    space = HilbertSpace(modes[2:3])
+                    space = Eigenspace(modes[2:3])
                     push!(spaces, space)
                 end
                 return Peacock.wilson_eigvals(spaces, closed=false)
@@ -207,7 +207,7 @@ end
         plot(solver)
     end
     
-    @testset "Plot Mode" begin
+    @testset "Plot Eigenmode" begin
         modes = solve(solver, G, polarisation)
         plot.(modes[1:3])
     end

@@ -2,11 +2,11 @@ using LinearAlgebra
 
 
 """
-    overlaps(a::HilbertSpace, b::HilbertSpace)
+    overlaps(a::Eigenspace, b::Eigenspace)
 
-Calculate the overlaps between the basis vectors of each Hilbert space.
+Calculate the overlaps between the basis vectors of each eigenspace.
 """
-function overlaps(a::HilbertSpace, b::HilbertSpace)
+function overlaps(a::Eigenspace, b::Eigenspace)
     @assert a.weighting == b.weighting
     LHS = a.data
     RHS = b.weighting * b.data
@@ -27,26 +27,26 @@ end
 
 
 """
-    unitary_overlaps(a::HilbertSpace, b::HilbertSpace)
+    unitary_overlaps(a::Eigenspace, b::Eigenspace)
 
 Shortcut for unitary_approx(overlaps(a, b))
 """
-function unitary_overlaps(a::HilbertSpace, b::HilbertSpace)
+function unitary_overlaps(a::Eigenspace, b::Eigenspace)
     unitary_overlaps = overlaps(a, b)
     return unitary_approx(unitary_overlaps)
 end
 
 
 """
-    wilson_matrix(spaces::Array{HilbertSpace,1}; closed::Bool=true)
+    wilson_matrix(spaces::Array{Eigenspace,1}; closed::Bool=true)
 
-Calculate the Wilson loop matrix through the Hilbert spaces.
+Calculate the Wilson loop matrix through the eigenspaces.
 
 The `closed` keyword will assert that `spaces[1] == spaces[end]`.
 Otherwise, it will be assumed that the Wilson loop begins and finishes
 at the same `k0`, but in different Brillouin zones.
 """
-function wilson_matrix(spaces::Array{HilbertSpace,1}; closed::Bool=true)
+function wilson_matrix(spaces::Array{Eigenspace,1}; closed::Bool=true)
     @assert length(spaces) > 1
     # Assume all spaces have the same plane wave expansion
     basis = spaces[1].basis
@@ -87,11 +87,11 @@ end
 
 
 """
-    wilson_eigvals(spaces::AbstractArray{HilbertSpace,1}; closed=true)
+    wilson_eigvals(spaces::AbstractArray{Eigenspace,1}; closed=true)
 
 Return the eigenvalues of [`wilson_matrix`](@ref), sorted by phase angle.
 """
-function wilson_eigvals(spaces::AbstractArray{HilbertSpace,1}; closed=true)
+function wilson_eigvals(spaces::AbstractArray{Eigenspace,1}; closed=true)
     W = wilson_matrix(spaces, closed=closed)
     vals = eigvals(W)
     return sort(vals, by=angle)
@@ -99,12 +99,12 @@ end
 
 
 """
-    wilson_eigvals(spaces::AbstractArray{HilbertSpace,1}; closed=true)
+    wilson_eigvals(spaces::AbstractArray{Eigenspace,1}; closed=true)
 
 Return the eigenvalues and eigenvectors of [`wilson_matrix`](@ref),
 sorted by the phase angle of the eigenvalues.
 """
-function wilson_eigen(spaces::AbstractArray{HilbertSpace,1}; closed=true)
+function wilson_eigen(spaces::AbstractArray{Eigenspace,1}; closed=true)
     W = wilson_matrix(spaces, closed=closed)
     vals, vecs = eigen(W)
     idx = sortperm(vals, by=angle)
@@ -116,20 +116,20 @@ end
 
 
 """
-    wilson_gauge(spaces::AbstractArray{HilbertSpace,1}; closed=true)
+    wilson_gauge(spaces::AbstractArray{Eigenspace,1}; closed=true)
 
 Return the eigenvalues, eigenvectors, and gauge of the Wilson loop through
-the Hilbert space, sorted by the phase angle of the eigenvalues.
+the eigenspace, sorted by the phase angle of the eigenvalues.
 """
-function wilson_gauge(spaces::AbstractArray{HilbertSpace,1}; closed=true)
+function wilson_gauge(spaces::AbstractArray{Eigenspace,1}; closed=true)
     vals, vecs = wilson_eigen(spaces, closed=closed)
     gauge = copy(spaces)
-    gauge[1] = HilbertSpace(gauge[1].k0, gauge[1].data*vecs, gauge[1].weighting, gauge[1].basis)
+    gauge[1] = Eigenspace(gauge[1].k0, gauge[1].data*vecs, gauge[1].weighting, gauge[1].basis)
     for i in 1:length(gauge)-1
         a = gauge[i]
         b = gauge[i+1]
         mixing = unitary_overlaps(b, a)
-        gauge[i+1] = HilbertSpace(b.k0, b.data*mixing, b.weighting, b.basis)
+        gauge[i+1] = Eigenspace(b.k0, b.data*mixing, b.weighting, b.basis)
     end
     return vals, vecs, gauge
 end
@@ -157,13 +157,13 @@ function plot_wilson_loop_winding(solver::Solver, ks, polarisation, bands::Abstr
     ks = [typeof(x)==BrillouinZoneCoordinate ? get_k(x,solver.basis) : x for x in ks]
     # Function to return the Wilson inner eigenvalues
     function my_solve(k)
-        spaces = HilbertSpace[]
+        spaces = Eigenspace[]
         delta_k = get_k(delta_brillouin_zone, solver.basis)
         ks_inner = [k, k+delta_k]
         ks_inner, _ = sample_path(ks_inner, dk=dk_inner)
         for k_inner in ks_inner
             modes = solve(solver, k_inner, polarisation)
-            space = HilbertSpace(modes[bands])
+            space = Eigenspace(modes[bands])
             push!(spaces, space)
         end
         vals = wilson_eigvals(spaces, closed=false)

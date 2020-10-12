@@ -120,9 +120,9 @@ function solve(solver::Solver, k::AbstractVector{<:Real}, polarisation::Polarisa
     modes_data = modes_data[:,idx][:,bands]
     # Eigenmodes are weighted by the RHS of the generalised eigenvalue problem
     weighting = RHS
-    modes = Mode[]
+    modes = Eigenmode[]
     for i in 1:length(freqs)
-        mode = Mode(k, freqs[i], modes_data[:,i], weighting, basis, label)
+        mode = Eigenmode(k, freqs[i], modes_data[:,i], weighting, basis, label)
         push!(modes, mode)
     end
     return modes

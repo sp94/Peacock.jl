@@ -12,7 +12,7 @@ include("plane_wave_basis.jl")
 export BrillouinZoneCoordinate
 
 include("modes.jl")
-export Mode, HilbertSpace, get_field
+export Eigenmode, Eigenspace, get_field
 
 include("solver.jl")
 export Solver, TE, TM, solve
