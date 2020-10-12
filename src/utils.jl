@@ -35,3 +35,13 @@ struct DiagonalMatrix <: AbstractMatrix{ComplexF64}
 end
 Base.size(A::DiagonalMatrix) = (length(A.diag), length(A.diag))
 Base.getindex(A::DiagonalMatrix, I::Vararg{Int,2}) = I[1]==I[2] ? A.diag[I[1]] : 0
+
+
+"""
+	rotation_matrix(deg::Real)
+
+A rotation matrix that rotates a 2D vector by `deg` degrees.
+"""
+function rotation_matrix(deg::Real)
+    return [cosd(deg) -sind(deg); sind(deg) cosd(deg)]
+end

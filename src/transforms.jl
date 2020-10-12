@@ -42,3 +42,32 @@ function transform(space::Eigenspace, k_map)
     data_ = transform(space.data, space.basis, k_map)
     Eigenspace(k0_, data_, space.weighting, space.basis)
 end
+
+
+function eigen(space::Eigenspace, k_map::Function)
+    # shift such that _k_map(space.k0) ≈ space.k0
+    _k_map(k) = k_map(k) + space.k0 - k_map(space.k0)
+    space_ = transform(space, _k_map)
+    xlaps = overlaps(space, space_)
+    vals, vecs = eigen(xlaps)
+    modes = Eigenmode[]
+    for n in 1:length(vals)
+        data = space.data * vecs[:,n]
+        mode = Eigenmode(space.k0, vals[n], data, space.weighting, space.basis, "")
+        push!(modes, mode)
+    end
+    return modes
+end
+
+function eigen(mode::Eigenmode, k_map::Function)
+    space = Eigenspace(mode)
+    return eigen(space, k_map)
+end
+
+# Useful transformations
+C2(k) = rotation_matrix(180)*k
+C3(k) = rotation_matrix(120)*k
+C4(k) = rotation_matrix( 90)*k
+C6(k) = rotation_matrix( 60)*k
+mirror_x(k) = [-k[1], +k[2]]
+mirror_y(k) = [+k[1], -k[2]]
