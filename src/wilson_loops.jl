@@ -60,21 +60,8 @@ function wilson_matrix(spaces::Array{Eigenspace,1}; closed::Bool=true)
     else
         # If not closed, then the loop begins and finishes at
         # the same k0 but in different Brillouin zones
-        delta_k0 = spaces[end].k0 - spaces[1].k0
-        b1 = spaces[1].basis.b1
-        b2 = spaces[1].basis.b2
-        B = [b1 b2]
-        dp, dq = B \ delta_k0
-        # Round to integers if approximately correct
-        if isapprox(round(dp), dp, atol=1e-6) && isapprox(round(dq), dq, atol=1e-6)
-            dp = Int(round(dp))
-            dq = Int(round(dq))
-        else
-            @show dp, dq
-            throw("First and last spaces do not... (TODO)")
-        end
-        # Duplicate spaces[1] and shift its k0 so that it matches spaces[end]
-        space_1_at_end = shift_k0(spaces[1], dp, dq)
+        k_map(k0) = k0 + spaces[end].k0 - spaces[1].k0
+        space_1_at_end = transform(spaces[1], k_map)
         spaces = [spaces; space_1_at_end]
     end
     W = I

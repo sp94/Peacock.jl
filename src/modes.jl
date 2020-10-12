@@ -58,35 +58,6 @@ end
 
 
 """
-    shift_k0(space::Eigenspace, dp::Int, dq::Int)
-
-Shift the basis of the eigenspace by `dp*b1 + dq*b2`, where `b1` and `b2`
-are reciprocal lattice vectors.
-
-This is required when we need the overlaps of modes that are at the same k-point
-but in different Brillouin zones.
-"""
-function shift_k0(space::Eigenspace, dp::Int, dq::Int)
-    data = space.data
-    ps = space.basis.ps
-    qs = space.basis.qs
-    data_new = zeros(ComplexF64, size(data))
-    for row in 1:size(data,1)
-        # Identify the corresponding (p_new,q_new) indices
-        # in the plane wave basis
-        p_new = ps[row] - dp
-        q_new = qs[row] - dq
-        row_new = findfirst(x->x==(p_new,q_new), collect(zip(ps,qs)))
-        if !isnothing(row_new)
-            data_new[row_new,:] = data[row,:]
-        end
-    end
-    k0_new = space.k0 + dp*space.basis.b1 + dq*space.basis.b2
-    return Eigenspace(k0_new, data_new, space.weighting, space.basis)
-end
-
-
-"""
     normalise(data; weighting=I)
 
 Normalisation of vectors with a weighted inner product.
