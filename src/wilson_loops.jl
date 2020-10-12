@@ -38,15 +38,18 @@ end
 
 
 """
-    wilson_matrix(spaces::Array{Eigenspace,1}; closed::Bool=true)
+    wilson_matrix(spaces::Array{Eigenspace,1}; k_map=nothing)
 
 Calculate the Wilson loop matrix through the eigenspaces.
 
-The `closed` keyword will assert that `spaces[1] == spaces[end]`.
-Otherwise, it will be assumed that the Wilson loop begins and finishes
-at the same `k0`, but in different Brillouin zones.
+The `k_map` function should describe the transformation applied to `spaces[1]`
+to bring it to the end of the loop, ie, `k_map(spaces[1]) == spaces[end].k0`
+This could be a rotation, translation, reflection, etc, in k-space.
+
+If the `k_map` keyword is not set, it will be assumed that the first
+and last k-points are connected by a translation in k-space.
 """
-function wilson_matrix(spaces::Array{Eigenspace,1}; closed::Bool=true)
+function wilson_matrix(spaces::Array{Eigenspace,1}; k_map=nothing)
     @assert length(spaces) > 1
     # Assume all spaces have the same plane wave expansion
     basis = spaces[1].basis
@@ -54,16 +57,17 @@ function wilson_matrix(spaces::Array{Eigenspace,1}; closed::Bool=true)
         @assert space.basis == basis
     end
     # However, k0 is still changing...
-    if closed
-        # In a closed Wilson loop...
-        @assert spaces[1] == spaces[end]
+    if k_map == nothing
+        # If the user hasn't specified a k_map, then
+        # assume Wilson loop is closed by a translation in k-space
+        _k_map(k0) = k0 + spaces[end].k0 - spaces[1].k0
     else
-        # If not closed, then the loop begins and finishes at
-        # the same k0 but in different Brillouin zones
-        k_map(k0) = k0 + spaces[end].k0 - spaces[1].k0
-        space_1_at_end = transform(spaces[1], k_map)
-        spaces = [spaces; space_1_at_end]
+        # Otherwise use their k_map
+        _k_map = k_map
     end
+    @assert _k_map(spaces[1].k0) ≈ spaces[end].k0
+    space_1_at_end = transform(spaces[1], _k_map)
+    spaces = [spaces; space_1_at_end]
     W = I
     for (a,b) in zip(spaces, spaces[2:end])
         W = W * unitary_overlaps(a, b)
@@ -74,25 +78,25 @@ end
 
 
 """
-    wilson_eigvals(spaces::AbstractArray{Eigenspace,1}; closed=true)
+    wilson_eigvals(spaces::AbstractArray{Eigenspace,1}; k_map=nothing)
 
 Return the eigenvalues of [`wilson_matrix`](@ref), sorted by phase angle.
 """
-function wilson_eigvals(spaces::AbstractArray{Eigenspace,1}; closed=true)
-    W = wilson_matrix(spaces, closed=closed)
+function wilson_eigvals(spaces::AbstractArray{Eigenspace,1}; k_map=nothing)
+    W = wilson_matrix(spaces, k_map=k_map)
     vals = eigvals(W)
     return sort(vals, by=angle)
 end
 
 
 """
-    wilson_eigvals(spaces::AbstractArray{Eigenspace,1}; closed=true)
+    wilson_eigvals(spaces::AbstractArray{Eigenspace,1}; k_map=nothing)
 
 Return the eigenvalues and eigenvectors of [`wilson_matrix`](@ref),
 sorted by the phase angle of the eigenvalues.
 """
-function wilson_eigen(spaces::AbstractArray{Eigenspace,1}; closed=true)
-    W = wilson_matrix(spaces, closed=closed)
+function wilson_eigen(spaces::AbstractArray{Eigenspace,1}; k_map=nothing)
+    W = wilson_matrix(spaces, k_map=k_map)
     vals, vecs = eigen(W)
     idx = sortperm(vals, by=angle)
     vals = vals[idx]
@@ -103,13 +107,13 @@ end
 
 
 """
-    wilson_gauge(spaces::AbstractArray{Eigenspace,1}; closed=true)
+    wilson_gauge(spaces::AbstractArray{Eigenspace,1}; k_map=nothing)
 
 Return the eigenvalues, eigenvectors, and gauge of the Wilson loop through
 the eigenspace, sorted by the phase angle of the eigenvalues.
 """
-function wilson_gauge(spaces::AbstractArray{Eigenspace,1}; closed=true)
-    vals, vecs = wilson_eigen(spaces, closed=closed)
+function wilson_gauge(spaces::AbstractArray{Eigenspace,1}; k_map=nothing)
+    vals, vecs = wilson_eigen(spaces, k_map=k_map)
     gauge = copy(spaces)
     gauge[1] = Eigenspace(gauge[1].k0, gauge[1].data*vecs, gauge[1].weighting, gauge[1].basis)
     for i in 1:length(gauge)-1
@@ -153,7 +157,7 @@ function plot_wilson_loop_winding(solver::Solver, ks, polarisation, bands::Abstr
             space = Eigenspace(modes[bands])
             push!(spaces, space)
         end
-        vals = wilson_eigvals(spaces, closed=false)
+        vals = wilson_eigvals(spaces)
         angles = angle.(vals)
         angles = [angles.-2pi angles angles.+2pi]
         return angles
