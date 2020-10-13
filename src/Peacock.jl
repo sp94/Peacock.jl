@@ -19,6 +19,8 @@ export Solver, TE, TM, solve
 
 include("transforms.jl")
 export transform
+export symmetry_transform, symmetry_eigvals, symmetry_eigen
+export C2, C3, C4, C6, mirror_x, mirror_y
 
 include("plotting.jl")
 export plot
