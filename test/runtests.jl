@@ -6,6 +6,21 @@ using Peacock.Zoo
 using Parameters
 
 
+function is_match(results, expected)
+    results = sort(results, by=angle)
+    expected = sort(expected, by=angle)
+    for i in 1:length(results)
+        percentage_error = angle.(results ./ expected) / 2pi * 100
+        if all(abs.(percentage_error) .< 1)
+            return true
+        end
+        results = circshift(results, 1)
+    end
+    # not a good match even after circshifting
+    return false
+end
+
+
 @testset "Band diagram tests" begin
 
     @testset "sample_path" begin
@@ -98,10 +113,11 @@ end
 
 
 @testset "Transforms and symmetries tests" begin
+
+    # Get an arbitrary solver from the Zoo
+    @unpack solver, polarisation, K, G, M = make_wu_topo(11)
     
-    @testset "Shifting by a reciprocal lattice vector" begin
-        # Get an arbitrary solver
-        @unpack solver, polarisation = make_wu_topo(11)
+    @testset "Invariant if shifting by a reciprocal lattice vector" begin
         # And an arbitrary k-point
         k0 = [0.5, 0.3]
         # Test shifting k0 by each reciprocal lattice vector
@@ -118,8 +134,64 @@ end
             overlap = dot(LHS, RHS)
             @test abs(overlap) > 0.999
         end
-
     end
+
+
+    @testset "Symmetry eigenvalue equation" begin
+        # check that eigval*eigvec = symmetry*eigvec (up to a lattice vector)
+    end
+
+
+    @testset "Known solutions" begin
+
+        @testset "Blanco de Paz 2019" begin
+            # Load solver from the Zoo
+            @unpack solver, polarisation = make_dePaz_frag(11)
+
+            @testset "Symmetries at Γ" begin
+                modes = solve(solver, G, polarisation)
+                space = Eigenspace(modes[1:3])
+                for (symmetry,expected_vals) in [
+                        (C2, [1,1,1]),
+                        (C3, [exp(-1im*2pi/3), 1, exp(+1im*2pi/3)]),
+                        (C6, [exp(-1im*2pi/3), 1, exp(+1im*2pi/3)]),
+                        (mirror_x, [-1,1,1]),
+                        (mirror_y, [-1,1,1])]
+                    vals = symmetry_eigvals(space, symmetry)
+                    @test is_match(vals, expected_vals)
+                end
+
+            end
+
+            @testset "Symmetries at M" begin
+                # the default M point is not m_x or m_y symmetric, so choose another
+                modes = solve(solver, BrillouinZoneCoordinate(-0.5,+0.5), polarisation)
+                space = Eigenspace(modes[1:3])
+                for (symmetry,expected_vals) in [
+                        (C2, [-1,-1,1]),
+                        (mirror_x, [-1,1,1]),
+                        (mirror_y, [-1,1,1])]
+                    vals = symmetry_eigvals(space, symmetry)
+                    @test is_match(vals, expected_vals)
+                end
+            end
+
+            @testset "Symmetries at K" begin
+                modes = solve(solver, K, polarisation)
+                space = Eigenspace(modes[1:3])
+                for (symmetry,expected_vals) in [
+                        (C3, [exp(-1im*2pi/3), 1, exp(+1im*2pi/3)]),
+                        (mirror_y, [-1,1,1])]
+                    vals = symmetry_eigvals(space, symmetry)
+                    @test is_match(vals, expected_vals)
+                end
+            end
+            
+        end
+        
+    end
+
+
 
 end
 
@@ -206,15 +278,13 @@ end
 
             # Wilson loop of bands 2&3 from Γ to Γ+b1
             vals = test_wilson_eigvals(solver, BrillouinZoneCoordinate(0.0,0.0), polarisation)
-            # Expected eigenvalues = [-1, -1]
-            percentage_error = angle.(vals / -1) / 2pi * 100
-            @test all(abs.(percentage_error) .< 1)
+            # Expected eigenvalues = [-1,-1]
+            @test is_match(vals, [-1,-1])
 
             # Wilson loop of bands 2&3 from M to M+b1
             vals = test_wilson_eigvals(solver, BrillouinZoneCoordinate(0.5,0.0), polarisation)
-            # Expected eigenvalues = [+1, +1]
-            percentage_error = angle.(vals / +1) / 2pi * 100
-            @test all(abs.(percentage_error) .< 1)
+            # Expected eigenvalues = [+1,+1]
+            @test is_match(vals, [+1,+1])
         end
 
     end
