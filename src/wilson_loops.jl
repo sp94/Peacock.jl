@@ -115,12 +115,12 @@ the eigenspace, sorted by the phase angle of the eigenvalues.
 function wilson_gauge(spaces::AbstractArray{Eigenspace,1}; k_map=nothing)
     vals, vecs = wilson_eigen(spaces, k_map=k_map)
     gauge = copy(spaces)
-    gauge[1] = Eigenspace(gauge[1].k0, gauge[1].data*vecs, gauge[1].weighting, gauge[1].basis)
+    gauge[1] = Eigenspace(gauge[1].k0, gauge[1].data*vecs, gauge[1].weighting, gauge[1].basis, gauge[1].data_label)
     for i in 1:length(gauge)-1
         a = gauge[i]
         b = gauge[i+1]
         mixing = unitary_overlaps(b, a)
-        gauge[i+1] = Eigenspace(b.k0, b.data*mixing, b.weighting, b.basis)
+        gauge[i+1] = Eigenspace(b.k0, b.data*mixing, b.weighting, b.basis, b.data_label)
     end
     return vals, vecs, gauge
 end

@@ -99,11 +99,11 @@ function solve(solver::Solver, k::AbstractVector{<:Real}, polarisation::Polarisa
     if polarisation == TE
         LHS = Kx/epc*Kx + Ky/epc*Ky
         RHS = muc
-        label = L"H_z"
+        data_label = L"H_z"
     elseif polarisation == TM
         LHS = Kx/muc*Kx + Ky/muc*Ky
         RHS = epc
-        label = L"E_z"
+        data_label = L"E_z"
     end
     # Sometimes the generalised eigenvalue problem solver
     # fails near Γ when the crystals are symmetric.
@@ -123,7 +123,7 @@ function solve(solver::Solver, k::AbstractVector{<:Real}, polarisation::Polarisa
     modes = Eigenmode[]
     for i in 1:length(freqs)
         data = normalise(modes_data[:,i], weighting=weighting)
-        mode = Eigenmode(k, freqs[i], data, weighting, basis, label)
+        mode = Eigenmode(k, data, weighting, basis, freqs[i], data_label, "Frequency")
         push!(modes, mode)
     end
     return modes

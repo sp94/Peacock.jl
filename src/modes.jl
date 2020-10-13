@@ -5,11 +5,12 @@ Eigenmode of a photonic crystal expressed on a plane-wave `basis` with a weighte
 """
 struct Eigenmode
     k0::Vector{Float64}
-    frequency::ComplexF64
     data::Vector{ComplexF64}
     weighting::Matrix{ComplexF64}
     basis::PlaneWaveBasis
-    label::String
+    eigenvalue::ComplexF64
+    data_label::String
+    eigenvalue_label::String
 end
 
 """
@@ -25,11 +26,13 @@ struct Eigenspace
     data::Matrix{ComplexF64}
     weighting::Matrix{ComplexF64}
     basis::PlaneWaveBasis
+    data_label::String
     function Eigenspace(k0::Vector{Float64}, data::Matrix{ComplexF64},
-                            weighting::Matrix{ComplexF64}, basis::PlaneWaveBasis)
+                            weighting::Matrix{ComplexF64}, basis::PlaneWaveBasis,
+                            data_label::String="")
         # Inner constructor guarantees data will be orthonormalised
         data = orthonormalise(data, weighting=weighting)
-        return new(k0, data, weighting, basis)
+        return new(k0, data, weighting, basis, data_label)
     end
 end
 
@@ -61,13 +64,15 @@ function Eigenspace(modes::Array{Eigenmode,1})
     data = zeros(ComplexF64, length(modes[1].data), length(modes))
     weighting = modes[1].weighting
     basis = modes[1].basis
+    data_label = modes[1].data_label
     for (col,mode) in enumerate(modes)
         @assert mode.k0 == k0
         @assert mode.weighting == weighting
         @assert mode.basis == basis
+        @assert mode.data_label == data_label
         data[:,col] = mode.data
     end
-    return Eigenspace(k0, data, weighting, basis)
+    return Eigenspace(k0, data, weighting, basis, data_label)
 end
 
 

@@ -132,10 +132,10 @@ To plot only the cell-periodic part of the Bloch wave, set `bloch_phase=false`.
 """
 function PyPlot.plot(mode::Eigenmode; bloch_phase=true)
     if bloch_phase
-        label = mode.label
+        label = mode.data_label
         plot_field(mode.data, mode.basis, label=label, k0=mode.k0)
     else
-        label = L"e^{-i k \cdot r} \cdot" * mode.label
+        label = L"e^{-i k \cdot r} \cdot" * mode.data_label
         plot_field(mode.data, mode.basis, label=label)
     end
 end

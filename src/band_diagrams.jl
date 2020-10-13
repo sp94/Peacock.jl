@@ -100,7 +100,7 @@ function plot_band_diagram(solver::Solver, ks, polarisation::Polarisation;
     # Wrap all the variables into a single function of k that returns frequencies
     function my_solve(k)
         modes = solve(solver, k, polarisation)
-        return [mode.frequency for mode in modes]
+        return [mode.eigenvalue for mode in modes]
     end
     # Pass on to more general function
     plot_band_diagram(my_solve, ks; dk=dk, labels=labels, bands=bands, frequency_scale=frequency_scale, color=color, markersize=markersize)

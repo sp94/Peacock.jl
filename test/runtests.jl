@@ -82,13 +82,13 @@ end
                 solver = Solver(geometry, cutoff)
                 for polarisation in [TE,TM]
                     modes = solve(solver, [1,0], polarisation)
-                    @test isapprox(modes[1].frequency, 1/sqrt(ep*mu))
+                    @test isapprox(modes[1].eigenvalue, 1/sqrt(ep*mu))
                 end
                 # test with norm(b1) != norm(b2)
                 solver = Solver(geometry, cutoff, cutoff+2)
                 for polarisation in [TE,TM]
                     modes = solve(solver, [1,0], polarisation)
-                    @test isapprox(modes[1].frequency, 1/sqrt(ep*mu))
+                    @test isapprox(modes[1].eigenvalue, 1/sqrt(ep*mu))
                 end
             end
         end
