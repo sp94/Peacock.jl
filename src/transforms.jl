@@ -4,7 +4,7 @@ function round_with_tolerance(X, tol=1e-6)
     return X_
 end
 
-function transform(data, basis, k_map)
+function transform(data::AbstractArray{ComplexF64}, basis::PlaneWaveBasis, k_map::Function)
     # Identify how the basis transforms
     b1 = basis.b1
     b2 = basis.b2
@@ -31,13 +31,13 @@ function transform(data, basis, k_map)
     return data_new
 end
 
-function transform(mode::Eigenmode, k_map)
+function transform(mode::Eigenmode, k_map::Function)
     k0_ = k_map(mode.k0)
     data_ = transform(mode.data, mode.basis, k_map)
     return Eigenmode(k0_, mode.frequency, data_, mode.weighting, mode.basis, mode.label)
 end
 
-function transform(space::Eigenspace, k_map)
+function transform(space::Eigenspace, k_map::Function)
     k0_ = k_map(space.k0)
     data_ = transform(space.data, space.basis, k_map)
     Eigenspace(k0_, data_, space.weighting, space.basis)
