@@ -69,6 +69,7 @@ function plot_band_diagram(my_solve::Function, ks;
     # Sample path
     ks, labels = sample_path(ks, labels=labels, dk=dk)
     xs = cumsum([0; norm.(diff(ks))])
+    xs /= xs[end]
     # Solve and plot points
     for (x,k) in zip(xs,ks)
         frequencies = my_solve(k)
