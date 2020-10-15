@@ -58,6 +58,7 @@ function plot_band_diagram(my_solve::Function, ks;
                     color="k", markersize=nothing, show_vlines=true)
     # Add labels
     xs = cumsum([0; norm.(diff(ks))])
+    xs /= xs[end]
     xticks(xs, labels)
     if show_vlines
         for (x,label) in zip(xs,labels)
