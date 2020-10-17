@@ -126,6 +126,41 @@ function wilson_gauge(spaces::AbstractArray{Eigenspace,1}; k_map=nothing)
 end
 
 
+function berry_curvature(solver::Solver, k0::AbstractVector{<:Real}, polarisation::Polarisation, bands::AbstractVector{<:Int}; loop_radius=1e-3, num_loop_points=6)
+    ks = [k0]
+    dk0 = get_k(BrillouinZoneCoordinate(loop_radius,0), solver.basis)
+    for n in 0:num_loop_points-1
+        rot = rotation_matrix(n * 360 / num_loop_points)
+        push!(ks, k0+rot*dk0)
+    end
+    spaces = Eigenspace[]
+    for k in ks
+        modes = solve(solver, k, polarisation)
+        space = Eigenspace(modes[bands])
+        push!(spaces, space)
+    end
+    push!(spaces, spaces[2])
+    push!(spaces, spaces[1])
+    vals, vecs, gauge = wilson_gauge(spaces)
+    # area of the loop is equal to 'num_loop_points' isosceles triangles
+    # each with two sides of length loop_radius and an angle between these sides of 360/num_loop_points 
+    loop_area = num_loop_points * 0.5 * loop_radius^2 * sind(360 / num_loop_points)
+    # berry curvature = berry phase per unit area of vanishing loop
+    curvature = angle.(vals) / loop_area
+    modes = Eigenmode[]
+    for n in 1:length(curvature)
+        mode = Eigenmode(spaces[1].k0, spaces[1].data*vecs[:,n], spaces[1].weighting, spaces[1].basis, curvature[n], spaces[1].data_label, "Berry curvature")
+        push!(modes, mode)
+    end
+    return modes
+end
+
+function berry_curvature(solver::Solver, x::BrillouinZoneCoordinate, polarisation::Polarisation, bands::AbstractVector{<:Int}; loop_radius=1e-3, num_loop_points=6)
+    k0 = Peacock.get_k(x, solver.basis)
+    return berry_curvature(solver, k0, polarisation, bands, loop_radius=loop_radius, num_loop_points=num_loop_points)
+end
+
+
 """
     plot_wilson_loop_winding(solver::Solver, ks, polarisation, bands::AbstractVector{<:Int}, <keyword arguments>)
 
