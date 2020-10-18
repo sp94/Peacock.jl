@@ -35,8 +35,9 @@ Copyright National Academy of Sciences. \label{fig:zoom}](../docs/src/assets/pea
 
 The **P**lane-wave **E**xpansion **A**pproach to **C**haracterising **O**ptical
 **C**rystals in **k**-space - otherwise known as
-`Peacock.jl` - is a Julia package for studying
-photonic crystals using the Plane Wave Expansion Method [@rumpf2006design].
+`Peacock.jl` - is a Julia package for solving Maxwell's equations using the
+Plane Wave Expansion Method [@rumpf2006design] in order to predict
+the optical properties of photonic crystals.
 A photonic crystal is a material whose optical properties arise from its
 periodic structure [@yablonovitch1987inhibited; @john1987strong], and
 `Peacock.jl` is named for the irridescent colours of peacock feathers which
@@ -61,17 +62,19 @@ backscattering [@rider2019perspective].
 # Statement of need
 
 `Peacock.jl` provides a user-friendly interface to calculate and analyse
-the eigensolutions of 2D photonic crystals,
+the eigensolutions of Maxwell's equations for 2D photonic crystals,
 with support for non-orthogonal unit cells and inhomogeneous permittivity and/or
-permeability. As well as the common tools for eigenmode analysis,
+permeability as in \autoref{fig:examples}a. As well as the common tools
+for analysing the eigensolutions,
 such as visualising the eigenmodes or the plotting the eigenvalues on band diagrams as
-in \autoref{fig:examples}a-e, `Peacock.jl` also includes built-in using Wilson loop
-methods [@blanco2020tutorial; @palmer2020berry] to study the topology of photonic bands,
-as in \autoref{fig:examples}f-g.
-Although there exists open-source software to study photonic bands [@johnson2001block]
-and to study topology in electronic bands [@gresch2017z2pack], to our knowledge
-`Peacock.jl` is the first open-source package for studying the
-band topology in photonic crystals.
+in \autoref{fig:examples}b-e, `Peacock.jl` also includes built-in Wilson loop
+methods [@blanco2020tutorial; @palmer2020berry] to study the topological properties
+of photonic crystals, as in \autoref{fig:examples}f-g.
+
+Although there already exists open-source software to study the eigensolutions of Maxwell's
+equations for photonic crystals [@johnson2001block]
+and to study the topological properties of electronic crystals [@gresch2017z2pack], to our knowledge
+`Peacock.jl` is the first open-source package for studying topological photonic crystals.
 
 
 # Example usage
