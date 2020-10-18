@@ -188,7 +188,7 @@ by EPSRC Grant No. EP/L015579/1.
 ​
 V.G. acknowledges the Spanish Ministerio de Economia y Competitividad for
 financial support through the grant NANOTOPO (FIS2017-91413-EXP) and also the
-Ministerio de Ciencia, Innovació n y Universidades through the grant MELODIA
+Ministerio de Ciencia, Innovación y Universidades through the grant MELODIA
 (PGC2018-095777-B-C21).
 
 # References
