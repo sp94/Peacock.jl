@@ -7,6 +7,7 @@
 [![](https://img.shields.io/badge/docs-stable-blue.svg)](https://sp94.github.io/Peacock.jl/stable)
 [![](https://img.shields.io/badge/docs-dev-blue.svg)](https://sp94.github.io/Peacock.jl/dev)
 [![Coverage Status](https://coveralls.io/repos/github/sp94/Peacock.jl/badge.svg?branch=master)](https://coveralls.io/github/sp94/Peacock.jl?branch=master)
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.02678/status.svg)](https://doi.org/10.21105/joss.02678)
 
 ## Introduction
 
