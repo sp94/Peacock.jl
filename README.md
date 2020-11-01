@@ -40,3 +40,19 @@ Focused on ease of use
 
 * Currently only implemented for 2D photonic crystals
 * Like all methods that solve Maxwell's equations in Fourier space, the Plane Wave Expansion Method converges slowly for high contrast materials such as metals (ϵ < 0)
+
+
+## Referencing
+
+If you use `Peacock.jl` in your work, please consider citing us as
+```
+@article{palmer2020peacock,
+  title={Peacock.jl: Photonic crystals in {Julia}},
+  author={Palmer, Samuel J and Giannini, Vincenzo},
+  journal={Journal of Open Source Software},
+  volume={5},
+  number={54},
+  pages={2678},
+  year={2020}
+}
+```
