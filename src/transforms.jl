@@ -44,12 +44,12 @@ function transform(space::Eigenspace, k_map::Function)
 end
 
 
-function symmetry_transform(space::Eigenspace, k_map::Function)
+function symmetry_transform(mode_or_space::Union{Eigenmode,Eigenspace}, k_map::Function)
     # a symmetry operation should leave k invariant under a 
     # shift of reciprocal lattice vector, so let's define a new
     # _k_map such that _k_map(space.k0) ≈ space.k0
-    _k_map(k) = k_map(k) + space.k0 - k_map(space.k0)
-    return transform(space, _k_map)
+    _k_map(k) = k_map(k) + mode_or_space.k0 - k_map(mode_or_space.k0)
+    return transform(mode_or_space, _k_map)
 end
 
 function symmetry_eigvals(space::Eigenspace, k_map::Function)
@@ -59,7 +59,7 @@ function symmetry_eigvals(space::Eigenspace, k_map::Function)
     return vals
 end
 
-function symmetry_eigen(space::Eigenspace, k_map::Function, eigenvalue_label="")
+function symmetry_eigenmodes(space::Eigenspace, k_map::Function, eigenvalue_label="")
     space_ = symmetry_transform(space, k_map)
     xlaps = overlaps(space, space_)
     vals, vecs = eigen(xlaps, sortby=angle)

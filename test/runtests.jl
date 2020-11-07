@@ -115,7 +115,8 @@ end
 @testset "Transforms and symmetries tests" begin
 
     # Get an arbitrary solver from the Zoo
-    @unpack solver, polarisation, K, G, M = make_wu_topo(11)
+    @unpack solver, polarisation, K, G = make_wu_topo(11)
+    M = BrillouinZoneCoordinate(-0.5,+0.5) # the default M point is not m_x or m_y symmetric, so choose another
     
     @testset "Invariant if shifting by a reciprocal lattice vector" begin
         # And an arbitrary k-point
@@ -139,6 +140,32 @@ end
 
     @testset "Symmetry eigenvalue equation" begin
         # check that eigval*eigvec = symmetry*eigvec (up to a lattice vector)
+        for (symmetry,k0) in [
+                (C2, G),
+                (C2, M),
+                (C3, G),
+                (C3, K),
+                (C6, G),
+                (mirror_x, G),
+                (mirror_x, M),
+                (mirror_y, G),
+                (mirror_y, M),
+                (mirror_y, K)]
+            # get eigenspace of first three bands
+            modes = solve(solver, k0, polarisation)
+            space = Eigenspace(modes[1:3])
+            # get symmetry eigenmodes
+            symmetry_modes = symmetry_eigenmodes(space, symmetry)
+            for symmetry_mode in symmetry_modes
+                # apply symmetry to each symmetry eigenmode
+                transformed_mode = symmetry_transform(symmetry_mode, symmetry)
+                # and check that it is equivalent to multiplying by the symmetry eigenvalue
+                xlap = overlap(symmetry_mode, transformed_mode)
+                @test isapprox(symmetry_mode.eigenvalue, xlap, atol=1e-3)
+            end
+        end
+        
+
     end
 
 

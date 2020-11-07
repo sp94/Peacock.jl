@@ -12,18 +12,19 @@ include("plane_wave_basis.jl")
 export BrillouinZoneCoordinate
 
 include("modes.jl")
-export Eigenmode, Eigenspace, get_field
+export Eigenmode, Eigenspace
+export overlap
 
 include("solver.jl")
 export Solver, TE, TM, solve
 
 include("transforms.jl")
 export transform
-export symmetry_transform, symmetry_eigvals, symmetry_eigen
+export symmetry_transform, symmetry_eigvals, symmetry_eigenmodes
 export C2, C3, C4, C6, mirror_x, mirror_y
 
 include("plotting.jl")
-export plot
+export plot, get_field
 
 include("band_diagrams.jl")
 export plot_band_diagram
