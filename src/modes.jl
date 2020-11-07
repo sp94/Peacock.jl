@@ -13,6 +13,13 @@ struct Eigenmode
     eigenvalue_label::String
 end
 
+function overlap(m1::Eigenmode, m2::Eigenmode)
+    LHS = m1.data
+    RHS = m2.weighting * m2.data
+    return dot(LHS, RHS)
+end
+
+
 """
     Eigenspace(k0, data, weighting, basis)
 
