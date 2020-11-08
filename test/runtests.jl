@@ -316,6 +316,47 @@ end
 
     end
 
+    @testset "Hexagonal Wilson loops with symmetries" begin
+
+        # When we have a rotational symmetric crystal and Wilson loop path
+        # we should be able to get the Wilson loop eigenvalues using just
+        # a fraction of that path
+
+        # Test with hexagonal Wilson loop path in a crystal with 6-fold rotational symmetry
+        @unpack solver, polarisation, K = make_wu_topo(11)
+        
+        # Function to get the eigenspaces of the first three bands
+        # along a hexagonal path with num_edges of edges
+        function get_spaces(t; num_edges=6)
+            # get first num_edges of hexagon with t*K as a corner
+            ks = [t*Peacock.get_k(K, solver.basis)]
+            for n in 1:num_edges
+                push!(ks, C6(ks[end]))
+            end
+            ks, _ = Peacock.sample_path(ks)
+            # get Eigenspace of first three bands at each k
+            spaces = Eigenspace[]
+            for k in ks
+                modes = solve(solver, k, polarisation)
+                space = Eigenspace(modes[1:3])
+                push!(spaces, space)
+            end
+            return spaces
+        end
+
+        # full hexagon path - we will compare against Wilson eigenvalues of this path
+        spaces = get_spaces(0.25)
+        vals_full = Peacock.wilson_eigvals(spaces)
+
+        # partial hexagon paths
+        for (symmetry,num_edges) in [(C2,3), (C3,2), (C6,1)]
+            spaces = get_spaces(0.25, num_edges=num_edges)
+            vals_partial = Peacock.wilson_eigvals(spaces, k_map=symmetry)
+            @test is_match(vals_full, vals_partial .^ (6/num_edges))
+        end
+
+    end
+
 end
 
 
