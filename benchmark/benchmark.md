@@ -258,7 +258,7 @@ When running on terminal, the diagram will be displayed in real time at one poin
 
 GPU-based computing is about 30 times faster than CPU-based.
 
-### CPU Parallel
+### CPU Parallel(TODO
 
 We can also use Multi-Threading (`@threads`) or Multi-Programming (`using Distributed; @distributed`) to parallel the `for` loop [like](https://github.com/sp94/Peacock.jl/blob/master/src/band_diagrams.jl#L56):
 
