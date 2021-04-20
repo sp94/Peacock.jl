@@ -258,7 +258,50 @@ When running on terminal, the diagram will be displayed in real time at one poin
 
 GPU-based computing is about 30 times faster than CPU-based.
 
-### CPU Parallel(TODO
+My versioninfo():
+
+```
+Julia Version 1.6.0
+Commit f9720dc2eb (2021-03-24 12:55 UTC)
+Platform Info:
+  OS: Linux (x86_64-pc-linux-gnu)
+  CPU: Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz
+  WORD_SIZE: 64
+  LIBM: libopenlibm
+  LLVM: libLLVM-11.0.1 (ORCJIT, skylake)
+```
+
+CUDA.versioninfo():
+
+```
+CUDA toolkit 10.1.243, artifact installation
+CUDA driver 10.1.0
+NVIDIA driver 430.50.0
+
+Libraries: 
+- CUBLAS: 10.2.1
+- CURAND: 10.1.1
+- CUFFT: 10.1.1
+- CUSOLVER: 10.2.0
+- CUSPARSE: 10.3.0
+- CUPTI: 12.0.0
+- NVML: 10.0.0+430.50
+- CUDNN: 8.0.4 (for CUDA 10.1.0)
+- CUTENSOR: 1.2.2 (for CUDA 10.1.0)
+
+Toolchain:
+- Julia: 1.6.0
+- LLVM: 11.0.1
+- PTX ISA support: 3.2, 4.0, 4.1, 4.2, 4.3, 5.0, 6.0, 6.1, 6.3, 6.4
+- Device support: sm_30, sm_32, sm_35, sm_37, sm_50, sm_52, sm_53, sm_60, sm_61, sm_62, sm_70, sm_72, sm_75
+
+1 device:
+  0: GeForce MX150 (sm_61, 957.250 MiB / 1.956 GiB available)
+```
+
+
+
+### CPU Parallel (TODO)
 
 We can also use Multi-Threading (`@threads`) or Multi-Programming (`using Distributed; @distributed`) to parallel the `for` loop [like](https://github.com/sp94/Peacock.jl/blob/master/src/band_diagrams.jl#L56):
 
