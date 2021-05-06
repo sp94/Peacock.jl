@@ -25,13 +25,13 @@ function bs_to_as(b1, b2)
 end
 
 
-"""
-    DiagonalMatrix(diag::AbstractVector{ComplexF64})
+# """
+#     DiagonalMatrix(diag::AbstractVector{ComplexF64})
 
-A sparse diagonal matrix that can be used in left division (D \\ X)
-"""
-struct DiagonalMatrix <: AbstractMatrix{ComplexF64}
-    diag::AbstractVector{ComplexF64}
-end
-Base.size(A::DiagonalMatrix) = (length(A.diag), length(A.diag))
-Base.getindex(A::DiagonalMatrix, I::Vararg{Int,2}) = I[1]==I[2] ? A.diag[I[1]] : 0
+# A sparse diagonal matrix that can be used in left division (D \\ X)
+# """
+# struct DiagonalMatrix <: AbstractMatrix{ComplexF64}
+#     diag::AbstractVector{ComplexF64}
+# end
+# Base.size(A::DiagonalMatrix) = (length(A.diag), length(A.diag))
+# Base.getindex(A::DiagonalMatrix, I::Vararg{Int,2}) = I[1]==I[2] ? A.diag[I[1]] : 0
