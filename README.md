@@ -42,6 +42,12 @@ Focused on ease of use
 * Like all methods that solve Maxwell's equations in Fourier space, the Plane Wave Expansion Method converges slowly for high contrast materials such as metals (ϵ < 0)
 
 
+## Contributors
+
+* @sp94 (core)
+* @kabume (GPU support)
+
+
 ## Referencing
 
 If you use `Peacock.jl` in your work, please consider citing us as
