@@ -147,45 +147,6 @@ function solve(solver::Solver, k::AbstractVector{<:Real}, polarisation::Polarisa
     return modes
 end
 
-function solve(solver::Solver, k::AbstractVector{<:Real}, polarisation::Polarisation; bands=:)
-    # Get left and right hand sides of the generalised eigenvalue problem
-    basis = solver.basis
-    epc, muc = solver.epc, solver.muc
-    Kx = DiagonalMatrix(basis.kxs) + k[1]*I
-    Ky = DiagonalMatrix(basis.kys) + k[2]*I
-    if polarisation == TE
-        LHS = Kx/epc*Kx + Ky/epc*Ky
-        RHS = muc
-        label = L"H_z"
-    elseif polarisation == TM
-        LHS = Kx/muc*Kx + Ky/muc*Ky
-        RHS = epc
-        label = L"E_z"
-    end
-    # Sometimes the generalised eigenvalue problem solver
-    # fails near Γ when the crystals are symmetric.
-    # In these cases, rewrite as a regular eigenvalue problem
-    freqs_squared, modes_data = try
-        eigen(LHS, RHS)
-    catch
-        eigen(RHS \ LHS)
-    end
-    
-    freqs = sqrt.(freqs_squared)
-    # Sort by increasing frequency
-    idx = sortperm(freqs, by=real)
-    freqs = freqs[idx][bands]
-    modes_data = modes_data[:,idx][:,bands]
-    # Eigenmodes are weighted by the RHS of the generalised eigenvalue problem
-    weighting = RHS
-    modes = Mode[]
-    for i in 1:length(freqs)
-        mode = Mode(k, freqs[i], modes_data[:,i], weighting, basis, label)
-        push!(modes, mode)
-    end
-    return modes
-end
-
 
 """
     solve(solver::Solver, x::BrillouinZoneCoordinate, polarisation::Polarisation; bands=:)
