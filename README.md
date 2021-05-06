@@ -28,6 +28,8 @@ Solve for...
   * Non-orthogonal unit cells
   * Inhomogeneous permittivity and/or permeability
 * Chern numbers of topological photonic crystals using [built-in Wilson loop methods](https://sp94.github.io/Peacock.jl/dev/how-tos/wilson_loops)
+* GPU support
+* TODO: CPU parallel support
 
 
 Focused on ease of use
