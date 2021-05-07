@@ -21,6 +21,8 @@ jobs:
         python: [3.7]
         os:
           - ubuntu-latest
+          - windows-latest
+          - macos-latest
         arch:
           - x64
     steps:
