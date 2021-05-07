@@ -10,6 +10,7 @@ makedocs(
         "How-to guides" => [
             "how-tos/zoo.md",
             "how-tos/wilson_loops.md",
+            "how-tos/gpu.md",
         ],
         "reference/index.md",
         "contributing.md",
