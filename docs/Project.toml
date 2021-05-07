@@ -1,5 +1,4 @@
 [deps]
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 Parameters = "d96e819e-fc66-5662-9728-84c9c7592b0a"
-Peacock = "b643ced8-3934-11ea-3f5f-690af0bb8ffb"
 PyPlot = "d330b81b-6aea-500a-939a-2ce795aea3ee"

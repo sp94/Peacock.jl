@@ -1,4 +1,4 @@
-using Documenter, Peacock
+using Documenter
 
 makedocs(
     sitename="Peacock.jl Documentation",
