@@ -1,6 +1,7 @@
 # [How to accelerate calculations using CUDA-compatible GPUs](@id how_to_GPU)
 
-!!! note Added in Peacock v0.1.2.
+!!! note "Added in Peacock v0.1.2."
+    You will need Peacock v0.1.2 or later for this feature.
 
 ## Summary
 Pass `GPU=true` when creating your [`Solver`](@ref).
