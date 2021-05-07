@@ -2,6 +2,7 @@ module Peacock
 
 using PyPlot
 using LinearAlgebra, FFTW
+using CUDA
 
 include("utils.jl")
 

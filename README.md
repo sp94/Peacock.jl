@@ -29,17 +29,23 @@ Solve for...
   * Inhomogeneous permittivity and/or permeability
 * Chern numbers of topological photonic crystals using [built-in Wilson loop methods](https://sp94.github.io/Peacock.jl/dev/how-tos/wilson_loops)
 
-
 Focused on ease of use
 * [Install](https://sp94.github.io/Peacock.jl/dev/tutorials/getting_started/#getting_started_installation-1) with one line in Julia's package manager
 * Simple visualisation of [geometry](https://sp94.github.io/Peacock.jl/dev/tutorials/getting_started/#getting_started_geometry-1), [fields](https://sp94.github.io/Peacock.jl/dev/tutorials/getting_started/#getting_started_modes-1), and [fully labelled band diagrams](https://sp94.github.io/Peacock.jl/dev/tutorials/getting_started/#getting_started_bands-1)
 * Reproduce and extend existing photonic crystals in the [`Peacock.Zoo`](https://sp94.github.io/Peacock.jl/dev/how-tos/zoo/#how_to_zoo-1) submodule
+* Easily [accelerate calculations on CUDA-compatible GPUs](https://sp94.github.io/Peacock.jl/dev/how-tos/zoo/#how_to_GPU-1)
 
 
 ## Limitations
 
 * Currently only implemented for 2D photonic crystals
 * Like all methods that solve Maxwell's equations in Fourier space, the Plane Wave Expansion Method converges slowly for high contrast materials such as metals (ϵ < 0)
+
+
+## Contributors
+
+* @sp94 (core)
+* @kabume (GPU support)
 
 
 ## Referencing
