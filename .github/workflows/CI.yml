@@ -18,12 +18,25 @@ jobs:
           - '1.4' # Replace this with the minimum Julia version that your package supports. E.g. if your package requires Julia 1.5 or higher, change this to '1.5'.
           - '1' # Leave this line unchanged. '1' will automatically expand to the latest stable 1.x release of Julia.
           - 'nightly'
+        python: [3.7]
         os:
           - ubuntu-latest
         arch:
           - x64
     steps:
       - uses: actions/checkout@v2
+
+      - name: Set up 🐍 ${{ matrix.python }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
+      - name: Install dependencies 🔧
+        run: |
+          python -m pip install --upgrade pip
+          pip install matplotlib
+
       - uses: julia-actions/setup-julia@v1
         with:
           version: ${{ matrix.version }}
@@ -39,6 +52,8 @@ jobs:
             ${{ runner.os }}-test-
             ${{ runner.os }}-
       - uses: julia-actions/julia-buildpkg@v1
+        env:
+          PYTHON : python # this sets the Python binary directly to build PyCall
       - uses: julia-actions/julia-runtest@v1
       - uses: julia-actions/julia-processcoverage@v1
       - uses: codecov/codecov-action@v1
@@ -57,11 +72,12 @@ jobs:
             using Pkg
             Pkg.develop(PackageSpec(path=pwd()))
             Pkg.instantiate()'
-      - run: |
-          julia --project=docs -e '
-            using Documenter: doctest
-            using Peacock
-            doctest(Peacock)' # change MYPACKAGE to the name of your package
+      # we don't have doctests at the moment, but enable following if we add them:
+      # - run: |
+      #     julia --project=docs -e '
+      #       using Documenter: doctest
+      #       using Peacock
+      #       doctest(Peacock)' # change MYPACKAGE to the name of your package
       - run: julia --project=docs docs/make.jl
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
