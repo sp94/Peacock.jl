@@ -27,6 +27,7 @@ Focused on ease of use
 * [Install](@ref getting_started_installation) with one line in Julia's package manager
 * Simple visualisation of [geometry](@ref getting_started_geometry), [fields](@ref getting_started_modes), and [fully labelled band diagrams](@ref getting_started_bands)
 * Reproduce and extend existing photonic crystals in the [`Peacock.Zoo`](@ref how_to_zoo) submodule
+* Easily [accelerate calculations on CUDA-compatible GPUs](@ref how_to_GPU)
 
 
 ## Limitations
@@ -36,3 +37,24 @@ Focused on ease of use
 
 
 
+
+## Contributors
+
+* @sp94 (core)
+* @kabume (GPU support)
+
+
+## Referencing
+
+If you use `Peacock.jl` in your work, please consider citing us as
+```
+@article{palmer2020peacock,
+  title={Peacock.jl: Photonic crystals in {Julia}},
+  author={Palmer, Samuel J and Giannini, Vincenzo},
+  journal={Journal of Open Source Software},
+  volume={5},
+  number={54},
+  pages={2678},
+  year={2020}
+}
+```

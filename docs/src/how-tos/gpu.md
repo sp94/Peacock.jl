@@ -1,5 +1,16 @@
 # [How to accelerate calculations using CUDA-compatible GPUs](@id how_to_GPU)
 
+!!! note Added in Peacock v0.1.2.
+
+## Summary
+Pass `GPU=true` when creating your [`Solver`](@ref).
+
+```julia
+solver = Solver(geometry, fourier_space_cutoff, GPU=true)
+```
+
+## Full example
+
 By default, `Peacock.jl` uses the CPU. However, you may be able to accelerate your calculations if you have a CUDA-compatible GPU.
 
 Let's begin by defining a simple photonic crystal.
