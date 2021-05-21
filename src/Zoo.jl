@@ -123,14 +123,14 @@ function make_wu_primitive(cutoff)
     x = 1 / sqrt(3)
     a1 = [x*cosd(-30), x*sind(-30)]
     a2 = [x*cosd(+30), x*sind(+30)]
-    epf(x,y) = wu_ep(x, y, R, d, d)
+    epf(x,y) = wu_ep(x, y, 0:60:300, R, d, d, 1, 11.7)
     muf(x,y) = 1.0
     g = Geometry(epf, muf, a1, a2, 1/500, 1/500)
     solver = Solver(cg, TM)
     # BZ symmetry points
     G = BrillouinZoneCoordinate(  0,   0, "Γ")
     M = BrillouinZoneCoordinate(  0, 1/2, "M")
-    K = BrillouinZoneCoordinate(1/3, 1/3, "K")
+    K = BrillouinZoneCoordinate(-1/3, 1/3, "K")
     return g, solver, G, M, K
 end
 
