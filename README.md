@@ -51,7 +51,8 @@ Focused on ease of use
 ## Referencing
 
 If you use `Peacock.jl` in your work, please consider citing us as
-```
+
+```bib
 @article{palmer2020peacock,
   title={Peacock.jl: Photonic crystals in {Julia}},
   author={Palmer, Samuel J and Giannini, Vincenzo},
