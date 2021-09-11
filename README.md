@@ -20,6 +20,15 @@ Photonic crystals are materials whose optical properties arise from the structur
 
 As well as occuring naturally as in animals such as peacocks, advances in nanofabrication mean that 'designer' photonic crystals can now be manufactured for unprecedented control over the flow of light, with applications ranging from optical fibers to photonic circuitry. Photonic crystals are also a promising platform for more exotic materials like topological insulators.
 
+## Installation
+
+```julia
+julia> ]
+pkg> add Peacock
+```
+
+For more info on the package and usage instructions, see the [documentation](https://sp94.github.io/Peacock.jl/stable).
+
 
 ## Features
 
