@@ -20,26 +20,35 @@ Photonic crystals are materials whose optical properties arise from the structur
 
 As well as occuring naturally as in animals such as peacocks, advances in nanofabrication mean that 'designer' photonic crystals can now be manufactured for unprecedented control over the flow of light, with applications ranging from optical fibers to photonic circuitry. Photonic crystals are also a promising platform for more exotic materials like topological insulators.
 
+## Installation
+
+```julia
+julia> ]
+pkg> add Peacock
+```
+
+For more info on the package and usage instructions, see the [documentation](https://sp94.github.io/Peacock.jl/stable).
+
 
 ## Features
 
 Solve for...
 * Transverse electric (TE) and transverse magnetic (TM) modes of 2D photonic crystals
-  * Non-orthogonal unit cells
+  * Non-orthogonal unit cells:
   * Inhomogeneous permittivity and/or permeability
-* Chern numbers of topological photonic crystals using [built-in Wilson loop methods](https://sp94.github.io/Peacock.jl/dev/how-tos/wilson_loops)
+* Chern numbers of topological photonic crystals using [built-in Wilson loop methods](https://sp94.github.io/Peacock.jl/dev/how-tos/wilson_loops).
 
 Focused on ease of use
-* [Install](https://sp94.github.io/Peacock.jl/dev/tutorials/getting_started/#getting_started_installation-1) with one line in Julia's package manager
-* Simple visualisation of [geometry](https://sp94.github.io/Peacock.jl/dev/tutorials/getting_started/#getting_started_geometry-1), [fields](https://sp94.github.io/Peacock.jl/dev/tutorials/getting_started/#getting_started_modes-1), and [fully labelled band diagrams](https://sp94.github.io/Peacock.jl/dev/tutorials/getting_started/#getting_started_bands-1)
-* Reproduce and extend existing photonic crystals in the [`Peacock.Zoo`](https://sp94.github.io/Peacock.jl/dev/how-tos/zoo/#how_to_zoo-1) submodule
-* Easily [accelerate calculations on CUDA-compatible GPUs](https://sp94.github.io/Peacock.jl/dev/how-tos/gpu/)
+* [Install](https://sp94.github.io/Peacock.jl/dev/tutorials/getting_started/#getting_started_installation-1) with one line in Julia's package manager.
+* Simple visualisation of [geometry](https://sp94.github.io/Peacock.jl/dev/tutorials/getting_started/#getting_started_geometry-1), [fields](https://sp94.github.io/Peacock.jl/dev/tutorials/getting_started/#getting_started_modes-1), and [fully labelled band diagrams](https://sp94.github.io/Peacock.jl/dev/tutorials/getting_started/#getting_started_bands-1).
+* Reproduce and extend existing photonic crystals in the [`Peacock.Zoo`](https://sp94.github.io/Peacock.jl/dev/how-tos/zoo/#how_to_zoo-1) submodule.
+* Easily [accelerate calculations on CUDA-compatible GPUs](https://sp94.github.io/Peacock.jl/dev/how-tos/gpu/).
 
 
 ## Limitations
 
-* Currently only implemented for 2D photonic crystals
-* Like all methods that solve Maxwell's equations in Fourier space, the Plane Wave Expansion Method converges slowly for high contrast materials such as metals (ϵ < 0)
+* Currently only implemented for 2D photonic crystals.
+* Like all methods that solve Maxwell's equations in Fourier space, the Plane Wave Expansion Method converges slowly for high contrast materials such as metals (ϵ < 0).
 
 
 ## Contributors
@@ -51,7 +60,8 @@ Focused on ease of use
 ## Referencing
 
 If you use `Peacock.jl` in your work, please consider citing us as
-```
+
+```bib
 @article{palmer2020peacock,
   title={Peacock.jl: Photonic crystals in {Julia}},
   author={Palmer, Samuel J and Giannini, Vincenzo},
