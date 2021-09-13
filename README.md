@@ -33,8 +33,8 @@ For more info on the package and usage instructions, see the [documentation](htt
 ## Features
 
 Solve for...
-* Transverse electric (TE) and transverse magnetic (TM) modes of 2D photonic crystals
-  * Non-orthogonal unit cells:
+* Transverse electric (TE) and transverse magnetic (TM) modes of 2D photonic crystals:
+  * Non-orthogonal unit cells
   * Inhomogeneous permittivity and/or permeability
 * Chern numbers of topological photonic crystals using [built-in Wilson loop methods](https://sp94.github.io/Peacock.jl/dev/how-tos/wilson_loops).
 
